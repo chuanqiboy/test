@@ -83,6 +83,9 @@ section{
     margin-bottom: 11px;
 	border: 1px solid #C6C6C6;
 }
+table tr{
+	color: #666;
+}
 .echarts_bar,.echarts_bars{
 	display: none;
 	width: 95%;
