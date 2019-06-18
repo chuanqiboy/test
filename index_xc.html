@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="static/css/template/reset.css?2014-03-07-1" media="all" />
+		
+<link rel="stylesheet" type="text/css" href="static/css/template/snower.css?2014-03-07-1" media="all" />
+		
+<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
+
+		<link rel="stylesheet" type="text/css" href="static/css/template/home-23.css?2014-03-07-1" media="all" />
+		
+<link rel="stylesheet" type="text/css" href="static/css/template/home-menu-2.css?2014-03-07-1" media="all" />
+		
+<script type="text/javascript" src="static/src/template/maivl.js?2014-03-07-1"></script>
+
+		<script type="text/javascript" src="static/src/jQuery.js?2014-03-07-1"></script>
+		
+		<script type="text/javascript" src="static/src/echarts.min.js"></script>
+
+		<script type="text/javascript" src="static/src/template/swipe.js?2014-03-07-1"></script>
+
+		<script type="text/javascript" src="static/src/template/zepto.js?2014-03-07-1"></script>
+		<title>统计报表</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />		
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="static/img/favicon.ico" />
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        
+<link rel="stylesheet" type="text/css" href="wm-xin-a/font-awesome.css?v=2014032314" media="all" />
+
+<div class="body" style="padding-bottom:50px;">
+		<!--
+	幻灯片管理
+	-->
+	<div>
+		<div class="homeTitle">投资概述</div>
+		<div class="homeDesc">
+			投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述
+		</div>
+	</div>
+		<script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+	<!--用户分类管理-->
+		<section>
+			<ul class="list_home">
+				<li class="homeActive">
+					<div>
+						投资完成情况表格
+					</div>
+				</li>
+				<li>
+					<div>投资完成情况柱状图对比图</div>
+				</li>
+			</ul>
+			<div class="touzi">
+				<div><span class="t_first">投资</span><span>分公司计划</span></div>
+			</div>
+			<div class="home_datalist">
+				<table>
+					<tr>
+						<th>项目类型</th>
+						<th>年度规模</th>
+						<th>批次下达</th>
+						<th>当前完成</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div class="echarts_bar">
+				<div id="main" style="width: 100%;height:400px;"></div>
+ 
+			</div>
+		</section>
+		<section>
+			<ul class="list_home">
+				<li class="homeActive">
+					<div>
+						工作量完成情况表格
+					</div>
+				</li>
+				<li>
+					<div>工作量完成情况柱状图对比图</div>
+				</li>
+			</ul>
+			<div class="touzi">
+				<div><span class="t_first">进尺</span><span>分公司计划</span></div>
+			</div>
+			<div class="home_datalist">
+				<table>
+					<tr>
+						<th>项目类型</th>
+						<th>年度规模</th>
+						<th>批次下达</th>
+						<th>当前完成</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div class="echarts_bar">
+				<div id="mainBar" style="width: 100%;height:400px;"></div>
+ 
+			</div>
+		</section>
+	</div>
+	<script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+				legend: {},
+				tooltip: {},
+				dataset: {
+					dimensions: ['product', '2015', '2016', '2017'],
+					source: [
+						{product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
+						{product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
+						{product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
+						{product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+					]
+				},
+				xAxis: {type: 'category'},
+				yAxis: {},
+				// Declare several bar series, each will be mapped
+				// to a column of dataset.source by default.
+				series: [
+					{type: 'bar'},
+					{type: 'bar'},
+					{type: 'bar'}
+				]
+			};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+		
+		// 基于准备好的dom，初始化echarts实例
+        var myCharts = echarts.init(document.getElementById('mainBar'));
+        // 指定图表的配置项和数据
+        var options = {
+				legend: {},
+				tooltip: {},
+				dataset: {
+					dimensions: ['product', '2015', '2016', '2017'],
+					source: [
+						{product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
+						{product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
+						{product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
+						{product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+					]
+				},
+				xAxis: {type: 'category'},
+				yAxis: {},
+				// Declare several bar series, each will be mapped
+				// to a column of dataset.source by default.
+				series: [
+					{type: 'bar'},
+					{type: 'bar'},
+					{type: 'bar'}
+				]
+			};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myCharts.setOption(options);
+		
+			</script>
+	</body>
+		<script type="text/javascript">
+
+function getShareApiRouter(){
+	var str_domain = location.href.split('',4)[2];
+	var tj_domain = '127.0.0.1';
+	switch(str_domain){
+		case 'www.js-css.cn':
+			tj_domain = 'tj.js-css.cn';
+			break;
+		case '112.124.28.82':
+			tj_domain = '112.124.28.82:400';
+			break;
+	}
+	return tj_domain;
+}
+if(typeof(window.shareData) == 'undefined'){
+	window.shareData = {
+				"imgUrl": "", 
+		"timeLineLink": "weisite/channel?pid=24137&bid=32449&wechatid=fromUsername&categoryid=51218&wxref=mp.weixin.qq.com",
+		"sendFriendLink": "weisite/channel?pid=24137&bid=32449&wechatid=fromUsername&categoryid=51218&wxref=mp.weixin.qq.com",
+		"weiboLink": "weisite/channel?pid=24137&bid=32449&wechatid=fromUsername&categoryid=51218&wxref=mp.weixin.qq.com",
+		"tTitle": document.title,
+		"tContent": document.title,
+		"fTitle": document.title,
+		"fContent": document.title,
+		"wContent": document.title
+	}
+}
+}, false);
+</script>
+
+</body>
+</html>
+
+

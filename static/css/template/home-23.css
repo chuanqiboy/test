@@ -1,0 +1,98 @@
+.body{
+    width: 100%;
+    margin:auto;
+    min-height:100%;
+    background-color:#FFF;
+    position:relative;
+	padding: 0 20px;
+}
+.homeTitle{
+	height: 60px;
+	line-height: 60px;
+	font-size: 28px;
+}
+.homeDesc{
+	height: 200px;
+	text-indent: 20px;
+	font-size:24px;
+}
+.list_home{
+    border:1px solid #dadada;
+    border-radius:8px;
+    overflow:hidden;
+}
+.list_home li{
+	width: 50%;
+	text-align: center;
+	height:60px;
+    line-height:60px;
+	color: #666;
+    border-bottom:1px solid #dadada;
+	font-size: 28px;
+	float: left;
+}
+.homeActive div{
+	background: #ee4040;
+	color: #fff;
+}
+.list_home li>first-child{
+	border-right: 1px solid #ccc;
+}
+.jinchi{
+	display: none;
+}
+.touzi{
+	height: 60px;
+	line-height: 60px;
+	font-size: 26px;
+}
+.t_first{
+	display: inline-block;
+	margin-right: 20px;   
+}
+.home_datalist {
+	margin-top: 20px;
+	font-size: 22px;
+}
+.home_datalist table th,.home_datalist table td{
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+.echarts_bar{
+	margin-top: 20px;
+}
+.list_font li{
+    height:43px!important;
+    line-height:43px;
+    padding:0;
+    border-bottom:1px solid #dadada;
+	float: left;
+}
+.list_font li:last-child{
+    border:none;
+}
+
+.list_font li>a{
+    overflow:hidden;
+    background-size:8px auto;
+    background-color:#fff;
+}
+.list_font li{
+    margin-top:0!important;
+    margin-bottom:0!important;
+    padding:0;
+    display:inline-block;
+    min-width:60px;
+    float:left;
+	text-align:left;
+    text-indent:10px;
+}
+.list_font li div>span{
+    color:#fff;
+    line-height:43px;
+    height:43px!important;
+    font-size:25px!important;
+}
+.list_font li div>p{
+    font-size:12px;
+}

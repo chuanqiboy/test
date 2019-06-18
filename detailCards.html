@@ -1,0 +1,323 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="static/css/onlinebooking.css?2014-03-07-1" media="all" />
+		
+<link rel="stylesheet" type="text/css" href="static/css/datepicker.css?2014-03-07-1" media="all" />
+
+		<link rel="stylesheet" type="text/css" href="static/css/template/weimob-ui-1-1.css?2014-03-07-1" media="all" />
+
+		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
+
+		<script type="text/javascript" src="static/src/jQuery.js?2014-03-07-1"></script>
+		<script type="text/javascript" src="static/src/echarts.min.js"></script>
+
+		<script type="text/javascript" src="static/src/jquery-ui.js?2014-03-07-1"></script>
+		<title>报表统计</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="static/img/favicon.ico" />
+        <style>
+            img{max-width:100%!important;}
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        <body id="onlinebooking">
+<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
+	<script>
+		var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
+		document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
+	</script>
+</div>
+	<header class="detailTitle">
+		<div class="titleLeft">江沙211-10F</div>
+		<div class="titleRight"><a  class="backBtn" href="javascript:history.go(-1)">返回</a></div>
+		<div class="clear"></div>
+	</header>
+	<div class="cardexplain">	
+	<section class="home_section">
+		<div>基本信息</div>
+			<div class="home_datalist">
+				<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
+					<tr>
+						<td>井名</td>
+						<td></td>
+						<td>区块</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>井别</td>
+						<td></td>
+						<td>井型</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>地理位置</td>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td>构造位置</td>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td>设计井深</td>
+						<td></td>
+						<td>实钻井深</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>目的层位</td>
+						<td></td>
+						<td>实钻层位</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>设计周期</td>
+						<td></td>
+						<td>实钻周期</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>钻机型号</td>
+						<td></td>
+						<td>完井方式</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>最大井斜角</td>
+						<td></td>
+						<td>造斜率（*/100m）</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>泥浆浓度</td>
+						<td></td>
+						<td>是否用顶驱</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>钻采任务下达时间</td>
+						<td></td>
+						<td>钻井任务下达时间</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>开钻日期</td>
+						<td></td>
+						<td>完钻日期</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>建设单位</td>
+						<td></td>
+						<td>钻井施工单位</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>其他</td>
+						<td colspan="3"></td>
+					</tr>
+					<tr>
+						<td>定向井数据</td>
+						<td>造斜率（*/100m）</td>
+						<td>最大井斜</td>
+						<td>水平段长（m）</td>
+					</tr>
+					<tr>
+						<td>设计</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>实际</td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td rowspan="2">套管程序</td>
+						<td>设计</td>
+						<td></td>	
+					</tr>
+					<tr>
+						
+					</tr>				
+				</table>
+			</div>
+		</section>
+		<section>
+			
+		</section>
+	</div>
+
+
+<script type="text/javascript">		 
+		// 基于准备好的dom，初始化echarts实例
+        var myCharts = echarts.init(document.getElementById('mainBar'));
+        // 指定图表的配置项和数据
+        var options = {
+				legend: {},
+				tooltip: {},
+				dataset: {
+					dimensions: ['product', '2015', '2016', '2017'],
+					source: [
+						{product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
+						{product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
+						{product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
+						{product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+					]
+				},
+				xAxis: {type: 'category'},
+				yAxis: {},
+				// Declare several bar series, each will be mapped
+				// to a column of dataset.source by default.
+				series: [
+					{type: 'bar'},
+					{type: 'bar'},
+					{type: 'bar'}
+				]
+			};
+
+        // 使用刚指定的配置项和数据显示图表。
+        myCharts.setOption(options);
+		
+
+$(document).ready(function () {	
+		$( "#dateline" ).datepicker({
+			minDate: new Date(),
+			dateFormat: "yy-mm-dd"
+		}).val((
+				function(d){
+					return [d.getFullYear(), d.getMonth()+1, d.getDate()].join("-");
+				}
+			)(new Date()));
+	$("#showcard").click(function () {
+		var ret_single = ret_download = tel_num = '';
+		$(".single").each(function(i){
+			var s_name = $(this).parent().siblings().text();
+			var s_value = $(this).val();
+			if('' != s_value) ret_single += '$'+s_name+'#'+s_value;
+		});
+	
+		$(".download").each(function(i){
+			var s_name = $(this).parent().siblings().text();
+			var s_value = $(this).val();
+			if('' != s_value) ret_download += '$'+s_name+'#'+s_value;
+		});
+
+		tel_num = $("#tel").val();
+		if('undefined' !== typeof(tel_num)){
+			if(tel_num ==''){alert('电话不能为空');return;} 
+			if(tel_num.length < 11){alert('请输入正确的电话');return;} 
+		}
+
+		if($("#truename").val()==''){alert('名字不能为空');return;}
+//		if($("#dateline").val()==''){alert('请选择时间');return;}
+		var submitData = {
+			wechatid: $("#uid").val(),
+			rid: $("#rid").val(),
+			aid: $("#aid").val(),
+			contact: $("#truename").val(),
+			dateline: $("#dateline").val(),
+			timepart: $("#timepart").val(),
+			remark: $("#info").val(),
+			contacttel: $("#tel").val(),
+			fieldsigle:ret_single,
+			fielddownload:ret_download
+		};
+		if('fromUsername' == submitData.wechatid) submitData.wechatid = '';
+		$.post('Webreserve/SubmitBook', submitData,
+			function(data) {
+				if (0 == data.errno) {
+					alert(data.msg);
+					var count = $(".ok").text();
+					count = 1+ parseInt(count);
+					$(".ok").text(count);
+					setTimeout(function(){
+						jumpurl(data.url);
+					},1500);
+					return;
+				} else {
+					alert(data.msg);
+				}
+			},
+		"json")
+
+	}); 
+}); 
+
+
+$("#dateline").change(function () {
+	var submitData = {
+	wxname: "o5JGbjuFTr6lumWIyyW3yfP-G5m0",
+	dateline: $("#dateline").val(),
+	formhash: $("#formhash").val(),
+	action: "getcount"
+	};
+}); 
+$("#windowclosebutton").click(function () { 
+$("#windowcenter").slideUp(500);
+}); 
+$("#alertclose").click(function () { 
+$("#windowcenter").slideUp(500);
+
+}); 
+function jumpurl(url){
+	window.location.href = url;
+}
+function alert(title){ 
+
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+//$("#windowcenter").hide("slow"); 
+setTimeout('$("#windowcenter").slideUp(500)',4000);
+} 
+
+
+</script>
+</body>        		<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+	</body>
+		<script type="text/javascript">
+
+function getShareApiRouter(){
+	var str_domain = location.href.split('',4)[2];
+	var tj_domain = '127.0.0.1';
+	switch(str_domain){
+		case 'www.weimob.com':
+			tj_domain = 'tj.weimob.com';
+			break;
+		case '112.124.28.82':
+			tj_domain = '112.124.28.82:400';
+			break;
+	}
+	return tj_domain;
+}
+if(typeof(window.shareData) == 'undefined'){
+	window.shareData = {
+				"imgUrl": "", 
+		"timeLineLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
+		"sendFriendLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
+		"weiboLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
+		"tTitle": document.title,
+		"tContent": document.title,
+		"fTitle": document.title,
+		"fContent": document.title,
+		"wContent": document.title
+	}
+}
+</script>
+
+</body>
+</html>
