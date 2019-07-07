@@ -151,7 +151,7 @@ ul.round li {
 	font-size: 22px;
 }
 .home_datalist table th,.home_datalist table td{
-	padding: 10px;
+	padding: 5px;
 	font-size: 14px;
 }
 ul.round li:only-of-type {
@@ -297,10 +297,6 @@ ul.round li.nob:last-of-type {
     text-overflow: ellipsis;
     white-space: nowrap;
 	padding-right: 25px;
-}
-
-.round li .text {
-	padding:10px 0 10px;
 }
 .round li .btop {
     background-color: #F5F5F5;

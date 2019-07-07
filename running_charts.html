@@ -26,7 +26,7 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/favicon.ico" />
+        <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
             img{max-width:100%!important;}
         </style>
@@ -62,36 +62,52 @@
 						<th>项目实施</th>						
 					</tr> 
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>合计</td>
+						<td>15</td>
+						<td>2</td>
+						<td>58</td>
+						<td>75</td>
+						<td>42</td>						
 					</tr>
 					<tr>
+						<td>常规勘探</td>
+						<td>7</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>16</td>
+						<td>23</td>
+						<td>14</td>
 					</tr>
 					<tr>
+						<td>非常规勘探</td>
+						<td>1</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>2</td>
+						<td>3</td>
+						<td>1</td>
 					</tr>
 					<tr>
+						<td>非常规开发</td>
+						<td>2</td>
 						<td></td>
+						<td>10</td>
+						<td>12</td>
+						<td>8</td>
+					</tr>
+					<tr>
+						<td>天然气开发</td>
+						<td>1</td>
 						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>25</td>
+						<td>26</td>
+						<td>14</td>
+					</tr>
+					<tr>
+						<td>系统配套</td>
+						<td>4</td>
+						<td>2</td>
+						<td>5</td>
+						<td>11</td>
+						<td>5</td>
 					</tr>
 				</table>
 			</div>
@@ -118,19 +134,29 @@
 				legend: {},
 				tooltip: {},
 				dataset: {
-					dimensions: ['product', '2015', '2016', '2017'],
+					dimensions: ['product', '方案编制', '可研编制', '可研批复','计划下达','项目实施'],
 					source: [
-						{product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
-						{product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
-						{product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
-						{product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+						{product: '合计', '方案编制': 15, '可研编制': 2, '可研批复': 58, '计划下达': 75, '项目实施': 42},
+						{product: '常规勘探', '方案编制': 7, '可研编制': 0, '可研批复': 16, '计划下达': 23, '项目实施': 14},
+						{product: '非常规勘探', '方案编制': 1, '可研编制': 0, '可研批复': 2, '计划下达': 3, '项目实施': 1},
+						{product: '非常规开发', '方案编制': 2, '可研编制': 0, '可研批复': 10, '计划下达': 12, '项目实施': 8},
+						{product: '天然气开发', '方案编制': 1, '可研编制': 0, '可研批复': 25, '计划下达': 26, '项目实施': 14},
+						{product: '系统配套', '方案编制': 4, '可研编制': 2, '可研批复': 5, '计划下达': 11, '项目实施': 5}
 					]
 				},
-				xAxis: {type: 'category'},
+				xAxis: {
+					type: 'category',
+					axisLabel: {  
+					   interval:0,  
+					   rotate:60  
+					}  
+				},
 				yAxis: {},
 				// Declare several bar series, each will be mapped
 				// to a column of dataset.source by default.
 				series: [
+					{type: 'bar'},
+					{type: 'bar'},
 					{type: 'bar'},
 					{type: 'bar'},
 					{type: 'bar'}

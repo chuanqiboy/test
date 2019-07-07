@@ -27,7 +27,7 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/favicon.ico" />
+        <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
             img{max-width:100%!important;}
         </style>
@@ -45,7 +45,11 @@
 	<ul class="round">
 		<li>
 		<h2>投资概述</h2>
-		<div class="text">投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述投资概述</div>
+		<div class="text">截止2019年07月07日：
+			总部下达年度规模计划57.58亿元，分公司下达年度控制计划55.89亿元。 
+		 总部累计下达批次计划2批，共计 31.33亿元 。其中常规勘探6.12亿元，非常规11.11亿元，天然气开发13.59亿元，系统配套0.5亿元；
+		 分公司本年下达执行计划2批，共计 30.32亿元。其中常规勘探5.5亿元，非常规10.88亿元，天然气开发13.41亿元，系统配套0.53元。  
+		 西南油气分公司 ERP累计结算10.34亿元，完成总部规模计划的18%。</div>
 		</li>
 	</ul>
 	<section class="home_section">
@@ -73,28 +77,28 @@
 									<th>当前完成</th>
 								</tr>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>勘探</td>
+									<td>8.89</td>
+									<td>6.12</td>
+									<td>2.1</td>
 								</tr>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>非常规</td>
+									<td>28.64</td>
+									<td>11.11</td>
+									<td>2.1</td>
 								</tr>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>天然气开发</td>
+									<td>19.26</td>
+									<td>13.59</td>
+									<td>6.13</td>
 								</tr>
 								<tr>
-									<td></td>
-									<td></td>
-									<td></td>
-									<td></td>
+									<td>系统配套</td>
+									<td>0.78</td>
+									<td>0.5</td>
+									<td>0.01</td>
 								</tr>
 							</table>
 						</div>		
@@ -122,7 +126,7 @@
 					<div><span class="t_first">进尺</span><span>分公司计划</span></div>
 				</div>
 				<div class="home_datalist">
-					<table border="1" cellspacing="0" cellpadding="0">
+					<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
 						<tr>
 							<th>项目类型</th>
 							<th>年度规模</th>
@@ -130,28 +134,22 @@
 							<th>当前完成</th>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>勘探</td>
+							<td>8.58</td>
+							<td>6.09</td>
+							<td>3.43</td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>非常规</td>
+							<td>26.04</td>
+							<td>7.69</td>
+							<td>10.83</td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
+							<td>天然气开发</td>
+							<td>16.21</td>
+							<td>12.93</td>
+							<td>8.44</td>
 						</tr>
 					</table>
 				</div>
@@ -173,15 +171,21 @@
 				legend: {},
 				tooltip: {},
 				dataset: {
-					dimensions: ['product', '2016', '2017'],
+					dimensions: ['product', '年度规模', '批次下达','当前完成'],
 					source: [
-						{product: '5月', '2016': 85.8, '2017': 93.7},
-						{product: '6月', '2016': 73.4, '2017': 55.1},
-						{product: '7月', '2016': 65.2, '2017': 82.5},
-						{product: '8月', '2016': 53.9, '2017': 39.1}
+						{product: '勘探', '年度规模': 8.58, '批次下达': 6.09, '当前完成': 3.43},
+						{product: '非常规', '年度规模': 26.04, '批次下达': 7.69, '当前完成': 10.83},
+						{product: '天然气开发', '年度规模': 19.26, '批次下达': 13.59, '当前完成': 6.13},
+						{product: '系统配套', '年度规模': 0.78, '批次下达': 0.5, '当前完成': 0.01}
 					]
 				},
-				xAxis: {type: 'category'},
+				xAxis: {
+					type: 'category',
+					axisLabel: {  
+					   interval:0,  
+					   rotate:60  
+					}
+				},
 				yAxis: {},
 				// Declare several bar series, each will be mapped
 				// to a column of dataset.source by default.
@@ -199,15 +203,20 @@
 				legend: {},
 				tooltip: {},
 				dataset: {
-					dimensions: ['product', '2016', '2017'],
+					dimensions: ['product', '年度规模', '批次下达','当前完成'],
 					source: [
-						{product: '5月', '2016': 85.8, '2017': 93.7},
-						{product: '6月', '2016': 73.4, '2017': 55.1},
-						{product: '7月', '2016': 65.2, '2017': 82.5},
-						{product: '8月', '2016': 53.9, '2017': 39.1}
+						{product: '勘探', '年度规模': 8.89, '批次下达': 6.12, '当前完成': 2.1},
+						{product: '非常规', '年度规模': 26.04, '批次下达': 7.69, '当前完成': 10.83},
+						{product: '天然气开发', '年度规模': 16.21, '批次下达': 12.93, '当前完成': 8.44},
 					]
 				},
-				xAxis: {type: 'category'},
+				xAxis: {
+					type: 'category',
+					axisLabel: {  
+					   interval:0,  
+					   rotate:60  
+					}
+				},
 				yAxis: {},
 				// Declare several bar series, each will be mapped
 				// to a column of dataset.source by default.

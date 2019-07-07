@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="static/css/onlinebooking.css?2014-03-07-1" media="all" />
+		
+<link rel="stylesheet" type="text/css" href="static/css/datepicker.css?2014-03-07-1" media="all" />
+
+		<link rel="stylesheet" type="text/css" href="static/css/template/weimob-ui-1-1.css?2014-03-07-1" media="all" />
+
+		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
+
+		<script type="text/javascript" src="static/src/jQuery.js"></script>
+		<script type="text/javascript" src="static/src/jquery.ba-resize.min.js"></script>
+		<script type="text/javascript" src="static/src/echarts.min.js"></script>
+
+		<script type="text/javascript" src="static/src/jquery-ui.js"></script>
+		<title>报表统计</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
+        <!-- Mobile Devices Support @begin -->
+            <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+            <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+            <meta content="no-cache" http-equiv="pragma">
+            <meta content="0" http-equiv="expires">
+            <meta content="telephone=no, address=no" name="format-detection">
+            <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
+            <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <!-- Mobile Devices Support @end -->
+        <link rel="shortcut icon" href="static/img/invest.png" />
+        <style>
+            img{max-width:100%!important;}
+			.nextData {
+				color: #409eff;
+			}
+        #popLayer {
+            display: none;
+            background-color: #B3B3B3;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 10;
+            -moz-opacity: 0.8;
+            opacity:.80;
+            filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+        }
+        #popBox {
+            display: none;
+            background-color: #FFFFFF;
+            z-index: 11;
+            width: 320px;
+            height: 200px;
+            position:fixed;
+            top:0;
+            right:0;
+            left:0;
+            bottom:0;
+            margin:auto;
+        }
+ 
+        #popBox .close{
+            text-align: right;
+            margin-right: 5px;
+            background-color: #F8F8F8;
+        }
+        #popBox .close a {
+            text-decoration: none;
+            color: #2D2C3B;
+        }
+        </style>
+    </head>
+    <body onselectstart="return true;" ondragstart="return false;">
+        <body id="onlinebooking">
+<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
+	<script>
+		var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
+		document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
+	</script>
+</div>
+	<div class="cardexplain">
+	<!--后台可控制是否显示-->
+	<section class="home_section">
+			<ul class="list_home">
+				<li class="homeActive">
+					<div>
+						未办
+					</div>
+				</li>
+				<li>
+					<div>已办</div>
+				</li>
+			</ul>
+				<div>
+					<div class="tableData">
+						<div class="home_datalist">
+							<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style=""width: 100%">
+								<tr>
+									<th>时间</th>
+									<th>注意事项</th>
+								</tr>
+								<tr>
+									<td>2019/6/25</td>
+									<td class="nextData">川西二叠系项目方案已填报，请审批</td>
+								</tr>
+								<tr>
+									<td>2019/6/25</td>
+									<td class="nextData">2019年油田板块第3批次计划审批</td>
+								</tr>
+								<tr>
+									<td>2019/6/25</td>
+									<td class="nextData">江沙323-1HF井钻井工程进度结算，请审批</td>
+								</tr>
+								<tr>
+									<td>2019/6/25</td>
+									<td class="nextData">江沙320-1HF井钻前工程进度款结算，请审批</td>
+								</tr>
+							</table>
+						</div>		
+					</div>
+					<div class="tableData overWork" style="display: none;">
+						<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style=""width: 100%">
+								<tr>
+									<th>时间</th>
+									<th>注意事项</th>
+								</tr>
+								<tr>
+									<td>2019/6/25</td>
+									<td class="nextData">2019年油田板块第1批次计划审批通过</td>
+								</tr>
+								<tr>
+									<td>2019/6/25</td>
+									<td class="nextData">2019年油田板块第2批次计划审批通过</td>
+								</tr>
+								<tr>
+									<td>2019/6/25</td>
+									<td class="nextData">江沙323-1HF井钻前工程进度结算审批通过</td>
+								</tr>
+							</table>
+					</div>
+							
+			</div>
+			
+		</section>
+	</div>
+	<div id="popLayer"></div>
+	<div id="popBox">
+		<div class="close">
+			<a href="javascript:void(0)" onclick="closeBox()">X</a>
+		</div>
+		<div class="content">
+			<div style="display: flex;align-items: center;padding: 10px;">
+				<label>
+					审批意见:
+				</label>
+				<textarea style="height: 60px;width: 200px;padding-left: 5px;"></textarea>
+			</div>
+			<div style="text-align:center;margin-top: 20px;">
+				<span style="display: inline-block; padding: 4px 16px;background: #409eff;color: #fff;margin: 0 6px;border-radius: 4px">通过</span>
+				<span style="display: inline-block; padding: 4px 16px;background: #409eff;color: #fff;margin: 0 6px;border-radius: 4px" onclick="closeBox()">退回</span>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript">
+$(".list_home>li").click(function () {
+    $(this).addClass("homeActive").siblings().removeClass("homeActive");
+    var index = $(this).index();
+	if(index == 1){
+		$(".tableData").hide();
+		$(".overWork").show();
+	}else{
+		$(".tableData").show();
+		$(".overWork").hide();
+	}
+});
+$(".listBar>li").click(function () {
+    $(this).addClass("homeActive").siblings().removeClass("homeActive");
+    var index = $(this).index();
+	if(index == 1){
+		$(".secondTable").hide();
+		$(".overWork").show();
+	}else{
+		$(".secondTable").show();
+		$(".overWork").hide();
+	}
+});
+$(".nextData").click(function () {
+    var popBox = document.getElementById("popBox");
+    var popLayer = document.getElementById("popLayer");
+    popBox.style.display = "block";
+    popLayer.style.display = "block";
+});
+function closeBox() {
+    var popBox = document.getElementById("popBox");
+    var popLayer = document.getElementById("popLayer");
+    popBox.style.display = "none";
+    popLayer.style.display = "none";
+}
+function jumpurl(url){
+	window.location.href = url;
+}
+function alert(title){ 
+
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+//$("#windowcenter").hide("slow"); 
+setTimeout('$("#windowcenter").slideUp(500)',4000);
+} 
+
+
+</script>
+</body>        		<div mark="stat_code" style="width:0px; height:0px; display:none;">
+					</div>
+	</body>
+		<script type="text/javascript">
+
+function getShareApiRouter(){
+	var str_domain = location.href.split('',4)[2];
+	var tj_domain = '127.0.0.1';
+	switch(str_domain){
+		case 'www.weimob.com':
+			tj_domain = 'tj.weimob.com';
+			break;
+		case '112.124.28.82':
+			tj_domain = '112.124.28.82:400';
+			break;
+	}
+	return tj_domain;
+}
+if(typeof(window.shareData) == 'undefined'){
+	window.shareData = {
+				"imgUrl": "", 
+		"timeLineLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
+		"sendFriendLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
+		"weiboLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
+		"tTitle": document.title,
+		"tContent": document.title,
+		"fTitle": document.title,
+		"fContent": document.title,
+		"wContent": document.title
+	}
+}
+</script>
+
+</body>
+</html>

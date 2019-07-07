@@ -68,40 +68,58 @@
 						<th>井数</th>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>川西凹陷侏罗系预探项目2019</td>
+						<td>3840</td>
+						<td>0.68</td>
+						<td>2</td>
+						<td>3759</td>
+						<td>0.34</td>
+						<td>1</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>川西二叠系</td>
+						<td>9000</td>
+						<td>0.6</td>
+						<td>1</td>
+						<td>2160</td>
+						<td>0.15</td>
+						<td>1</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>山前带雷三段</td>
+						<td>3600</td>
+						<td>0.3</td>
+						<td>1</td>
+						<td>3257</td>
+						<td>0.44</td>
+						<td>1</td>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td>威荣地区页岩气产能建设</td>
+						<td>83796</td>
+						<td>4</td>
+						<td>0</td>
+						<td>14261</td>
+						<td>7.66</td>
+						<td>0</td>
+					</tr>
+					<tr>
+						<td>中江气田沙溪庙组江沙323HF和江沙321HF等井区产能建设</td>
+						<td>29425</td>
+						<td>3.61</td>
+						<td>9</td>
+						<td>13612</td>
+						<td>1.67</td>
+						<td>6</td>
+					</tr>
+					<tr>
+						<td>川西气田产能建设</td>
+						<td>20000</td>
+						<td>1</td>
+						<td>3/td>
+						<td>6240</td>
+						<td>0.43</td>
+						<td>2</td>
 					</tr>
 				</table>
 			</div>
@@ -129,19 +147,42 @@
 				legend: {},
 				tooltip: {},
 				dataset: {
-					dimensions: ['product', '2015', '2016', '2017'],
+					dimensions: ['product', '计划下达投资', '计划下达进尺', '计划下达井数', '完成投资', '完成进尺', '完成井数'],
 					source: [
-						{product: 'Matcha Latte', '2015': 43.3, '2016': 85.8, '2017': 93.7},
-						{product: 'Milk Tea', '2015': 83.1, '2016': 73.4, '2017': 55.1},
-						{product: 'Cheese Cocoa', '2015': 86.4, '2016': 65.2, '2017': 82.5},
-						{product: 'Walnut Brownie', '2015': 72.4, '2016': 53.9, '2017': 39.1}
+						{product: '川西凹陷侏罗系预探项目2019','计划下达投资': 3840,'计划下达进尺': 0.68,'计划下达井数': 2 ,'完成投资': 3759, '完成进尺': 0.34, '完成井数': 1},
+						{product: '川西二叠系', '计划下达投资': 9000,'计划下达进尺': 0.6,'计划下达井数': 1 ,'完成投资': 2160, '完成进尺': 0.15, '完成井数': 1},
+						{product: '山前带雷三段', '计划下达投资': 3600,'计划下达进尺': 0.3,'计划下达井数': 1 ,'完成投资': 3257, '完成进尺': 0.44, '完成井数': 1},
+						{product: '威荣地区页岩气产能建设','计划下达投资': 83796, '计划下达进尺': 4,'计划下达井数': 0 ,'完成投资': 14260.97, '完成进尺': 7.67, '完成井数': 0},
+						{product: '中江气田沙溪庙组江沙323HF和江沙321HF等井区产能建设', '计划下达投资': 29425, '计划下达进尺': 3.61, '计划下达井数': 9,'完成投资': 13612, '完成进尺': 1.67, '完成井数': 6},
+						{product: '川西气田产能建设', '计划下达投资': 20000, '计划下达进尺': 1,'计划下达井数': 3 ,'完成投资': 6240, '完成进尺': 0.43, '完成井数': 2}
 					]
 				},
-				xAxis: {type: 'category'},
+				xAxis: {
+					type: 'category',
+					axisLabel: {  
+					    interval:0,  
+					    rotate:30,
+						formatter : function(params){
+							var newParamsName = "";// 最终拼接成的字符串
+                            var paramsNameNumber = params.length;// 实际标签的个数
+							if(paramsNameNumber > 7){
+								newParamsName = params.substring(0, 7) + "..."
+							}else{
+								newParamsName = params.substring(0, paramsNameNumber)
+							}
+                            
+                            //将最终的字符串返回
+                            return newParamsName
+					    }
+					}					
+				},
 				yAxis: {},
 				// Declare several bar series, each will be mapped
 				// to a column of dataset.source by default.
 				series: [
+					{type: 'bar'},
+					{type: 'bar'},
+					{type: 'bar'},
 					{type: 'bar'},
 					{type: 'bar'},
 					{type: 'bar'}
@@ -152,99 +193,8 @@
         myCharts.setOption(options);
 
 $(document).ready(function () {
-		$( "#dateline" ).datepicker({
-			minDate: new Date(),
-			dateFormat: "yy-mm-dd"
-		}).val((
-				function(d){
-					return [d.getFullYear(), d.getMonth()+1, d.getDate()].join("-");
-				}
-			)(new Date()));
-	$("#showcard").click(function () {
-		var ret_single = ret_download = tel_num = '';
-		$(".single").each(function(i){
-			var s_name = $(this).parent().siblings().text();
-			var s_value = $(this).val();
-			if('' != s_value) ret_single += '$'+s_name+'#'+s_value;
-		});
-	
-		$(".download").each(function(i){
-			var s_name = $(this).parent().siblings().text();
-			var s_value = $(this).val();
-			if('' != s_value) ret_download += '$'+s_name+'#'+s_value;
-		});
-
-		tel_num = $("#tel").val();
-		if('undefined' !== typeof(tel_num)){
-			if(tel_num ==''){alert('电话不能为空');return;} 
-			if(tel_num.length < 11){alert('请输入正确的电话');return;} 
-		}
-
-		if($("#truename").val()==''){alert('名字不能为空');return;}
-//		if($("#dateline").val()==''){alert('请选择时间');return;}
-		var submitData = {
-			wechatid: $("#uid").val(),
-			rid: $("#rid").val(),
-			aid: $("#aid").val(),
-			contact: $("#truename").val(),
-			dateline: $("#dateline").val(),
-			timepart: $("#timepart").val(),
-			remark: $("#info").val(),
-			contacttel: $("#tel").val(),
-			fieldsigle:ret_single,
-			fielddownload:ret_download
-		};
-		if('fromUsername' == submitData.wechatid) submitData.wechatid = '';
-		$.post('Webreserve/SubmitBook', submitData,
-			function(data) {
-				if (0 == data.errno) {
-					alert(data.msg);
-					var count = $(".ok").text();
-					count = 1+ parseInt(count);
-					$(".ok").text(count);
-					setTimeout(function(){
-						jumpurl(data.url);
-					},1500);
-					return;
-				} else {
-					alert(data.msg);
-				}
-			},
-		"json")
-
-	}); 
 }); 
 
-
-$("#dateline").change(function () {
-	var submitData = {
-	wxname: "o5JGbjuFTr6lumWIyyW3yfP-G5m0",
-	dateline: $("#dateline").val(),
-	formhash: $("#formhash").val(),
-	action: "getcount"
-	};
-}); 
-
-
-
-$("#windowclosebutton").click(function () { 
-$("#windowcenter").slideUp(500);
-
-}); 
-$("#alertclose").click(function () { 
-$("#windowcenter").slideUp(500);
-
-}); 
-function jumpurl(url){
-	window.location.href = url;
-}
-function alert(title){ 
-
-$("#windowcenter").slideToggle("slow"); 
-$("#txt").html(title);
-//$("#windowcenter").hide("slow"); 
-setTimeout('$("#windowcenter").slideUp(500)',4000);
-} 
 
 
 </script>
