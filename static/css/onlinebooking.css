@@ -76,12 +76,11 @@ ul.round {
 }
 section{
 	background: #fff;
-	padding: 10px;
+	padding: 0 10px;
 	border-radius: 5px;
     -webkit-border-radius: 5px;
 	 box-shadow: 0 1px 1px #f6f6f6;
     margin-bottom: 11px;
-	border: 1px solid #C6C6C6;
 }
 table tr{
 	color: #666;
@@ -163,16 +162,16 @@ ul.round li:last-of-type {
 .round li, .round li span, .round li a {
 	line-height:22px;
 }
-.round li span {
-	display:block;
-	background:url(../img/arrow3.png) no-repeat right 50%;
-	-webkit-background-size:8.5px 13px;
-	background-size:8.5px 13px;
-	padding:10px 20px 9px 0;
-	position:relative;
-	font-size:16px;
-	min-height: 22px;
-}
+/* .round li span { */
+	/* display:block; */
+	/* background:url(../img/arrow3.png) no-repeat right 50%; */
+	/* -webkit-background-size:8.5px 13px; */
+	/* background-size:8.5px 13px; */
+	/* padding:10px 20px 9px 0; */
+	/* position:relative; */
+	/* font-size:16px; */
+	/* min-height: 22px; */
+/* } */
 .round li span.none {
     background: none repeat scroll 0 0 transparent;
 }

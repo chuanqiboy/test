@@ -3,17 +3,10 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="static/css/onlinebooking.css?2014-03-07-1" media="all" />
-		
-<link rel="stylesheet" type="text/css" href="static/css/datepicker.css?2014-03-07-1" media="all" />
-
 		<link rel="stylesheet" type="text/css" href="static/css/template/weimob-ui-1-1.css?2014-03-07-1" media="all" />
-
 		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
-
 		<script type="text/javascript" src="static/src/jQuery.js?2014-03-07-1"></script>
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
-
-		<script type="text/javascript" src="static/src/jquery-ui.js"></script>
 		<title>报表统计</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
@@ -31,205 +24,140 @@
             img{max-width:100%!important;}
         </style>
     </head>
-    <body onselectstart="return true;" ondragstart="return false;">
-        <body id="onlinebooking">
-<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-	<script>
-		var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-		document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-	</script>
-</div>
-	<div class="cardexplain">
-	<section class="home_section">
-			<ul class="list_home">
-				<li class="homeActive">
-					<div>
-						截止当前时间
-					</div>
-				</li>
-			</ul>
-			<div class="home_datalist">
-				<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
-					<tr>
-						<th rowspan="2">项目类型</th>
-						<th colspan="5">运行状态</th>
-					</tr>
-					<tr>   
-						<th>方案编制</th> 
-						<th>可研编制</th>
-						<th>可研批复</th> 
-						<th>计划下达</th>
-						<th>项目实施</th>						
-					</tr> 
-					<tr>
-						<td>合计</td>
-						<td>15</td>
-						<td>2</td>
-						<td>58</td>
-						<td>75</td>
-						<td>42</td>						
-					</tr>
-					<tr>
-						<td>常规勘探</td>
-						<td>7</td>
-						<td></td>
-						<td>16</td>
-						<td>23</td>
-						<td>14</td>
-					</tr>
-					<tr>
-						<td>非常规勘探</td>
-						<td>1</td>
-						<td></td>
-						<td>2</td>
-						<td>3</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>非常规开发</td>
-						<td>2</td>
-						<td></td>
-						<td>10</td>
-						<td>12</td>
-						<td>8</td>
-					</tr>
-					<tr>
-						<td>天然气开发</td>
-						<td>1</td>
-						<td></td>
-						<td>25</td>
-						<td>26</td>
-						<td>14</td>
-					</tr>
-					<tr>
-						<td>系统配套</td>
-						<td>4</td>
-						<td>2</td>
-						<td>5</td>
-						<td>11</td>
-						<td>5</td>
-					</tr>
-				</table>
-			</div>
-		</section>
-		<section>
-			<ul class="list_home">
-				<li class="homeActive">
-					<div>
-						柱图
-					</div>
-				</li>
-			</ul>
-			<div>
-				<div id="runningBar" style="width: 350px;height: 350px;margin: 0 auto;"></div>
-			</div>
-		</section>
-	</div>
+    <body>
+		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
+			<script>
+				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
+				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
+			</script>
+		</div>
+		<div class="cardexplain">
+			<section class="home_section">
+				<ul class="list_home">
+					<li class="homeActive">
+						<div>
+							截止当前时间
+						</div>
+					</li>
+				</ul>
+				<div class="home_datalist">
+					<table class="tableList" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
+						
+					</table>
+				</div>
+			</section>
+			<section>
+				<ul class="list_home">
+					<li class="homeActive">
+						<div>
+							柱图
+						</div>
+					</li>
+				</ul>
+				<div>
+					<div id="runningBar" style="width: 350px;height: 350px;margin: 0 auto;"></div>
+				</div>
+			</section>
+		</div>
 
 
-<script type="text/javascript">		 
-		var runningChart = echarts.init(document.getElementById('runningBar'));
-        // 指定图表的配置项和数据
-        var option = {
-				legend: {},
-				tooltip: {},
-				dataset: {
-					dimensions: ['product', '方案编制', '可研编制', '可研批复','计划下达','项目实施'],
-					source: [
-						{product: '合计', '方案编制': 15, '可研编制': 2, '可研批复': 58, '计划下达': 75, '项目实施': 42},
-						{product: '常规勘探', '方案编制': 7, '可研编制': 0, '可研批复': 16, '计划下达': 23, '项目实施': 14},
-						{product: '非常规勘探', '方案编制': 1, '可研编制': 0, '可研批复': 2, '计划下达': 3, '项目实施': 1},
-						{product: '非常规开发', '方案编制': 2, '可研编制': 0, '可研批复': 10, '计划下达': 12, '项目实施': 8},
-						{product: '天然气开发', '方案编制': 1, '可研编制': 0, '可研批复': 25, '计划下达': 26, '项目实施': 14},
-						{product: '系统配套', '方案编制': 4, '可研编制': 2, '可研批复': 5, '计划下达': 11, '项目实施': 5}
+<script type="text/javascript">	
+	$(function(){		
+		dataList();	
+	})	
+function dataList(){
+	var barData = [];
+	$.ajax({
+             type: "POST",
+             url: "http://192.168.0.142:8080/xntzjh/homeplan/xmSumList.d",
+             data: {year:'2019'},
+             dataType: "json",
+             success: function(res){
+                var thHtml = "";
+				thHtml = "<tr>" +
+							"<th rowspan='2'>项目类型</th>" + 
+							"<th colspan='5'>运行状态</th>" +
+						"</tr>" +
+						"<tr>" +
+							"<th>建议</th><th>预备</th><th>储备</th><th>列入计划</th><th>计划实施</th>" +
+						"</tr>"
+				var dataList = 	res.data;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){						
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].jyNum + "</td>" + 
+						"<td>" + dataList[i].ybNum + "</td>" + 
+						"<td>" + dataList[i].cbNum + "</td>" + 
+						"<td>" + dataList[i].zbNum + "</td>" + 
+						"<td>" + dataList[i].fgsNum + "</td>" + 			
+						"</tr>"
+						if(dataList[i].jyNum == ""){
+							dataList[i].jyNum = 0
+						}
+						if(dataList[i].ybNum == ""){
+							dataList[i].ybNum = 0
+						}
+						if(dataList[i].cbNum == ""){
+							dataList[i].cbNum = 0
+						}
+						if(dataList[i].zbNum == ""){
+							dataList[i].zbNum = 0
+						}
+						if(dataList[i].fgsNum == ""){
+							dataList[i].fgsNum = 0
+						}
+						var obj = {};
+						obj["product"] = dataList[i].xmmc;
+						obj["建议"] = dataList[i].jyNum;
+						obj["预备"] = dataList[i].ybNum;
+						obj["储备"] = dataList[i].cbNum;
+						obj["列入计划"] = dataList[i].zbNum;
+						obj["计划实施"] = dataList[i].fgsNum;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".tableList").append(html);
+				var runningChart = echarts.init(document.getElementById('runningBar'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '建议', '预备', '储备','列入计划','计划实施'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
 					]
-				},
-				xAxis: {
-					type: 'category',
-					axisLabel: {  
-					   interval:0,  
-					   rotate:60  
-					}  
-				},
-				yAxis: {},
-				// Declare several bar series, each will be mapped
-				// to a column of dataset.source by default.
-				series: [
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'}
-				]
-			};
+				};
 
-        // 使用刚指定的配置项和数据显示图表。
-        runningChart.setOption(option);	
-
-$("#dateline").change(function () {
-	var submitData = {
-	wxname: "o5JGbjuFTr6lumWIyyW3yfP-G5m0",
-	dateline: $("#dateline").val(),
-	formhash: $("#formhash").val(),
-	action: "getcount"
-	};
-}); 
-
-
-
-$("#windowclosebutton").click(function () { 
-$("#windowcenter").slideUp(500);
-
-}); 
-$("#alertclose").click(function () { 
-$("#windowcenter").slideUp(500);
-
-}); 
-function jumpurl(url){
-	window.location.href = url;
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+				
+					
+				}
+					
+             }
+         });
+		 return false;
 }
-function alert(title){ 
-
-$("#windowcenter").slideToggle("slow"); 
-$("#txt").html(title);
-//$("#windowcenter").hide("slow"); 
-setTimeout('$("#windowcenter").slideUp(500)',4000);
-} 
-
 
 </script>
-</body>        		<div mark="stat_code" style="width:0px; height:0px; display:none;">
-					</div>
-	</body>
-		<script type="text/javascript">
-
-function getShareApiRouter(){
-	var str_domain = location.href.split('',4)[2];
-	var tj_domain = '127.0.0.1';
-	switch(str_domain){
-		case 'www.weimob.com':
-			tj_domain = 'tj.weimob.com';
-			break;
-		case '112.124.28.82':
-			tj_domain = '112.124.28.82:400';
-			break;
-	}
-	return tj_domain;
-}
-if(typeof(window.shareData) == 'undefined'){
-	window.shareData = {
-				"imgUrl": "", 
-		"timeLineLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"sendFriendLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"weiboLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"tTitle": document.title,
-		"tContent": document.title,
-		"fTitle": document.title,
-		"fContent": document.title,
-		"wContent": document.title
-	}
-}
-</script>
-
 </body>
 </html>

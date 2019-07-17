@@ -8,7 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
 		<script type="text/javascript" src="static/src/jQuery.js?2014-03-07-1"></script>
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
-		<script type="text/javascript" src="static/src/jquery-ui.js?2014-03-07-1"></script>
 		<title>报表统计</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
@@ -26,8 +25,7 @@
             img{max-width:100%!important;}
         </style>
     </head>
-    <body onselectstart="return true;" ondragstart="return false;">
-    <body id="onlinebooking">
+    <body>
 		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
 			<script>
 				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
@@ -37,195 +35,17 @@
 		<div class="cardexplain">
 		<section class="home_section">
 			<div class="home_datalist">
-				<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
-					<tr style="background-color: #106ee9; color: #FFF">
-						<th colspan="4">基本信息</th>
-					</tr>
-					<tr>
-						<td>项目名称:</td>
-						<td colspan="3">中江气田沙溪庙组江沙323HF和江沙321HF等井区产能建设</td>
-					</tr>
-					<tr>
-						<td>项目编码:</td>
-						<td>NOAA190139</td>
-						<td>项目级别:</td>
-						<td>三类</td>
-					</tr>
-					<tr>
-						<td>项目类型:</td>
-						<td>天然气开发</td>
-						<td>投资路径:</td>
-						<td>西南油气分公司/油田板块/天然气开发/老区产能建设/整体调整/三类/川西</td>
-					</tr>
-					<tr>
-						<td>项目建设单位:</td>
-						<td>产能建设及勘探项目部</td>
-						<td>投资管理部门:</td>
-						<td>油气开发管理部</td>
-					</tr>
-					<tr>
-						<td>提出日期:</td>
-						<td>2019-04-28</td>
-						<td>当前阶段:</td>
-						<td>总体设计</td>
-					</tr>
-					<tr>
-						<td>建设必要性:</td>
-						<td colspan="3">可研规划新增动用储量22.28亿方。新建年天然气产能1.10亿方。</td>
-					</tr>
-					<tr>
-						<td>建设内容:</td>
-						<td colspan="3">部署新井9口（水平井8口，定向井1口），总进尺3.613万米，其中江沙320井区利用老井1口，新建水平井2口，进尺0.749万米；江沙321井区利用老井1口，新建水平井3口，进尺1.288万米；江沙323井区利用老井1口，新建定向井1口、水平井3口，进尺1.576万米。</td>
-					</tr>
-				</table>
+				<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
 			</div>
 		</section>
 		<section class="home_section">
 			<div class="home_datalist">
-				<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
-					<tr style="background-color: #106ee9; color: #FFF">
-						<th colspan="4">投资信息</th>
-					</tr>
-					<tr>
-						<td>总部累计下达投资（万元）:</td>
-						<td>29425</td>
-						<td>总部当年下达投资（万元）:</td>
-						<td>29425</td>
-					</tr>
-					<tr>
-						<td>累计ERP完成（万元）:</td>
-						<td>13783.35</td>
-						<td>当年ERP完成（万元）:</td>
-						<td>13783.35</td>
-					</tr>
-					<tr>
-						<td>剩余投资（万元）:</td>
-						<td>15641.65</td>
-						<td>总部累计下达进尺（万米）:</td>
-						<td>3.61</td>
-					</tr>
-					<tr>
-						<td>总部当年下达进尺（万米）:</td>
-						<td>3.61</td>
-						<td>分公司累计下达投资（万元）:</td>
-						<td>27071.03</td>
-					</tr>
-					<tr>
-						<td>累计完成进尺（万米）:</td>
-						<td>0</td>
-						<td>当年完成进尺（万米）:</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>剩余进尺（万米）:</td>
-						<td>3.61/td>
-						<td>分公司累计下达进尺（万米）:</td>
-						<td>3.61</td>
-					</tr>
-					<tr>
-						<td>分公司当年下达进尺（万米）:</td>
-						<td colspan="3">3.61</td>
-					</tr>
-				</table>
+				<table class="investmentInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
 			</div>
 		</section>
 		<section class="home_section">
 			<div class="home_datalist">
-				<table class="djInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
-					<tr style="background-color: #106ee9; color: #FFF">
-						<th colspan="7">单井信息</th>
-					</tr>
-					<tr>
-						<th>井号</th>
-						<th>设计井深</th>
-						<th>目前井深</th>
-						<th>分公司累计下达投资（万元）</th>
-						<th>井相关（万元）</th>
-						<th>设计费（万元）</th>
-						<th>监督费（万元）</th>
-					</tr>
-					<tr>
-						<td>江沙320-1HF</td>
-						<td>3622</td>
-						<td>3622</td>
-						<td>3207.87</td>
-						<td>2716.52</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙320-2</td>
-						<td>3061</td>
-						<td>1665</td>
-						<td>3002.18</td>
-						<td>8.27</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙321-2HF</td>
-						<td></td>
-						<td></td>
-						<td>3002.18</td>
-						<td>273.21</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙321-3HF</td>
-						<td>4068</td>
-						<td>2100</td>
-						<td>3002.18</td>
-						<td>1091.89</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙321-4HF</td>
-						<td>3944</td>
-						<td>3947</td>
-						<td>3002.18</td>
-						<td>2205.63</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙323-1HF</td>
-						<td>3193</td>
-						<td>4213</td>
-						<td>3207.87</td>
-						<td>4346.72</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙323-2HF</td>
-						<td>3145</td>
-						<td>3128</td>
-						<td>3002.18</td>
-						<td>1225.16</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙323-3</td>
-						<td>3440</td>
-						<td>1248</td>
-						<td>2642.21</td>
-						<td>783.06</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>江沙323-4HF</td>
-						<td></td>
-						<td></td>
-						<td>3002.18</td>
-						<td>0</td>
-						<td>0</td>
-						<td>0</td>
-					</tr>
-				</table>
+				<table class="djInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
 			</div>
 		</section>
 		
@@ -240,45 +60,161 @@
     <div mark="stat_code" style="width:0px; height:0px; display:none;"></div>
 </body>
 <script type="text/javascript">
-$(function(){
-         $.ajax({
+	$(function(){
+		//基本信息
+		basicData();
+		//投资信息
+		investmentInfo(); 
+		//单井信息
+		singleWell();
+	});
+	function basicData(){
+		$.ajax({
              type: "GET",
-             url: "http://192.168.0.116:8084/ydtzwc/hz_app.d",
-             data: {nd:'2019'},
+             url: "http://192.168.0.110:8080/xntzjh_war_exploded/xxcx/xmxx.d",
+             data: {xmid:'dea38473-a475-4a03-b72f-78ddf9ad9d5c'},
              dataType: "json",
              success: function(data){
-                var thHtml = "";
-				trHtml = "<tr style='background-color: #106ee9; color: #FFF'>" +
-						"<th colspan='7'>单井信息</th>" + 
-						"</tr>" +
-						"<tr>" +
-							"<th>井号</th><th>设计井深</th><th>目前井深</th><th>分公司累计下达投资（万元）</th><th>井相关（万元）</th><th>设计费（万元）</th><th>监督费（万元）</th>" +
-						"</tr>"
-				var dataList = 	data;
-				var trHtml = ""
-				if(dataList.length >= 0){
-					for(var i = 0; i< datalist.length; i++){
-						trHtml+="<tr>"+
-						"<td>" + datalist[i].ID + "</td>" + 
-						"<td>" + datalist[i].LB + "</td>" + 
-						"<td>" + datalist[i].PID + "</td>" + 
-						"<td>" + datalist[i].TZ5 + "</td>" + 
-						"<td>" + datalist[i].ZTZ + "</td>" + 						
-						"</tr>"
-					}
-				var html = thHtml + trHtml;
-				$(".djInfo").append(html);
+				$(".basicInfo").html("");
+				if(JSON.stringify(data) == "{}"){
+					$(".basicInfo").append("<div>暂无信息</div>");
 				}else{
-				
-					
-				}
-				
-				
-				
-						
-             }
+					var thHtml = "";
+					trHtml = "<tr style='background-color: #106ee9; color: #FFF'><th colspan='4'>基本信息</th></tr>" +
+							"<tr>" +
+								"<td>项目名称:</td>" + 
+								"<td colspan='3'>" + (data.xmmc == undefined ? "":data.xmmc) + "</td>" + 
+							"</tr>" + 
+							"<tr>" + 
+								"<td>项目编码:</td>" + 
+								"<td>" + (data.wbsbm == undefined ? "":data.wbsbm) + "</td>" + 
+								"<td>项目级别:</td>" +
+								"<td>" + (data.xmjb == undefined ? "":data.xmjb) + "</td>" +
+							"</tr>" + 
+							"<tr>" + 
+								"<td>项目类型:</td>" + 
+								"<td>" + (data.xmlx == undefined ? "":data.xmlx) + "</td>" + 
+								"<td>投资路径:</td>" +
+								"<td>" + (data.qtzlj == undefined ? "":data.qtzlj) + "</td>" +
+							"</tr>" + 
+							"<tr>" + 
+								"<td>项目建设单位:</td>" + 
+								"<td>" + (data.jsdw == undefined ? "":data.jsdw) + "</td>" + 
+								"<td>投资管理部门:</td>" +
+								"<td>" + (data.tzgldw == undefined ? "":data.tzgldw) + "</td>" +
+							"</tr>" + 
+							"<tr>" + 
+								"<td>提出日期:</td>" + 
+								"<td>" + (data.tcrq == undefined ? "":data.tcrq) + "</td>" + 
+								"<td>当前阶段:</td>" +
+								"<td>" + (data.xmjb == undefined ? "":data.xmjb) + "</td>" +
+							"</tr>" + 
+							"<tr>" +
+								"<td>建设必要性:</td>" + 
+								"<td colspan='3'>" + (data.jsbyx == undefined ? "":data.jsbyx) + "</td>" + 
+							"</tr>" + 
+							"<tr>" +
+								"<td>建设内容:</td>" + 
+								"<td colspan='3'>" + (data.jsnr == undefined ? "":data.jsnr) + "</td>" + 
+							"</tr>"
+					var html = thHtml + trHtml;
+					$(".basicInfo").append(html);		
+				}               																				
+            }
          });
-});
+	}
+	function investmentInfo(){
+		$.ajax({
+             type: "GET",
+             url: "http://192.168.0.110:8080/xntzjh_war_exploded/xxcx/tzxx.d",
+             data: {xmid:'dea38473-a475-4a03-b72f-78ddf9ad9d5c'},
+             dataType: "json",
+             success: function(data){
+				$(".investmentInfo").html("");
+				if(JSON.stringify(data) == "{}"){
+					$(".investmentInfo").append("<div>暂无信息</div>");
+				}else{
+					var thHtml = "";
+					trHtml = "<tr style='background-color: #106ee9; color: #FFF'><th colspan='4'>投资信息</th></tr>" +
+							"<tr>" + 
+								"<td>总部累计下达投资（万元）:</td>" + 
+								"<td>" + (data[0].LJXDTZ == undefined ? "":data[0].LJXDTZ) + "</td>" + 
+								"<td>总部当年下达投资（万元）:</td>" +
+								"<td>" + (data[0].DNXDTZ == undefined ? "":data[0].DNXDTZ) + "</td>" +
+							"</tr>" + 
+							"<tr>" + 
+								"<td>累计ERP完成（万元）:</td>" + 
+								"<td>" + (data[0].LJERP == undefined ? "":data[0].LJERP) + "</td>" + 
+								"<td>当年ERP完成（万元）:</td>" +
+								"<td>" + (data[0].DNERP == undefined ? "":data[0].DNERP) + "</td>" +
+							"</tr>" + 
+							"<tr>" + 
+								"<td>剩余投资（万元）:</td>" + 
+								"<td>" + (data[0].LJXDTZ == undefined||data[0].LJERP == undefined ? "":Number(data[0].LJXDTZ) - Number(data[0].LJERP)) + "</td>" + 
+								"<td>总部累计下达进尺（万米）:</td>" +
+								"<td>" + (data[0].LJXDJC == undefined ? "":data[0].LJXDJC) + "</td>" +
+							"</tr>" + 
+							"<tr>" + 
+								"<td>总部当年下达进尺（万米）:</td>" + 
+								"<td>" + (data[0].DNXDJC == undefined ? "":data[0].DNXDJC) + "</td>" + 
+								"<td>分公司累计下达投资（万元）:</td>" +
+								"<td>" + (data[0].FGSLJXDTZ == undefined ? "":data[0].FGSLJXDTZ) + "</td>" +
+							"</tr>" +
+							"<tr>" + 
+								"<td>累计完成进尺（万米）:</td>" + 
+								"<td>" + (data[0].LJSJJC == undefined ? "":data[0].LJSJJC) + "</td>" + 
+								"<td>当年完成进尺（万米）:</td>" +
+								"<td>" + (data[0].DNSJJC == undefined ? "":data[0].DNSJJC) + "</td>" +
+							"</tr>" +
+							"<tr>" + 
+								"<td>剩余进尺（万米）:</td>" + 
+								"<td>" + (data[0].LJXDJC == undefined || data[0].LJSJJC == undefined ? "":Number(data[0].LJXDJC) - Number(data[0].LJSJJC)) + "</td>" + 
+								"<td>分公司累计下达进尺（万米）:</td>" +
+								"<td>" + (data[0].FGSLJXDJC == undefined ? "":data[0].FGSLJXDJC) + "</td>" +
+							"</tr>" + 
+							"<tr>" +
+								"<td>分公司当年下达进尺（万米）:</td>" + 
+								"<td colspan='3'>" + (data[0].FGSDNXDJC == undefined ? "":data[0].FGSDNXDJC) + "</td>" + 
+							"</tr>"
+					var html = thHtml + trHtml;
+					$(".investmentInfo").append(html);		
+				}               																				
+            }
+         });
+	}
+	function singleWell(){
+		$.ajax({
+             type: "GET",
+             url: "http://192.168.0.110:8080/xntzjh_war_exploded/xxcx/djxx.d",
+             data: {xmid:'dea38473-a475-4a03-b72f-78ddf9ad9d5c'},
+             dataType: "json",
+             success: function(data){
+				$(".djInfo").html("");
+				if(JSON.stringify(data) == "{}"){
+					$(".djInfo").append("<div>暂无信息</div>");
+				}else{
+					var thHtml = "";
+					var trHtml = "";
+					thHtml = "<tr style='background-color: #106ee9; color: #FFF'><th colspan='7'>单井信息</th></tr>" +
+							"<tr><th>井号</th><th>设计井深</th><th>目前井深</th><th>分公司累计下达投资（万元）</th><th>井相关（万元）</th><th>设计费（万元）</th><th>监督费（万元）</th></tr>" + 
+							"<tr>"
+					for(var i = 0; i < data.length; i++){
+						trHtml+="<tr>" + 
+								"<td>" + (data[i].XMMC == undefined ? "":data[i].XMMC) + "</td>" + 
+								"<td>" + (data[i].SJJS == undefined ? "":data[i].SJJS) + "</td>" + 
+								"<td>" + (data[i].DQJS == undefined ? "":data[i].DQJS) + "</td>" + 
+								"<td>" + (data[i].LJXDTZ == undefined ? "":data[i].LJXDTZ) + "</td>" + 
+								"<td>" + (data[i].ERPQT == undefined ? "":data[i].ERPQT) + "</td>" + 
+								"<td>" + (data[i].ERPLJSJF == undefined ? "":data[i].ERPLJSJF) + "</td>" + 
+								"<td>" + (data[i].ERPLJJDF == undefined ? "":data[i].ERPLJJDF) + "</td>"
+							"</tr>"
+					} 
+					var html = thHtml + trHtml;
+					$(".djInfo").append(html);		
+				}               																				
+            }
+         });
+	}
 </script>
 </body>
 </html>

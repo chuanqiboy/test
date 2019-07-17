@@ -13,8 +13,6 @@
 		<script type="text/javascript" src="static/src/jQuery.js"></script>
 		<script type="text/javascript" src="static/src/jquery.ba-resize.min.js"></script>
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
-
-		<script type="text/javascript" src="static/src/jquery-ui.js"></script>
 		<title>报表统计</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
@@ -30,26 +28,35 @@
         <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
             img{max-width:100%!important;}
+			.text div{
+				text-indent: 30px;
+			}
+			.type_home,.work_home{
+				height: 30px;
+				line-height: 30px;
+			}
+			.type_home li,.work_home li{
+				width: 80px;;
+				text-align: center;
+				color: #666;
+				border-bottom: 1px solid #dadada;
+				float: left;
+			}
         </style>
     </head>
-    <body onselectstart="return true;" ondragstart="return false;">
-        <body id="onlinebooking">
-<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-	<script>
-		var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-		document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-	</script>
-</div>
+    <body>
+	<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
+		<script>
+			var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
+			document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
+		</script>
+	</div>
 	<div class="cardexplain">
 	<!--后台可控制是否显示-->
 	<ul class="round">
 		<li>
 		<h2>投资概述</h2>
-		<div class="text">截止2019年07月07日：
-			总部下达年度规模计划57.58亿元，分公司下达年度控制计划55.89亿元。 
-		 总部累计下达批次计划2批，共计 31.33亿元 。其中常规勘探6.12亿元，非常规11.11亿元，天然气开发13.59亿元，系统配套0.5亿元；
-		 分公司本年下达执行计划2批，共计 30.32亿元。其中常规勘探5.5亿元，非常规10.88亿元，天然气开发13.41亿元，系统配套0.53元。  
-		 西南油气分公司 ERP累计结算10.34亿元，完成总部规模计划的18%。</div>
+		<div class="text"></div>
 		</li>
 	</ul>
 	<section class="home_section">
@@ -66,45 +73,27 @@
 				<div>
 					<div class="tableData">
 						<div class="touzi">
-							<div><span class="t_first">投资</span><span>分公司计划</span></div>
+							<div>
+								<ul class="type_home">
+									<li class="homeActive">
+										<div>
+											项目类型
+										</div>
+									</li>
+									<li>
+										<div>部门统计</div>
+									</li>
+								</ul>
+							</div>
 						</div>
 						<div class="home_datalist">
-							<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
-								<tr>
-									<th>项目类型</th>
-									<th>年度规模</th>
-									<th>批次下达</th>
-									<th>当前完成</th>
-								</tr>
-								<tr>
-									<td>勘探</td>
-									<td>8.89</td>
-									<td>6.12</td>
-									<td>2.1</td>
-								</tr>
-								<tr>
-									<td>非常规</td>
-									<td>28.64</td>
-									<td>11.11</td>
-									<td>2.1</td>
-								</tr>
-								<tr>
-									<td>天然气开发</td>
-									<td>19.26</td>
-									<td>13.59</td>
-									<td>6.13</td>
-								</tr>
-								<tr>
-									<td>系统配套</td>
-									<td>0.78</td>
-									<td>0.5</td>
-									<td>0.01</td>
-								</tr>
-							</table>
+							<table class="tzType" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+							<table class="bmType" style="display: none" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
 						</div>		
 					</div>
 					<div class="echarts_bar">
 						<div id="main" style="width: 350px;height: 350px;margin: 0 auto;"></div>
+						<div id="mainBm" style="width: 350px;height: 350px;margin: 0 auto;display: none;"></div>
 					</div>
 							
 			</div>
@@ -124,186 +113,424 @@
 			<div class="secondTable">
 				<div class="touzi">
 					<div><span class="t_first">进尺</span><span>分公司计划</span></div>
+					<div>
+						<ul class="work_home">
+							<li class="homeActive">
+								<div>
+									项目类型
+								</div>
+							</li>
+							<li>
+								<div>部门统计</div>
+							</li>
+						</ul>
+					</div>
 				</div>
 				<div class="home_datalist">
-					<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
-						<tr>
-							<th>项目类型</th>
-							<th>年度规模</th>
-							<th>批次下达</th>
-							<th>当前完成</th>
-						</tr>
-						<tr>
-							<td>勘探</td>
-							<td>8.58</td>
-							<td>6.09</td>
-							<td>3.43</td>
-						</tr>
-						<tr>
-							<td>非常规</td>
-							<td>26.04</td>
-							<td>7.69</td>
-							<td>10.83</td>
-						</tr>
-						<tr>
-							<td>天然气开发</td>
-							<td>16.21</td>
-							<td>12.93</td>
-							<td>8.44</td>
-						</tr>
-					</table>
+					<table class="workType" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+					<table class="workBm" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
 				</div>
 			</div>
 			
 			<div class="echarts_bars">
 				<div id="mainBar" style="width: 350px;height: 350px;margin: 0 auto;"></div>
- 
+				<div id="mainbmBar" style="width: 350px;height: 350px;margin: 0 auto;display:none;"></div>	
 			</div>
 		</section>
 	</div>
 
 
 <script type="text/javascript">
-	
-	var myChart = echarts.init(document.getElementById('main'));
-        // 指定图表的配置项和数据
-        var option = {
-				legend: {},
-				tooltip: {},
-				dataset: {
-					dimensions: ['product', '年度规模', '批次下达','当前完成'],
-					source: [
-						{product: '勘探', '年度规模': 8.58, '批次下达': 6.09, '当前完成': 3.43},
-						{product: '非常规', '年度规模': 26.04, '批次下达': 7.69, '当前完成': 10.83},
-						{product: '天然气开发', '年度规模': 19.26, '批次下达': 13.59, '当前完成': 6.13},
-						{product: '系统配套', '年度规模': 0.78, '批次下达': 0.5, '当前完成': 0.01}
-					]
-				},
-				xAxis: {
-					type: 'category',
-					axisLabel: {  
-					   interval:0,  
-					   rotate:60  
+	$(function(){
+		//投资概述
+		dataList();	
+		//投资完成情况
+		tzAchieved();
+		//工作量完成
+		workAchieved();
+	})	
+	function dataList(){
+		$.ajax({
+			type: "POST",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneySummary.d",
+			data: {},
+			dataType: "json",
+			success: function(res){
+				if(res == null){
+					$(".text").html("暂无数据");
+				}else{
+					var html = '<div>截止到<span>'+res.ymd+'</span>：总部下达年度规模计划'+res.yearPlanMoney+'万元，分公司下达年度控制计划'+res.allFgsNdMoney+
+					'。'+res.ytbkZbDesc+'，共计'+res.allZbMoney+'万元 。'+res.ytbkMoney+'万元；' +
+					res.ytbkFgsDesc+'批，共计 '+res.allFgsMoney+'万元。'+res.fgsTzljMoney+
+					'西南油气分公司 ERP累计结算'+res.xnfgs + '万元，完成总部规模计划的'+res.erpRatioZbxd+'。</div>'
+					$(".text").html(html);
+				}
+			}	
+		});
+		return false;
+	}
+	function tzAchieved(){
+		var barData = [];
+		$(".tzType").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneyCount.d",
+			data: {typeFlag:'type'},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>项目类型</th><th>总部本年下达</th><th>分公司本年下达</th><th>当前完成</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){						
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].pczbxd + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + dataList[i].bnErp + "</td>" +			
+						"</tr>"
+						if(dataList[i].pczbxd == ""){
+							dataList[i].pczbxd = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == ""){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};
+						obj["product"] = dataList[i].xmmc;
+						obj["总部本年下达"] = dataList[i].pczbxd;
+						obj["分公司本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].bnErp;
+						barData.push(obj);
 					}
-				},
-				yAxis: {},
-				// Declare several bar series, each will be mapped
-				// to a column of dataset.source by default.
-				series: [
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'}
-				]
-			};
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);	
-        var myCharts = echarts.init(document.getElementById('mainBar'));
-        var options = {
-				legend: {},
-				tooltip: {},
-				dataset: {
-					dimensions: ['product', '年度规模', '批次下达','当前完成'],
-					source: [
-						{product: '勘探', '年度规模': 8.89, '批次下达': 6.12, '当前完成': 2.1},
-						{product: '非常规', '年度规模': 26.04, '批次下达': 7.69, '当前完成': 10.83},
-						{product: '天然气开发', '年度规模': 16.21, '批次下达': 12.93, '当前完成': 8.44},
+					
+				var html = thHtml + trHtml;
+				$(".tzType").append(html);
+				var runningChart = echarts.init(document.getElementById('main'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '总部本年下达', '分公司本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
 					]
-				},
-				xAxis: {
-					type: 'category',
-					axisLabel: {  
-					   interval:0,  
-					   rotate:60  
+				};
+
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+				
+					
+				}
+			}	
+		});
+		return false;
+	}
+	function bmAchieved(){
+		var barData = [];
+		$(".bmType").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneyOrgCount.d",
+			data: {typeFlag:'org'},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>部门名称</th><th>分公司年度控制</th><th>分公司本年下达</th><th>当前完成</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){						
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].pczbxd + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + dataList[i].bnErp + "</td>" +			
+						"</tr>"
+						if(dataList[i].pczbxd == ""){
+							dataList[i].pczbxd = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == ""){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};
+						obj["product"] = dataList[i].xmmc;
+						obj["分公司年度控制"] = dataList[i].pczbxd;
+						obj["分公司本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].bnErp;
+						barData.push(obj);
 					}
-				},
-				yAxis: {},
-				// Declare several bar series, each will be mapped
-				// to a column of dataset.source by default.
-				series: [
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'}
-				]
-			};
+					
+				var html = thHtml + trHtml;
+				$(".bmType").append(html);
+				var runningChart = echarts.init(document.getElementById('mainBm'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '分公司年度控制', '分公司本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
 
-        // 使用刚指定的配置项和数据显示图表。
-        myCharts.setOption(options);
-$(".list_home>li").click(function () {
-    $(this).addClass("homeActive").siblings().removeClass("homeActive");
-    var index = $(this).index();
-	if(index == 1){
-		$(".tableData").hide();
-		$(".echarts_bar").show();
-	}else{
-		$(".tableData").show();
-		$(".echarts_bar").hide();
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+				
+					
+				}
+			}	
+		});
+		return false;
 	}
-});
-$(".listBar>li").click(function () {
-    $(this).addClass("homeActive").siblings().removeClass("homeActive");
-    var index = $(this).index();
-	if(index == 1){
-		$(".secondTable").hide();
-		$(".echarts_bars").show();
-	}else{
-		$(".secondTable").show();
-		$(".echarts_bars").hide();
+	function workAchieved(){
+		var barData = [];
+		$(".workType").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/gzlXmlxCount.d",
+			data: {},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>项目类型</th><th>年度规模</th><th>本年下达</th><th>当前完成</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){
+						var bnErp = dataList[i].bnErp				
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].fgsNdgm + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + (dataList[i].bnErp == undefined ? "":dataList[i].bnErp) + "</td>" +			
+						"</tr>"
+						if(dataList[i].fgsNdgm == ""){
+							dataList[i].fgsNdgm = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == "" || dataList[i].bnErp == undefined){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};
+						obj["product"] = dataList[i].xmmc;
+						obj["年度规模"] = dataList[i].fgsNdgm;
+						obj["本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].xmNum;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".workType").append(html);
+				var runningChart = echarts.init(document.getElementById('mainBar'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '年度规模', '本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
+
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+				
+					
+				}
+			}	
+		});
+		return false;
 	}
-});
-$("#windowclosebutton").click(function () { 
-$("#windowcenter").slideUp(500);
+	function workbmAchieved(){
+		var barData = [];
+		$(".workBm").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/gzlOrgCount.d",
+			data: {},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>项目类型</th><th>年度规模</th><th>本年下达</th><th>当前完成</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){
+						var bnErp = dataList[i].bnErp				
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].fgsNdgm + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + (dataList[i].bnErp == undefined ? "":dataList[i].bnErp) + "</td>" +			
+						"</tr>"
+						if(dataList[i].fgsNdgm == ""){
+							dataList[i].fgsNdgm = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == "" || dataList[i].bnErp == undefined){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};
+						obj["product"] = dataList[i].xmmc;
+						obj["年度规模"] = dataList[i].fgsNdgm;
+						obj["本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].xmNum;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".workBm").append(html);
+				var runningChart = echarts.init(document.getElementById('mainbmBar'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '年度规模', '本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
 
-}); 
-$("#alertclose").click(function () { 
-$("#windowcenter").slideUp(500);
-
-}); 
-function jumpurl(url){
-	window.location.href = url;
-}
-function alert(title){ 
-
-$("#windowcenter").slideToggle("slow"); 
-$("#txt").html(title);
-//$("#windowcenter").hide("slow"); 
-setTimeout('$("#windowcenter").slideUp(500)',4000);
-} 
-
-
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+				
+					
+				}
+			}	
+		});
+		return false;
+	}
+	$(".list_home>li").click(function () {
+		$(this).addClass("homeActive").siblings().removeClass("homeActive");
+		var index = $(this).index();
+		if(index == 1){
+			$(".tableData").hide();
+			$(".echarts_bar").show();
+		}else{
+			$(".tableData").show();
+			$(".echarts_bar").hide();
+		}
+	});
+	$(".type_home>li").click(function () {
+		$(this).addClass("homeActive").siblings().removeClass("homeActive");
+		var index = $(this).index();
+		if(index == 1){
+			$(".tzType").hide();
+			$("#main").hide();
+			$(".bmType").show();					
+			$("#mainBm").show();
+			bmAchieved();			
+		}else{
+			$(".tzType").show();
+			$("#main").show();
+			$(".bmType").hide();						
+			$("#mainBm").hide();			
+			tzAchieved();
+		}
+	});
+	$(".listBar>li").click(function () {
+		$(this).addClass("homeActive").siblings().removeClass("homeActive");
+		var index = $(this).index();
+		if(index == 1){
+			$(".secondTable").hide();
+			$(".echarts_bars").show();
+		}else{
+			$(".secondTable").show();
+			$(".echarts_bars").hide();
+		}
+	});
+	$(".work_home>li").click(function () {
+		$(this).addClass("homeActive").siblings().removeClass("homeActive");
+		var index = $(this).index();
+		if(index == 1){
+			$(".workType").hide();
+			$("#mainBar").hide();
+			$(".workBm").show();					
+			$("#mainbmBar").show();
+			workbmAchieved();			
+		}else{
+			$(".workType").show();
+			$("#mainBar").show();
+			$(".workBm").hide();						
+			$("#mainbmBar").hide();			
+			workAchieved();
+		}
+	});
 </script>
-</body>        		<div mark="stat_code" style="width:0px; height:0px; display:none;">
-					</div>
-	</body>
-		<script type="text/javascript">
-
-function getShareApiRouter(){
-	var str_domain = location.href.split('',4)[2];
-	var tj_domain = '127.0.0.1';
-	switch(str_domain){
-		case 'www.weimob.com':
-			tj_domain = 'tj.weimob.com';
-			break;
-		case '112.124.28.82':
-			tj_domain = '112.124.28.82:400';
-			break;
-	}
-	return tj_domain;
-}
-if(typeof(window.shareData) == 'undefined'){
-	window.shareData = {
-				"imgUrl": "", 
-		"timeLineLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"sendFriendLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"weiboLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"tTitle": document.title,
-		"tContent": document.title,
-		"fTitle": document.title,
-		"fContent": document.title,
-		"wContent": document.title
-	}
-}
-</script>
-
 </body>
 </html>

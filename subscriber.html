@@ -32,15 +32,14 @@
         </style>
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
-        <body id="onlinebooking">
-<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-	<script>
-		var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-		document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-	</script>
-</div>
-	<div class="cardexplain">
-	<section class="home_section">
+		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
+			<script>
+				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
+				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
+			</script>
+		</div>
+		<div class="cardexplain">
+		<section class="home_section">
 			<ul class="list_home">
 				<li class="homeActive">
 					<div>
@@ -49,78 +48,7 @@
 				</li>
 			</ul>
 			<div class="home_datalist">
-				<table border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
-					<tr>
-						<th rowspan="3">项目类型</th>
-						<th colspan="3">计划下达</th>
-						<th colspan="3">完成</th>
-					</tr>
-					<tr>
-						<th  rowspan="2">投资</th>
-						<th colspan="2">工作量</th>
-						<th rowspan="2">投资</th>
-						<th colspan="2">工作量</th>
-					</tr>
-					<tr>
-						<th>进尺</th>
-						<th>井数</th>
-						<th>进尺</th>
-						<th>井数</th>
-					</tr>
-					<tr>
-						<td>川西凹陷侏罗系预探项目2019</td>
-						<td>3840</td>
-						<td>0.68</td>
-						<td>2</td>
-						<td>3759</td>
-						<td>0.34</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>川西二叠系</td>
-						<td>9000</td>
-						<td>0.6</td>
-						<td>1</td>
-						<td>2160</td>
-						<td>0.15</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>山前带雷三段</td>
-						<td>3600</td>
-						<td>0.3</td>
-						<td>1</td>
-						<td>3257</td>
-						<td>0.44</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>威荣地区页岩气产能建设</td>
-						<td>83796</td>
-						<td>4</td>
-						<td>0</td>
-						<td>14261</td>
-						<td>7.66</td>
-						<td>0</td>
-					</tr>
-					<tr>
-						<td>中江气田沙溪庙组江沙323HF和江沙321HF等井区产能建设</td>
-						<td>29425</td>
-						<td>3.61</td>
-						<td>9</td>
-						<td>13612</td>
-						<td>1.67</td>
-						<td>6</td>
-					</tr>
-					<tr>
-						<td>川西气田产能建设</td>
-						<td>20000</td>
-						<td>1</td>
-						<td>3/td>
-						<td>6240</td>
-						<td>0.43</td>
-						<td>2</td>
-					</tr>
+				<table class="subData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
 				</table>
 			</div>
 		</section>
@@ -139,96 +67,133 @@
 	</div>
 
 
-<script type="text/javascript">		 
-		// 基于准备好的dom，初始化echarts实例
-        var myCharts = echarts.init(document.getElementById('mainBar'));
-        // 指定图表的配置项和数据
-        var options = {
-				legend: {},
-				tooltip: {},
-				dataset: {
-					dimensions: ['product', '计划下达投资', '计划下达进尺', '计划下达井数', '完成投资', '完成进尺', '完成井数'],
-					source: [
-						{product: '川西凹陷侏罗系预探项目2019','计划下达投资': 3840,'计划下达进尺': 0.68,'计划下达井数': 2 ,'完成投资': 3759, '完成进尺': 0.34, '完成井数': 1},
-						{product: '川西二叠系', '计划下达投资': 9000,'计划下达进尺': 0.6,'计划下达井数': 1 ,'完成投资': 2160, '完成进尺': 0.15, '完成井数': 1},
-						{product: '山前带雷三段', '计划下达投资': 3600,'计划下达进尺': 0.3,'计划下达井数': 1 ,'完成投资': 3257, '完成进尺': 0.44, '完成井数': 1},
-						{product: '威荣地区页岩气产能建设','计划下达投资': 83796, '计划下达进尺': 4,'计划下达井数': 0 ,'完成投资': 14260.97, '完成进尺': 7.67, '完成井数': 0},
-						{product: '中江气田沙溪庙组江沙323HF和江沙321HF等井区产能建设', '计划下达投资': 29425, '计划下达进尺': 3.61, '计划下达井数': 9,'完成投资': 13612, '完成进尺': 1.67, '完成井数': 6},
-						{product: '川西气田产能建设', '计划下达投资': 20000, '计划下达进尺': 1,'计划下达井数': 3 ,'完成投资': 6240, '完成进尺': 0.43, '完成井数': 2}
-					]
-				},
-				xAxis: {
-					type: 'category',
-					axisLabel: {  
-					    interval:0,  
-					    rotate:30,
-						formatter : function(params){
-							var newParamsName = "";// 最终拼接成的字符串
-                            var paramsNameNumber = params.length;// 实际标签的个数
-							if(paramsNameNumber > 7){
-								newParamsName = params.substring(0, 7) + "..."
-							}else{
-								newParamsName = params.substring(0, paramsNameNumber)
+<script type="text/javascript">	
+	$(function(){		
+		dataList();	
+	})	
+function dataList(){
+	var barData = [];
+	$.ajax({
+             type: "POST",
+             url: "http://192.168.0.142:8080/xntzjh/subTake/userXmList.d",
+             data: {userId:'4d00178d-f5b5-495a-9364-55aafd1f2d2d'},
+             dataType: "json",
+             success: function(res){
+                var thHtml = "";
+				thHtml = "<tr>" +
+							"<th rowspan='3'>项目类型</th>" + 
+							"<th colspan='3'>计划下达</th>" +
+							"<th colspan='3'>完成</th>" +							
+						"</tr>" +
+						"<tr>" +
+							"<th rowspan='2'>投资</th>" + 
+							"<th colspan='2'>工作量</th>" +	
+							"<th rowspan='2'>投资</th>" + 
+							"<th colspan='2'>工作量</th>" +								
+						"</tr>" +
+						"<tr>" +
+							"<th>进尺</th><th>井数</th><th>进尺</th><th>井数</th>" +
+						"</tr>"
+				var dataList = 	res.data;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){						
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].jhMoney + "</td>" + 
+						"<td>" + dataList[i].jhJc + "</td>" + 
+						"<td>" + dataList[i].jhKs + "</td>" + 
+						"<td>" + dataList[i].erpMoney + "</td>" + 
+						"<td>" + dataList[i].erpJc + "</td>" +
+						"<td>" + dataList[i].erpKs + "</td>" + 						
+						"</tr>"
+						if(dataList[i].jhMoney == ""){
+							dataList[i].jhMoney = 0
+						}
+						if(dataList[i].jhJc == ""){
+							dataList[i].jhJc = 0
+						}
+						if(dataList[i].jhKs == ""){
+							dataList[i].jhKs = 0
+						}
+						if(dataList[i].erpMoney == ""){
+							dataList[i].erpMoney = 0
+						}
+						if(dataList[i].erpJc == ""){
+							dataList[i].erpJc = 0
+						}
+						if(dataList[i].erpKs == ""){
+							dataList[i].erpKs = 0
+						}
+						var obj = {};
+						obj["product"] = dataList[i].xmmc;
+						obj["计划下达投资"] = dataList[i].jhMoney;
+						obj["计划下达进尺"] = dataList[i].jhJc;
+						obj["计划下达井数"] = dataList[i].jhKs;
+						obj["完成投资"] = dataList[i].erpMoney;
+						obj["完成进尺"] = dataList[i].erpJc;
+						obj["完成井数"] = dataList[i].erpKs;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".subData").append(html);
+				var runningChart = echarts.init(document.getElementById('mainBar'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '计划下达投资', '计划下达进尺', '计划下达井数','完成投资','完成进尺','完成井数'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+							interval:0,  
+							rotate:30,
+							formatter : function(params){
+								var newParamsName = "";// 最终拼接成的字符串
+								var paramsNameNumber = params.length;// 实际标签的个数
+								if(paramsNameNumber > 7){
+									newParamsName = params.substring(0, 7) + "..."
+								}else{
+									newParamsName = params.substring(0, paramsNameNumber)
+								}
+								
+								//将最终的字符串返回
+								return newParamsName
 							}
-                            
-                            //将最终的字符串返回
-                            return newParamsName
-					    }
-					}					
-				},
-				yAxis: {},
-				// Declare several bar series, each will be mapped
-				// to a column of dataset.source by default.
-				series: [
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'},
-					{type: 'bar'}
-				]
-			};
+						}		 
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
 
-        // 使用刚指定的配置项和数据显示图表。
-        myCharts.setOption(options);
-
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+				
+					
+				}
+					
+             }
+         });
+		 return false;
+}
+	
 $(document).ready(function () {
 }); 
 
 
 
-</script>
-</body>        		<div mark="stat_code" style="width:0px; height:0px; display:none;">
-					</div>
-	</body>
-		<script type="text/javascript">
-
-function getShareApiRouter(){
-	var str_domain = location.href.split('',4)[2];
-	var tj_domain = '127.0.0.1';
-	switch(str_domain){
-		case 'www.weimob.com':
-			tj_domain = 'tj.weimob.com';
-			break;
-		case '112.124.28.82':
-			tj_domain = '112.124.28.82:400';
-			break;
-	}
-	return tj_domain;
-}
-if(typeof(window.shareData) == 'undefined'){
-	window.shareData = {
-				"imgUrl": "", 
-		"timeLineLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"sendFriendLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"weiboLink": "webreserve/ReserveBook?rid=2664&wechatid=fromUsername",
-		"tTitle": document.title,
-		"tContent": document.title,
-		"fTitle": document.title,
-		"fContent": document.title,
-		"wContent": document.title
-	}
-}
 </script>
 
 </body>
