@@ -22,12 +22,25 @@
         <link rel="shortcut icon" href="static/img/favicon.ico" />
         <style>
             img{max-width:100%!important;}
-			.backBtn{
+			.backBtns{
 				background: #409eff;
 				color: #fff !important;
 				border: none !important;
 				padding: 4px 8px;
 				cursor: pointer;
+			}
+			.approveTitle{
+				height: 50px;
+				line-height: 50px;
+				background: #fff;
+				padding: 0 10px;
+				text-align: center;
+			}
+			.approveTitle img{
+				position: absolute;
+				left: 10px;
+				top: 9px;
+				border: none;
 			}
         </style>
     </head>
@@ -39,11 +52,15 @@
 		document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
 	</script>
 </div>
+	<div class="approveTitle">
+			<img class="backBtn" src="static/img/back.png" />
+				单井卡片
+		</div>
 	<header class="detailTitle">
 		<div class="titleLeft"></div>
-		<div class="titleRight"><a class="backBtn" href="javascript:history.go(-1)">返回</a></div>
+		<div class="titleRight"><a class="backBtns" href="javascript:history.go(-1)">返回</a></div>
 		<div class="clear"></div>
-	</header>
+	</header>	
 	<div class="cardexplain">	
 		<section class="home_section">
 			<div>基本信息</div>
@@ -96,6 +113,9 @@
 	$(document).ready(function () {	
 		cardList();
 	}); 
+	$(".backBtn").click(function(){
+		history.go(-1);
+	})	
 	function cardList(){
 		$.ajax({
              type: "GET",

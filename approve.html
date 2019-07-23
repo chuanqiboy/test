@@ -20,11 +20,10 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
             img{max-width:100%!important;}
 			.showdia {
-				color: #409eff;
+				color: #ee4040;
 				cursor: pointer;
 			}
         #popLayer {
@@ -52,19 +51,26 @@
             left:0;
             bottom:0;
             margin:auto;
-        }
- 
+        }	
         #popBox .close,#popContent .close{
-            text-align: right;
-            margin-right: 5px;
             background-color: #F8F8F8;
+			height: 30px;
+			line-height: 30px;
         }
+		#popBox .close div{
+			width: 50%;
+			float: left;		
+		}
         #popBox .close a,.#popContent .close a {
             text-decoration: none;
             color: #2D2C3B;
         }
 		#popContent .content label{
 			display: inline-block;
+		}
+		#popContent .close div{
+			width: 50%;
+			float: left;		
 		}
 		.approveTitle{
 			height: 50px;
@@ -77,10 +83,67 @@
 			position: absolute;
 			left: 10px;
 			top: 9px;
+			border: none;
+		}
+		.approve_list li{
+			width: 50%;
+			float: left;
 		}
 		.approveBottom{
 			position: fixed;
 			bottom: 0;
+			height: 50px;
+			width: 100%;
+			background: #fff;
+		}
+		.approve_list li{
+			text-align: center;
+			padding: 5px 0;
+		}
+		.approve_list img{
+			height: 16px;
+		}
+		.approveActive{
+			color: #409eff;
+		}
+		.nodata {
+			border: none;
+			color: #666;
+			font-size: 14px;
+			text-align: center;
+			height: 60px;
+			line-height: 60px;
+		}
+		.approveList span{
+			display: inline-block;
+		}
+		.approveList .content{
+			width: 70%;
+			text-align: left;
+		}
+		.approveList .time{
+			width: 30%;
+			text-align: right;
+		}
+		.home_section{
+			padding:10px;
+		}
+		.contentList{
+			height: 50px;
+			line-height: 50px;
+		}
+		.ybTitle{
+			text-align: left;			
+		}
+		.ybTitle span{
+			border-left: 3px solid #409eff;
+			padding-left: 5px;
+		}
+		.closeBtn{
+			text-align: right;
+		}
+		.close{
+			padding: 0 5px;
 		}
         </style>
     </head>
@@ -92,9 +155,9 @@
 			</script>
 		</div>
 		<div class="approveTitle">
-			<img src="static/img/back.png" />
+			<img class="backBtn" src="static/img/back.png" />
 				项目审批
-			</div>
+		</div>
 		<div class="cardexplain">
 			
 		<!--后台可控制是否显示-->
@@ -102,11 +165,11 @@
 					<div>
 						<div class="tableData">
 							<div class="home_datalist">
-								<table class="approveList" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style=""width: 100%"></table>
+								<div class="approveList" style=""width: 100%"></div>
 							</div>		
 						</div>
 						<div class="tableData overWork" style="display: none;">
-							<table class="approveList" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style=""width: 100%"></table>
+							<div class="approveList" style=""width: 100%"></div>
 						</div>
 								
 				</div>				
@@ -115,7 +178,8 @@
 	<div id="popLayer"></div>
 	<div id="popBox">
 		<div class="close">
-			<a href="javascript:void(0)" onclick="closeBox()">X</a>
+			<div class="ybTitle"><span>未办</span></div>
+			<div class="closeBtn"><a href="javascript:void(0)" onclick="closeBox()">X</a></div>
 		</div>
 		<div class="content">
 			<div style="display: flex;align-items: center;padding: 10px;">
@@ -136,7 +200,8 @@
 	</div>
 	<div id="popContent">
 		<div class="close">
-			<a href="javascript:void(0)" onclick="closeBox()">X</a>
+			<div class="ybTitle"><span>已办</span></div>
+			<div class="closeBtn"><a href="javascript:void(0)" onclick="closeBox()">X</a></div>
 		</div>
 		<div class="content">
 			<div>
@@ -166,13 +231,13 @@
 		</div>
 	</div>
 	<div class="approveBottom">
-		<ul class="list_home">
-			<li class="homeActive">
-				<span></span>
+		<ul class="approve_list">
+			<li class="approveActive">
+				<img class="dbImg" src="static/img/db_on.png" />
 				<div>未办</div>
 			</li>
 			<li>
-				<span></span>
+				<img class="ybImg" src="static/img/yb.png" />
 				<div>已办</div>
 			</li>
 		</ul>
@@ -183,34 +248,38 @@
 	$(function(){			
 		approveList(type);		
 	})
-	$(".list_home>li").click(function () {
-		$(this).addClass("homeActive").siblings().removeClass("homeActive");
+	$(".approve_list>li").click(function () {
+		$(this).addClass("approveActive").siblings().removeClass("approveActive");
 		var index = $(this).index();
 		if(index == 1){
 			$(".tableData").hide();
 			$(".overWork").show();
 			type = "已办"
+			$(".dbImg").attr('src',"static/img/db.png")
+			$(".ybImg").attr('src',"static/img/yb_on.png")
 		}else{
 			$(".tableData").show();
 			$(".overWork").hide();
 			type = "未办"
+			$(".dbImg").attr('src',"static/img/db_on.png")
+			$(".ybImg").attr('src',"static/img/yb.png")
 		}
 		approveList(type);
 	});	
+	$(".backBtn").click(function(){
+		history.go(-1);
+	})
 	function approveList(type){
 		var barData = [];
 		$(".approveList").html('');
 		$.ajax({
              type: "POST",
-             url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/fgsJhShLb.d",
+             url: "http://192.168.0.142:8080/xntzjh/fgsjhfj/fgsJhShLb.d",
              data: {userId:"d9682470-04cb-49d0-b9c4-7bf40f4e2de8", jhnf:'2017',zt:type},
              dataType: "json",
              success: function(res){
                 var thHtml = "";
-				thHtml = "<tr>" +
-							"<th>时间</th>" + 
-							"<th>审批事项</th>" +
-						"</tr>"
+				thHtml = ""
 				var dataList = 	res;
 				var trHtml = ""
 				var html = "";
@@ -223,22 +292,23 @@
 						var jhbk = dataList[i].jhbk;
 						var jhxh = dataList[i].jhxh;
 						if(type == "未办"){
-							trHtml+="<tr>"+
-							'<td>' + t + '</td>' + 
-							'<td><a class="showdia" onclick="showDialogue(\' '+id+' \',\' '+nf+' \',\' '+jhbk+' \',\' '+jhxh+' \')">' + dataList[i].jhmc + '</a></td>' + 			
-							'</tr>'
+							trHtml+='<div class="contentList"><span class="content">'+
+							'<a class="showdia" onclick="showDialogue(\' '+id+' \',\' '+nf+' \',\' '+jhbk+' \',\' '+jhxh+' \')">' + dataList[i].jhmc + '</a>' + 
+							'</span>'
+							'<span class="time">' + t + '</span></div>'
 						}else{
-							trHtml+="<tr>"+
-							'<td>' + t + '</td>' + 
-							'<td><a class="showdia" onclick="showDetails(\' '+id+' \')">' + dataList[i].jhmc + '</a></td>' + 			
-							'</tr>'
+							trHtml+='<div class="contentList"><span class="content">'+
+							'<a class="showdia" onclick="showDetails(\' '+id+' \')">' + dataList[i].jhmc + '</a>' + 
+							'</span>' + 
+							'<span class="time">' + t + '</span></div>'							
 						}
 						
 					}					
 					html = thHtml + trHtml;
 					$(".approveList").append(html);
 				}else{				
-					$(".approveList").append("<div>暂无数据</div>")
+					$(".approveList").append("<div class='nodata'>暂无数据</div>")
+					$(".approveList").css("border","none");
 				}					
             }
         });

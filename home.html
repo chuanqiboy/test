@@ -52,13 +52,6 @@
 		</script>
 	</div>
 	<div class="cardexplain">
-	<!--后台可控制是否显示-->
-	<ul class="round">
-		<li>
-		<h2>投资概述</h2>
-		<div class="text"></div>
-		</li>
-	</ul>
 	<section class="home_section">
 			<ul class="list_home">
 				<li class="homeActive">
@@ -142,33 +135,11 @@
 
 <script type="text/javascript">
 	$(function(){
-		//投资概述
-		dataList();	
 		//投资完成情况
 		tzAchieved();
 		//工作量完成
 		workAchieved();
-	})	
-	function dataList(){
-		$.ajax({
-			type: "POST",
-			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneySummary.d",
-			data: {},
-			dataType: "json",
-			success: function(res){
-				if(res == null){
-					$(".text").html("暂无数据");
-				}else{
-					var html = '<div>截止到<span>'+res.ymd+'</span>：总部下达年度规模计划'+res.yearPlanMoney+'万元，分公司下达年度控制计划'+res.allFgsNdMoney+
-					'。'+res.ytbkZbDesc+'，共计'+res.allZbMoney+'万元 。'+res.ytbkMoney+'万元；' +
-					res.ytbkFgsDesc+'批，共计 '+res.allFgsMoney+'万元。'+res.fgsTzljMoney+
-					'西南油气分公司 ERP累计结算'+res.xnfgs + '万元，完成总部规模计划的'+res.erpRatioZbxd+'。</div>'
-					$(".text").html(html);
-				}
-			}	
-		});
-		return false;
-	}
+	})
 	function tzAchieved(){
 		var barData = [];
 		$(".tzType").html('');

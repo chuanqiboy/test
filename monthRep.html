@@ -54,6 +54,19 @@
 				overflow-x: auto;
 				padding:0 10px 10px 10px;
 			}
+			.approveTitle{
+				height: 50px;
+				line-height: 50px;
+				background: #fff;
+				padding: 0 10px;
+				text-align: center;
+			}
+			.approveTitle img{
+				position: absolute;
+				left: 10px;
+				top: 9px;
+				border: none;
+			}
         </style>
     </head>
     <body>
@@ -62,6 +75,10 @@
 				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
 				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
 			</script>
+		</div>
+		<div class="approveTitle">
+			<img class="backBtn" src="static/img/back.png" />
+				月度投资
 		</div>
 		<div class="cardexplain">
 			<div class="searchTitle">
@@ -95,6 +112,9 @@
 		//基本信息
 		basicData();
 	});
+	$(".backBtn").click(function(){
+		history.go(-1);
+	})
 	function basicData(){
 		var nd = $(".selectValue").val();
 		var barData = [];

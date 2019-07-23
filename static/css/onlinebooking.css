@@ -103,6 +103,7 @@ table tr{
 	line-height: 40px;
 	background-color: #FFF;
 	padding: 0 20px;
+	margin: 10px 10px 0 10px;;
 }
 .detailTitle div{
 	display: inline-block;
