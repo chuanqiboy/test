@@ -66,6 +66,22 @@
 		#popContent .content label{
 			display: inline-block;
 		}
+		.approveTitle{
+			height: 50px;
+			line-height: 50px;
+			background: #fff;
+			padding: 0 10px;
+			text-align: center;
+		}
+		.approveTitle img{
+			position: absolute;
+			left: 10px;
+			top: 9px;
+		}
+		.approveBottom{
+			position: fixed;
+			bottom: 0;
+		}
         </style>
     </head>
     <body>
@@ -75,19 +91,14 @@
 				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
 			</script>
 		</div>
+		<div class="approveTitle">
+			<img src="static/img/back.png" />
+				项目审批
+			</div>
 		<div class="cardexplain">
+			
 		<!--后台可控制是否显示-->
-			<section class="home_section">
-				<ul class="list_home">
-					<li class="homeActive">
-						<div>
-							未办
-						</div>
-					</li>
-					<li>
-						<div>已办</div>
-					</li>
-				</ul>
+			<section class="home_section">				
 					<div>
 						<div class="tableData">
 							<div class="home_datalist">
@@ -153,6 +164,18 @@
 				<textarea class="approveS" style="height: 60px;width: 200px;padding-left: 5px;"></textarea>
 			</div>
 		</div>
+	</div>
+	<div class="approveBottom">
+		<ul class="list_home">
+			<li class="homeActive">
+				<span></span>
+				<div>未办</div>
+			</li>
+			<li>
+				<span></span>
+				<div>已办</div>
+			</li>
+		</ul>
 	</div>
 
 <script type="text/javascript">

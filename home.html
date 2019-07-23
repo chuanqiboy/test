@@ -152,7 +152,7 @@
 	function dataList(){
 		$.ajax({
 			type: "POST",
-			url: "http://10.18.3.98:8586/xntzjh/homeplan/moneySummary.d",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneySummary.d",
 			data: {},
 			dataType: "json",
 			success: function(res){
@@ -174,7 +174,7 @@
 		$(".tzType").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://10.18.3.98:8586/xntzjh/homeplan/moneyCount.d",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneyCount.d",
 			data: {typeFlag:'type'},
 			dataType: "json",
 			success: function(res){
@@ -250,7 +250,7 @@
 		$(".bmType").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://10.18.3.98:8586/xntzjh/homeplan/moneyOrgCount.d",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneyOrgCount.d",
 			data: {typeFlag:'org'},
 			dataType: "json",
 			success: function(res){
@@ -326,7 +326,7 @@
 		$(".workType").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://10.18.3.98:8586/xntzjh/homeplan/gzlXmlxCount.d",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/gzlXmlxCount.d",
 			data: {},
 			dataType: "json",
 			success: function(res){
@@ -403,7 +403,7 @@
 		$(".workBm").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://10.18.3.98:8586/xntzjh/homeplan/gzlOrgCount.d",
+			url: "http://192.168.0.142:8080/xntzjh/homeplan/gzlOrgCount.d",
 			data: {},
 			dataType: "json",
 			success: function(res){
