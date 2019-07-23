@@ -179,7 +179,7 @@
 		$(".approveList").html('');
 		$.ajax({
              type: "POST",
-             url: "http://192.168.0.142:8080/xntzjh/fgsjhfj/fgsJhShLb.d",
+             url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/fgsJhShLb.d",
              data: {userId:"d9682470-04cb-49d0-b9c4-7bf40f4e2de8", jhnf:'2017',zt:type},
              dataType: "json",
              success: function(res){
@@ -252,7 +252,7 @@
 		}
 		$.ajax({
             type: "POST",
-            url: "http://192.168.0.133:8080/xntzjh/fgsjhfj/checkPass.d",
+            url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/checkPass.d",
             data: {czzid:"d9682470-04cb-49d0-b9c4-7bf40f4e2de8", czzxm:'计划处分级管理员',jhid:jhid,jhnf:jhnf, jhbk:jhbk,jhxh:jhxh,czyj: czyj},
             dataType: "json",
             success: function(res){
@@ -271,7 +271,7 @@
 		popLayer.style.display = "block";
 		$.ajax({
             type: "POST",
-            url: "http://192.168.0.142:8080/xntzjh/fgsjhfj/fgsJhShDetail.d",
+            url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/fgsJhShDetail.d",
             data: {jhid:id},
             dataType: "json",
             success: function(res){
@@ -298,7 +298,7 @@
 		var czyj = $.trim($(".czyj").val());
 		$.ajax({
             type: "POST",
-            url: "http://192.168.0.142:8080/xntzjh/fgsjhfj/checkBack.d",
+            url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/checkBack.d",
             data: {czzid:"d9682470-04cb-49d0-b9c4-7bf40f4e2de8", czzxm:'计划处分级管理员',jhid:jhid,jhnf:jhnf, jhbk:jhbk,jhxh:jhxh,czyj: czyj},
             dataType: "json",
             success: function(res){

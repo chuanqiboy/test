@@ -29,60 +29,101 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-			<style type="text/css">
-				.body{
-					background: #f2f2f2;
-				}
-				.header{
-					height: 88px;
-					line-height: 88px;
-					background: #fff;
-				}
-				.tzDesc li{
-					margin: 20px 10px;
-					background: #fff;
-					padding: 10px;
-				}
-				.details{
-					text-align: right;
-				}
-				.details a{
-					color: #409eff;
-				}
-				.bottom{
-					height: 50px;
-					line-height: 50px;
-					text-align: center;
-					color: #EE4040;
-					background: #fff;
-					position: fixed;
-					bottom: 0;
-					width: 100%;
-				}
-			</style>
+			<link rel="shortcut icon" href="static/img/invest.png" />
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
         
 	<link rel="stylesheet" type="text/css" href="wm-xin-a/font-awesome.css?v=2014032314" media="all" />
 
 	<div class="body">
+		<!--
+	幻灯片管理
+	-->
+	<div style="-webkit-transform:translate3d(0,0,0);">
+		<div id="banner_box" class="box_swipe">
+			<ul>
+				<li>
+					<a>
+						<img src="img/static/gHome.jpg" alt="1" style="width:100%;" />
+					</a>
+				</li>
+				<!-- <li> -->
+					<!-- <a href="itemCards.html"> -->
+						<!-- <img src="img/static/ydtz.jpg" alt="2" style="width:100%;" /> -->
+					<!-- </a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="running_charts.html"> -->
+						<!-- <img src="img/static/xydb.jpg" alt="3" style="width:100%;" /> -->
+					<!-- </a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="subscriber.html"> -->
+						<!-- <img src="img/static/dyxm.jpg" alt="4" style="width:100%;" /> -->
+					<!-- </a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="itemCards.html"> -->
+						<!-- <img src="img/static/xmkp.jpg" alt="5" style="width:100%;" /> -->
+					<!-- </a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="detailCards.html"> -->
+						<!-- <img src="img/static/djkp.jpg" alt="6" style="width:100%;" /> -->
+					<!-- </a> -->
+				<!-- </li> -->
+				<!-- <li> -->
+					<!-- <a href="approve.html"> -->
+						<!-- <img src="img/static/xmsh.jpg" alt="7" style="width:100%;" /> -->
+					<!-- </a> -->
+				<!-- </li> -->
+			</ul>
+			<!-- <ol> -->
+				<!-- <li class="on"></li> -->
+				<!-- <li ></li> -->
+				<!-- <li ></li> -->
+				<!-- <li ></li> -->
+				<!-- <li ></li> -->
+				<!-- <li ></li> -->
+				<!-- <li ></li> -->
+			<!-- </ol> -->
+		</div>
+	</div>
+	<script>
+		$(function(){
+			new Swipe(document.getElementById('banner_box'), {
+				speed:500,
+				auto:3000,
+				callback: function(){
+					var lis = $(this.element).next("ol").children();
+					lis.removeClass("on").eq(this.index).addClass("on");
+				}
+			});
+		});
+	</script>
+	<br/>
 		<header>
-			<div class="header"></div>
+			<div class="snower">
+				<script type="text/javascript"></script>
+			</div>
 		</header>
-		<ul class="round tzDesc">
-			<li>
-				<h2>投资概述</h2>
-				<div class="text"></div>
-				<div class="details"><a href="home.html">详情</a></div>
-			</li>
-		</ul>
 		<section>
         <ul class="list_ul">
+          <li>
+            <a href="home.html">
+              <figure>
+                <div>
+                  <img src="static/img/home.png" />
+                </div>
+                <figcaption>首页</figcaption>
+              </figure>
+            </a>
+          </li>
           <li>
             <a href="monthRep.html">
               <figure>
                 <div>
-                  <img src="static/img/tz.png" />
+                  <img src="static/img/invest.png" />
                 </div>
                 <figcaption>月度投资完成表</figcaption>
               </figure>
@@ -92,7 +133,7 @@
             <a href="running_charts.html">
               <figure>
                 <div>
-                  <img src="static/img/yx.png" />
+                  <img src="static/img/run.png" />
                 </div>
                 <figcaption>运行大表</figcaption>
               </figure>
@@ -102,7 +143,7 @@
             <a href="subscriber.html">
               <figure>
                 <div>
-                  <img src="static/img/dy.png" />
+                  <img src="static/img/subscribe.png" />
                 </div>
                 <figcaption>订阅项目</figcaption>
               </figure>
@@ -112,7 +153,7 @@
             <a href="itemCards.html">
               <figure>
                 <div>
-                  <img src="static/img/xm.png" />
+                  <img src="static/img/project.png" />
                 </div>
                 <figcaption>项目卡片</figcaption>
               </figure>
@@ -122,7 +163,7 @@
             <a href="detailCards.html">
               <figure>
                 <div>
-                  <img src="static/img/dj.png" />
+                  <img src="static/img/danjing.png" />
                 </div>
                 <figcaption>单井卡片</figcaption>
               </figure>
@@ -132,7 +173,7 @@
             <a href="approve.html">
               <figure>
                 <div>
-                  <img src="static/img/sp.png" />
+                  <img src="static/img/shenpi.png" />
                 </div>
                 <figcaption>审批</figcaption>
               </figure>
@@ -140,33 +181,10 @@
           </li>
         </ul>
       </section>
-	  <div class="bottom">返回上一级</div>
-    </div>
+    </div>     			
+	<div mark="stat_code" style="width:0px; height:0px; display:none;"></div>
+	</body>
 	<script type="text/javascript">
-		$(function(){
-			//投资概述
-			dataList();	
-		})
-		function dataList(){
-			$.ajax({
-				type: "POST",
-				url: "http://10.18.3.98:8586/xntzjh/homeplan/moneySummary.d",
-				data: {},
-				dataType: "json",
-				success: function(res){
-					if(res == null){
-						$(".text").html("暂无数据");
-					}else{
-						var html = '<div>截止到<span>'+res.ymd+'</span>：<br/><span style="text-indent: 20px;display:inline-block;">总部下达年度规模计划'+res.yearPlanMoney+'万元，分公司下达年度控制计划'+res.allFgsNdMoney+
-						'。</span><br/><span style="text-indent: 20px;display:inline-block;">'+res.ytbkZbDesc+'，共计'+res.allZbMoney+'万元 。'+res.ytbkMoney+'万元；' +
-						res.ytbkFgsDesc+'批，共计 '+res.allFgsMoney+'万元。'+res.fgsTzljMoney+
-						'</span><br/><span style="text-indent: 20px;display:inline-block;">西南油气分公司 ERP累计结算'+res.xnfgs + '万元，完成总部规模计划的'+res.erpRatioZbxd+'。</span></div>'
-						$(".text").html(html);
-					}
-				}	
-			});
-			return false;
-		}	
 	</script>
 </body>
 </html>
