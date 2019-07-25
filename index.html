@@ -33,18 +33,36 @@
 				.body{
 					background: #f2f2f2;
 				}
-				.header{
-					height: 50px;
-					line-height: 50px;
-					background: #fff;
-				}
-				.header img{
-					width: 100%;
-				}
 				.tzDesc li{
 					margin: 20px 10px;
 					background: #fff;
 					padding: 10px;
+				}
+				.mask {
+					background-color: #B3B3B3;
+					position: absolute;
+					top: 0;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					z-index: 10;
+					-moz-opacity: 0.8;
+					opacity:.80;
+					filter: alpha(opacity=80);/* 只支持IE6、7、8、9 */
+				}
+				.popContent {
+					background-color: #FFFFFF;
+					z-index: 11;
+					width: 320px;
+					height: 320px;
+					position:fixed;
+					top:0;
+					right:0;
+					left:0;
+					bottom:0;
+					margin:auto;
+					padding: 10px;
+					border-radius: 4px;
 				}
 				.details{
 					text-align: right;
@@ -52,7 +70,7 @@
 				.details a{
 					color: #409eff;
 				}
-				.bottom{
+				.bottomNav{
 					height: 50px;
 					line-height: 50px;
 					text-align: center;
@@ -62,114 +80,610 @@
 					bottom: 0;
 					width: 100%;
 				}
+				.nav{
+					line-height: 20px;
+				}
+				.nav div{
+					height: 30px;
+					line-height: 30px;
+				}
+				.close{
+					height: 30px;
+					line-height: 30px;					
+				}
+				.close span{
+					display: inline-block;
+				}
+				.close_title{
+					border-left: 3px solid #409eff;
+					padding-left: 5px;
+					font-size: 16px;
+				}
+				.close img{
+					position: absolute;
+					right: 5px;
+					top: 5px;
+				}
+				.homeTitle{
+					height: 50px;
+					line-height: 50px;
+					background: #fff;
+					font-size: 16px;
+					text-align: center;
+				}
+				.homeTitle img{
+					position: absolute;
+					left: 5px;
+					top: 15px;					
+				}
+				.home_section{
+					margin: 10px;
+					background: #fff;
+					border-radius: 4px;
+				}
+				.loading{
+					margin: 0 auto;
+				     text-align: center;
+				}
+				.loading img{
+					height: 40px;
+					padding-top: 50px;
+				}
+				.type_home,.work_home{
+					height: 30px;
+					line-height: 30px;
+				}
+				.type_home li,.work_home li{
+					width: 80px;;
+					text-align: center;
+					color: #666;
+					border-bottom: 1px solid #dadada;
+					float: left;
+				}
+				.nodata {
+					border: none;
+					color: #666;
+					font-size: 14px;
+					text-align: center;
+					height: 60px;
+					line-height: 60px;
+				}
+				.hTitle{							
+					height: 40px;
+					line-height: 40px;				
+				}
+				.tzTitle{
+					border-left: 3px solid #409eff;
+					padding-left: 5px;
+					font-size: 14x;
+					font-weight: bold;
+				}
+				table tr td{
+					text-align: right;
+				}
 			</style>
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
-        
-	<link rel="stylesheet" type="text/css" href="wm-xin-a/font-awesome.css?v=2014032314" media="all" />
-
 	<div class="body">
-		<header>
-			<div class="header"><img src="static/img/logo.jpg" /></div>
-		</header>
-		<ul class="round tzDesc">
-			<li>
-				<h2>投资概述</h2>
-				<div class="text"></div>
-				<div class="details"><a href="home.html">详情</a></div>
-			</li>
-		</ul>
-		<section>
-        <ul class="list_ul">
-          <li>
-            <a href="monthRep.html">
-              <figure>
-                <div>
-                  <img src="static/img/tz.png" />
-                </div>
-                <figcaption>月度投资完成表</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a href="running_charts.html">
-              <figure>
-                <div>
-                  <img src="static/img/yx.png" />
-                </div>
-                <figcaption>运行大表</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a href="subscriber.html">
-              <figure>
-                <div>
-                  <img src="static/img/dy.png" />
-                </div>
-                <figcaption>订阅项目</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a href="itemCards.html">
-              <figure>
-                <div>
-                  <img src="static/img/xm.png" />
-                </div>
-                <figcaption>项目卡片</figcaption>
-              </figure>
-            </a>
-          </li>
-          <li>
-            <a href="detailCards.html">
-              <figure>
-                <div>
-                  <img src="static/img/dj.png" />
-                </div>
-                <figcaption>单井卡片</figcaption>
-              </figure>
-            </a>
-          </li>
-		  <li>
-            <a href="approve.html">
-              <figure>
-                <div>
-                  <img src="static/img/sp.png" />
-                </div>
-                <figcaption>审批</figcaption>
-              </figure>
-            </a>
-          </li>
-        </ul>
-      </section>
-	  <div class="bottom">返回上一级</div>
+		<div class="mask"></div>
+		<div class="popContent">
+			<div class="close">
+				<span class="close_title">投资概述</span>
+				<span onclick="closeBox()"><img src="static/img/close.png" /></span>
+			</div>
+			<div class="text">
+				<div class="loading"><img src="static/img/loading.gif" /></div>
+			</div>
+		</div>				
+		<div class="homeContent">
+			<div class="homeTitle">
+				<img onclick="goback()" src="static/img/back.png" />首页
+			</div>
+			<section class="home_section">
+				<div class="hTitle"><span class="tzTitle">投资</span></div>
+				<div>
+					<div class="tableData">
+						<div class="touzi">
+							<div>
+								<ul class="type_home">
+									<li class="homeActive">
+										<div>
+											项目类型
+										</div>
+									</li>
+									<li>
+										<div>部门统计</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="home_datalist">
+							<table class="tzType" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+							<table class="bmType" style="display: none" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+							<div id="main" style="width: 350px;height: 400px;margin: 0 auto;margin-top: 10px;"></div>
+							<div id="mainBm" style="width: 350px;height: 400px;margin: 0 auto;display: none;margin-top: 10px;"></div>
+						</div>		
+					</div>							
+				</div>			
+			</section>
+			<section class="home_section">
+				<div class="hTitle"><span class="tzTitle">工作量</span></div>
+				<div class="secondTable">
+					<div class="touzi">
+						<div>
+							<ul class="work_home">
+								<li class="homeActive">
+									<div>
+										项目类型
+									</div>
+								</li>
+								<li>
+									<div>部门统计</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="home_datalist">
+						<table class="workType" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+						<table class="workBm" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+						<div id="mainBar" style="width: 350px;height: 350px;margin: 0 auto;margin-top: 10px;"></div>
+						<div id="mainbmBar" style="width: 350px;height: 350px;margin: 0 auto;display:none;margin-top: 10px;"></div>
+					</div>
+				</div>						
+			</section>
+		</div>
+		<div class="bottomNav">
+			<ul class="list_ul">
+			  <li>
+				<a class="nav" href="monthRep.html" target="_self">
+					<div><img src="static/img/home.png" /></div>
+					首页
+				</a>
+			  </li>
+			  <li>
+				<a class="nav" href="running_charts.html" target="_self">
+				  <div><img src="static/img/sh.png" /></div>
+				   审核
+				</a>
+			  </li>
+			  <li>
+				<a href="xmList.html">
+					<a class="nav" href="running_charts.html" target="_self">
+					  <div><img src="static/img/kp.png" /></div>
+					   卡片
+					</a>
+				</a>
+			  </li>
+			  <li>
+				<a href="djList.html">
+					<a class="nav" href="running_charts.html" target="_self">
+					  <div><img src="static/img/kp.png" /></div>
+					   运行大表
+					</a>
+				</a>
+			  </li>
+			  <li>
+				<a href="approve.html">
+					<a class="nav" href="running_charts.html" target="_self">
+						<div><img src="static/img/kp.png" /></div>
+					   月度投资
+					</a>
+				</a>
+			  </li>
+			</ul>
+		</div>
     </div>
+	
 	<script type="text/javascript">
 		$(function(){
 			//投资概述
-			dataList();	
+			dataList();
+			//投资完成情况
+			tzAchieved();
+			//工作量完成
+			workAchieved();	
 		})
+		function goback(){
+			history.go(-1);
+		}
 		function dataList(){
+			$(".loading").show();
 			$.ajax({
 				type: "POST",
-				url: "http://10.18.3.98:8586/xntzjh/homeplan/moneySummary.d",
+				url: "http://192.168.0.142:8080/xntzjh/homeplan/moneySummary.ydd",
 				data: {},
 				dataType: "json",
 				success: function(res){
 					if(res == null){
 						$(".text").html("暂无数据");
 					}else{
-						var html = '<div>截止到<span>'+res.ymd+'</span>：<br/><span style="text-indent: 20px;display:inline-block;">总部下达年度规模计划'+res.yearPlanMoney+'万元，分公司下达年度控制计划'+res.allFgsNdMoney+
-						'。</span><br/><span style="text-indent: 20px;display:inline-block;">'+res.ytbkZbDesc+'，共计'+res.allZbMoney+'万元 。'+res.ytbkMoney+'万元；' +
-						res.ytbkFgsDesc+'批，共计 '+res.allFgsMoney+'万元。'+res.fgsTzljMoney+
-						'</span><br/><span style="text-indent: 20px;display:inline-block;">西南油气分公司 ERP累计结算'+res.xnfgs + '万元，完成总部规模计划的'+res.erpRatioZbxd+'。</span></div>'
+						$(".loading").hide();
+						var html = '<div>截止到<span>'+res.ymd+'</span>：<br/><span style="text-indent: 20px;display:inline-block;">总部下达年度规模计划<span style="color: #409eff">'+res.yearPlanMoney+'</span>万元，分公司下达年度控制计划<span style="color: #409eff">'+res.allFgsNdMoney+
+						'</span>万元。</span><br/><span style="text-indent: 20px;display:inline-block;">'+res.ytbkZbDesc+'，共计<span style="color: #409eff">'+res.allZbMoney+'</span>万元 。'+res.ytbkMoney+'万元；' +
+						res.ytbkFgsDesc+'批，共计 <span style="color: #409eff">'+res.allFgsMoney+'</span>万元。'+res.fgsTzljMoney+
+						'</span><br/><span style="text-indent: 20px;display:inline-block;">西南油气分公司 ERP累计结算<span style="color: #409eff">'+res.xnfgs + '</span>万元，完成总部规模计划的'+res.erpRatioZbxd+'。</span></div>'
 						$(".text").html(html);
 					}
 				}	
 			});
 			return false;
-		}	
+		}
+		function closeBox() {
+			$(".mask").hide();
+			$(".popContent").hide();
+		}
+		function tzAchieved(){
+		var barData = [];
+		$(".tzType").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/moneyCount.d",
+			data: {typeFlag:'type'},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>项目类型</th><th>总部本年下达(万元)</th><th>分公司本年下达(万元)</th><th>当前完成(万元)</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){						
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].pczbxd + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + dataList[i].bnErp + "</td>" +			
+						"</tr>"
+						if(dataList[i].pczbxd == ""){
+							dataList[i].pczbxd = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == ""){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};						
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
+						obj["总部本年下达"] = dataList[i].pczbxd;
+						obj["分公司本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].bnErp;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".tzType").append(html);
+				var runningChart = echarts.init(document.getElementById('main'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					grid: {
+						left: '15%',
+						right: '5%',
+						bottom: '20%',
+					},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '总部本年下达', '分公司本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
+
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+					$(".tzType").append("<div class='nodata'>暂无数据</div>")	
+					
+				}
+			}	
+		});
+		return false;
+	}
+	function bmAchieved(){
+		var barData = [];
+		$(".bmType").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/moneyOrgCount.d",
+			data: {typeFlag:'org'},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>部门名称</th><th>分公司年度控制(万元)</th><th>分公司本年下达(万元)</th><th>当前完成(万元)</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){						
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].pczbxd + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + dataList[i].bnErp + "</td>" +			
+						"</tr>"
+						if(dataList[i].pczbxd == ""){
+							dataList[i].pczbxd = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == ""){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
+						obj["分公司年度控制"] = dataList[i].pczbxd;
+						obj["分公司本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].bnErp;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".bmType").append(html);
+				var runningChart = echarts.init(document.getElementById('mainBm'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					grid: {
+						left: '15%',
+						right: '5%',
+						bottom: '20%',
+					},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '分公司年度控制', '分公司本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
+
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+					$(".bmType").append("<div class='nodata'>暂无数据</div>")	
+					
+				}
+			}	
+		});
+		return false;
+	}
+	function workAchieved(){
+		var barData = [];
+		$(".workType").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/gzlXmlxCount.d",
+			data: {},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>项目类型</th><th>年度规模(万米)</th><th>本年下达(万米)</th><th>当前完成(万元)</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){
+						var bnErp = dataList[i].bnErp				
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].fgsNdgm + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + (dataList[i].bnErp == undefined ? "":dataList[i].bnErp) + "</td>" +			
+						"</tr>"
+						if(dataList[i].fgsNdgm == ""){
+							dataList[i].fgsNdgm = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == "" || dataList[i].bnErp == undefined){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
+						obj["年度规模"] = dataList[i].fgsNdgm;
+						obj["本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].xmNum;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".workType").append(html);
+				var runningChart = echarts.init(document.getElementById('mainBar'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					grid: {
+						left: '10%',
+						right: '5%',
+						bottom: '20%',
+					},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '年度规模', '本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
+
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+					$(".workType").append("<div class='nodata'>暂无数据</div>")	
+					
+				}
+			}	
+		});
+		return false;
+	}
+	function workbmAchieved(){
+		var barData = [];
+		$(".workBm").html('');
+		$.ajax({
+			type: "POST",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/gzlOrgCount.d",
+			data: {},
+			dataType: "json",
+			success: function(res){
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>项目类型</th><th>年度规模(万米)</th><th>本年下达(万米)</th><th>当前完成(万元)</th>" +
+						"</tr>"
+				var dataList = 	res;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){
+						var bnErp = dataList[i].bnErp				
+						trHtml+="<tr>"+
+						"<td>" + dataList[i].xmmc + "</td>" + 
+						"<td>" + dataList[i].fgsNdgm + "</td>" + 
+						"<td>" + dataList[i].pcfgsfj + "</td>" + 
+						"<td>" + (dataList[i].bnErp == undefined ? "":dataList[i].bnErp) + "</td>" +			
+						"</tr>"
+						if(dataList[i].fgsNdgm == ""){
+							dataList[i].fgsNdgm = 0
+						}
+						if(dataList[i].pcfgsfj == ""){
+							dataList[i].pcfgsfj = 0
+						}
+						if(dataList[i].bnErp == "" || dataList[i].bnErp == undefined){
+							dataList[i].bnErp = 0
+						}
+						var obj = {};
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
+						obj["年度规模"] = dataList[i].fgsNdgm;
+						obj["本年下达"] = dataList[i].pcfgsfj;
+						obj["当前完成"] = dataList[i].xmNum;
+						barData.push(obj);
+					}
+					
+				var html = thHtml + trHtml;
+				$(".workBm").append(html);
+				var runningChart = echarts.init(document.getElementById('mainbmBar'));
+				// 指定图表的配置项和数据
+				var option = {
+					legend: {},
+					grid: {
+						left: '10%',
+						right: '5%',
+						bottom: '20%',
+					},
+					tooltip: {},
+					dataset: {
+						dimensions: ['product', '年度规模', '本年下达', '当前完成'],
+						source: barData
+					},
+					xAxis: {
+						type: 'category',
+						axisLabel: {  
+						   interval:0,  
+						   rotate:60  
+						}  
+					},
+					yAxis: {},
+					series: [						
+						{type: 'bar'},
+						{type: 'bar'},
+						{type: 'bar'}
+					]
+				};
+
+				// 使用刚指定的配置项和数据显示图表。
+				runningChart.setOption(option);	
+				}else{
+					$(".workBm").append("<div class='nodata'>暂无数据</div>")				
+				}
+			}	
+		});
+	}
+	$(".type_home>li").click(function () {
+		$(this).addClass("homeActive").siblings().removeClass("homeActive");
+		var index = $(this).index();
+		if(index == 1){
+			$(".tzType").hide();
+			$("#main").hide();
+			$(".bmType").show();					
+			$("#mainBm").show();
+			bmAchieved();			
+		}else{
+			$(".tzType").show();
+			$("#main").show();
+			$(".bmType").hide();						
+			$("#mainBm").hide();			
+			tzAchieved();
+		}
+	});
+	$(".work_home>li").click(function () {
+		$(this).addClass("homeActive").siblings().removeClass("homeActive");
+		var index = $(this).index();
+		if(index == 1){
+			$(".workType").hide();
+			$("#mainBar").hide();
+			$(".workBm").show();					
+			$("#mainbmBar").show();
+			workbmAchieved();			
+		}else{
+			$(".workType").show();
+			$("#mainBar").show();
+			$(".workBm").hide();						
+			$("#mainbmBar").hide();			
+			workAchieved();
+		}
+	});
+		<!-- function GetUrlPara(){ -->
+	<!-- 　　　　var url = document.location.toString(); -->
+	<!-- 　　　　var arrUrl = url.split("="); -->
+	<!-- 　　　　var para = arrUrl[1]; -->
+	<!-- 　　　　sessionStorage.setItem("para",para); -->
+	<!-- 　　}		 -->
 	</script>
 </body>
 </html>

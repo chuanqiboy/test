@@ -20,21 +20,15 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
             img{max-width:100%!important;}
-			.approveTitle{
-				height: 50px;
-				line-height: 50px;
-				background: #fff;
-				padding: 0 10px;
-				text-align: center;
-			}
-			.approveTitle img{
-				position: absolute;
-				left: 10px;
-				top: 9px;
+			.nodata {
 				border: none;
+				color: #666;
+				font-size: 14px;
+				text-align: center;
+				height: 60px;
+				line-height: 60px;
 			}
         </style>
     </head>
@@ -45,24 +39,20 @@
 				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
 			</script>
 		</div>
-		<div class="approveTitle">
-			<img class="backBtn" src="static/img/back.png" />
-				项目卡片
-		</div>
 		<div class="cardexplain">
 		<section class="home_section">
 			<div class="home_datalist">
-				<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+				<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="width: 100%"></table>
 			</div>
 		</section>
 		<section class="home_section">
 			<div class="home_datalist">
-				<table class="investmentInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+				<table class="investmentInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="width: 100%"></table>
 			</div>
 		</section>
 		<section class="home_section">
 			<div class="home_datalist">
-				<table class="djInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+				<table class="djInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="width: 100%"></table>
 			</div>
 		</section>
 		
@@ -84,15 +74,13 @@
 		investmentInfo(); 
 		//单井信息
 		singleWell();
-	});
-	$(".backBtn").click(function(){
-		history.go(-1);
-	})	
+	});	
 	function basicData(){
+	    var xmid = sessionStorage.getItem("id");
 		$.ajax({
              type: "GET",
-             url: "http://10.18.3.98:8586/xntzjh_war_exploded/xxcx/xmxx.d",
-             data: {xmid:'dea38473-a475-4a03-b72f-78ddf9ad9d5c'},
+             url: "http://10.18.3.98:8586/xntzjh/xxcx/xmxx.d",
+             data: {xmid:xmid},
              dataType: "json",
              success: function(data){
 				$(".basicInfo").html("");
@@ -140,14 +128,19 @@
 					var html = thHtml + trHtml;
 					$(".basicInfo").append(html);		
 				}               																				
+            },
+			error: function (data) {
+                $(".basicInfo").append("<div class='nodata'>暂无信息</div>"); 
+				$(".basicInfo").css("border","none");				
             }
          });
 	}
 	function investmentInfo(){
+		var xmid = sessionStorage.getItem("id");
 		$.ajax({
              type: "GET",
-             url: "http://10.18.3.98:8586/xntzjh_war_exploded/xxcx/tzxx.d",
-             data: {xmid:'dea38473-a475-4a03-b72f-78ddf9ad9d5c'},
+             url: "http://10.18.3.98:8586/xntzjh/xxcx/tzxx.d",
+             data: {xmid:xmid},
              dataType: "json",
              success: function(data){
 				$(".investmentInfo").html("");
@@ -199,14 +192,19 @@
 					var html = thHtml + trHtml;
 					$(".investmentInfo").append(html);		
 				}               																				
+            },
+			error: function (data) {
+                $(".investmentInfo").append("<div class='nodata'>暂无信息</div>");
+				$(".investmentInfo").css("border","none");	
             }
          });
 	}
 	function singleWell(){
+		var xmid = sessionStorage.getItem("id");
 		$.ajax({
              type: "GET",
-             url: "http://192.168.0.110:8080/xntzjh_war_exploded/xxcx/djxx.d",
-             data: {xmid:'dea38473-a475-4a03-b72f-78ddf9ad9d5c'},
+             url: "http://10.18.3.98:8586/xntzjh/xxcx/djxx.d",
+             data: {xmid:xmid},
              dataType: "json",
              success: function(data){
 				$(".djInfo").html("");
@@ -232,6 +230,10 @@
 					var html = thHtml + trHtml;
 					$(".djInfo").append(html);		
 				}               																				
+            },
+			error: function (data) {
+                $(".djInfo").append("<div class='nodata'>暂无信息</div>");
+				$(".djInfo").css("border","none");	
             }
          });
 	}

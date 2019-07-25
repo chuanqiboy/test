@@ -6,20 +6,11 @@
 	position:relative;
 }
 
-
-.list_ul{
-	margin:10px 5px;
-	overflow:hidden;
-}
-
 .list_ul a{
 	color:#666;
 	display:block;
 	background:#fff;
-	padding:10px 0;
-	margin:5px;
 	color:#666;
-	height: 160px;
 }
 .list_ul figcaption p{
 	font-size:12px;
@@ -27,18 +18,11 @@
 }
 .list_ul figure div{
 	display:inline-block;
-	margin:5px auto;
-	overflow:hidden;
-	height: 120px;
 }
 .list_ul li{
 	display:inline-block;
-	width:50%;
+	width:20%;
 	float:left;
 	text-align:center;
 	-webkit-box-sizing:border-box;
-}
-.list_ul li img{
-	width:100%;
-	min-height:100%;
 }

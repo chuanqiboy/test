@@ -20,7 +20,6 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
             img{max-width:100%!important;}
 			.searchTitle{
@@ -48,11 +47,28 @@
 				border-radius: 4px;
 				background: #409eff;
 				color: #fff;
-				margin-right: 20px;
+				margin-left: 20px;
+				
 			}
 			section{
 				overflow-x: auto;
 				padding:0 10px 10px 10px;
+			}
+			input{
+				height: 28px;
+				line-height: 28px;
+				border: none;
+				border: 1px solid #409eff;
+				border-radius: 4px;
+				text-indent: 5px;
+			}
+			.nodata {
+				border: none;
+				color: #666;
+				font-size: 14px;
+				text-align: center;
+				height: 60px;
+				line-height: 60px;
 			}
         </style>
     </head>
@@ -65,19 +81,12 @@
 		</div>
 		<div class="cardexplain">
 			<div class="searchTitle">
-				<select class="selectValue">
-					<option>2019</option>
-					<option>2018</option>
-					<option>2017</option>
-					<option>2016</option>
-					<option>2015</option>
-				</select>
+				<input type="text" placeholder="请输入井号" class="selectValue" />
 				<span class="searchBtn" onclick="basicData()">查询</span>
-				<span>单位：万元</span>
 			</div>
 			<section class="home_section">
-				<div class="home_datalist">
-					<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+				<div class="home_datalist" style="margin-top: 10px;">
+					<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="width: 100%;"></table>
 				</div>
 			</section>		
 		</div>
@@ -97,106 +106,41 @@
 	});
 	function basicData(){
 		var nd = $(".selectValue").val();
-		var barData = [];
+		$(".basicInfo").append("");
 		$.ajax({
-             type: "GET",
-             url: "http://10.18.3.98:8586/xntzjh/ydtzwc/h5.d",
-             data: {nd:nd},
+             type: "POST",
+             url: "http://10.18.3.98:8586/xntzjh/jhzxcx/djList.d",
+             data: {jh: nd,page: 1,limit: 50},
              dataType: "json",
              success: function(data){
 				$(".basicInfo").html("");
 				var thHtml = "";
 				thHtml ="<tr>" +
-							"<th>类别</th><th>合计</th><th>一月</th><th>二月</th><th>三月</th><th>四月</th><th>五月</th><th>六月</th><th>七月</th><th>八月</th><th>九月</th><th>十月</th><th>十一月</th><th>十二月</th>" +
+							"<th>井号</th><th>操作</th>" +
 						"</tr>"
 				var dataList = 	data;
 				var trHtml = ""
 				if(dataList.length >= 0){
 					for(var i = 0; i< dataList.length; i++){
-						var ZTZ = Number(dataList[i].ZTZ == undefined ? "":dataList[i].ZTZ).toFixed(0);
-						var TZ1 = Number(dataList[i].TZ1 == undefined ? "":dataList[i].TZ1).toFixed(0);
-						var TZ2 = Number(dataList[i].TZ2 == undefined ? "":dataList[i].TZ2).toFixed(0);	
-						var TZ3 = Number(dataList[i].TZ3 == undefined ? "":dataList[i].TZ3).toFixed(0);	
-						var TZ4 = Number(dataList[i].TZ4 == undefined ? "":dataList[i].TZ4).toFixed(0);	
-						var TZ5 = Number(dataList[i].TZ5 == undefined ? "":dataList[i].TZ5).toFixed(0);	
-						var TZ6 = Number(dataList[i].TZ6 == undefined ? "":dataList[i].TZ6).toFixed(0);	
-						var TZ7 = Number(dataList[i].TZ7 == undefined ? "":dataList[i].TZ7).toFixed(0);	
-						var TZ8 = Number(dataList[i].TZ8 == undefined ? "":dataList[i].TZ8).toFixed(0);	
-						var TZ9 = Number(dataList[i].TZ9 == undefined ? "":dataList[i].TZ9).toFixed(0);	
-						var TZ10 = Number(dataList[i].TZ10 == undefined ? "":dataList[i].TZ10).toFixed(0);	
-						var TZ11 = Number(dataList[i].TZ11 == undefined ? "":dataList[i].TZ11).toFixed(0);	
-						var TZ12 = Number(dataList[i].TZ12 == undefined ? "":dataList[i].TZ12).toFixed(0);
-						if(ZTZ == 0){
-							ZTZ = ""
-						}
-						if(TZ1 == 0){
-							TZ1 = ""
-						}
-						if(TZ2 == 0){
-							TZ2 = ""
-						}
-						if(TZ3 == 0){
-							TZ3 = ""
-						}
-						if(TZ4 == 0){
-							TZ4 = ""
-						}
-						if(TZ5 == 0){
-							TZ5 = ""
-						}
-						if(TZ6 == 0){
-							TZ6 = ""
-						}
-						if(TZ7 == 0){
-							TZ7 = ""
-						}
-						if(TZ8 == 0){
-							TZ8 = ""
-						}
-						if(TZ9 == 0){
-							TZ9 = ""
-						}
-						if(TZ10 == 0){
-							TZ10 = ""
-						}
-						if(TZ11 == 0){
-							TZ11 = ""
-						}
-						if(TZ12 == 0){
-							TZ12 = ""
-						}
-						trHtml+="<tr>"+
-						"<td>" + dataList[i].LB + "</td>" + 
-						"<td>" + ZTZ + "</td>" + 
-						"<td>" + TZ1 + "</td>" + 
-						"<td>" + TZ2 + "</td>" + 
-						"<td>" + TZ3 + "</td>" +
-						"<td>" + TZ4 + "</td>" +
-						"<td>" + TZ5 + "</td>" +
-						"<td>" + TZ6 + "</td>" +
-						"<td>" + TZ7 + "</td>" +	
-						"<td>" + TZ8 + "</td>" +	
-						"<td>" + TZ9 + "</td>" +	
-						"<td>" + TZ10 + "</td>" +
-						"<td>" + TZ11 + "</td>" +
-						"<td>" + TZ12 + "</td>" +	
-						"</tr>"
-					}
-					
+						var id = dataList[i].XMID;
+						sessionStorage.setItem("jhId",id);
+						trHtml+='<tr>'+
+						'<td>' + dataList[i].JH + '</td>' + 
+						'<td style="display: none;">' + dataList[i].XMID + '</td>' + 
+						'<td style="width: 30px;"><a style="color: #409eff" onclick="showDetails(\' '+id+' \')">查看</a></td>' + 	
+						'</tr>'
+					}					
 					var html = thHtml + trHtml;				
-					$(".basicInfo").append(html);
-					$(".basicInfo td").each(function(){
-						var val = $(this).html();
-						if(val < 0){
-							$(this).css("color","red")
-						}
-					})	
-				}else{
-				
-					
+					$(".basicInfo").append(html);	
+				}else{					
+					$(".basicInfo").append("<div class='nodata'>暂无信息</div>"); 
+					$(".basicInfo").css("border","none");
 				}																	
             }
          });
+	}
+	function showDetails(id){
+		window.location.href = "./detailCards.html";
 	}
 </script>
 </body>

@@ -25,7 +25,6 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
             img{max-width:100%!important;}
 			.text div{
@@ -42,6 +41,27 @@
 				border-bottom: 1px solid #dadada;
 				float: left;
 			}
+			.nodata {
+				border: none;
+				color: #666;
+				font-size: 14px;
+				text-align: center;
+				height: 60px;
+				line-height: 60px;
+			}
+			.hTitle{							
+				height: 40px;
+				line-height: 40px;				
+			}
+			.tzTitle{
+				border-left: 3px solid #409eff;
+				padding-left: 5px;
+				font-size: 14x;
+				font-weight: bold;
+			}
+			table tr td{
+				text-align: right;
+			}
         </style>
     </head>
     <body>
@@ -53,59 +73,37 @@
 	</div>
 	<div class="cardexplain">
 	<section class="home_section">
-			<ul class="list_home">
-				<li class="homeActive">
-					<div>
-						投资完成情况表格
-					</div>
-				</li>
-				<li>
-					<div>投资完成情况对比图</div>
-				</li>
-			</ul>
-				<div>
-					<div class="tableData">
-						<div class="touzi">
-							<div>
-								<ul class="type_home">
-									<li class="homeActive">
-										<div>
-											项目类型
-										</div>
-									</li>
-									<li>
-										<div>部门统计</div>
-									</li>
-								</ul>
-							</div>
+			<div class="hTitle"><span class="tzTitle">投资</span></div>
+			<div>
+				<div class="tableData">
+					<div class="touzi">
+						<div>
+							<ul class="type_home">
+								<li class="homeActive">
+									<div>
+										项目类型
+									</div>
+								</li>
+								<li>
+									<div>部门统计</div>
+								</li>
+							</ul>
 						</div>
-						<div class="home_datalist">
-							<table class="tzType" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
-							<table class="bmType" style="display: none" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
-						</div>		
 					</div>
-					<div class="echarts_bar">
-						<div id="main" style="width: 350px;height: 350px;margin: 0 auto;"></div>
-						<div id="mainBm" style="width: 350px;height: 350px;margin: 0 auto;display: none;"></div>
-					</div>
-							
+					<div class="home_datalist">
+						<table class="tzType" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+						<table class="bmType" style="display: none" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+						<div id="main" style="width: 350px;height: 400px;margin: 0 auto;margin-top: 10px;"></div>
+						<div id="mainBm" style="width: 350px;height: 400px;margin: 0 auto;display: none;margin-top: 10px;"></div>
+					</div>		
+				</div>							
 			</div>
 			
 		</section>
 		<section>
-			<ul class="listBar">
-				<li class="homeActive">
-					<div>
-						工作量完成情况表格
-					</div>
-				</li>
-				<li>
-					<div>工作量完成情况对比图</div>
-				</li>
-			</ul>
+			<div class="hTitle"><span class="tzTitle">工作量</span></div>
 			<div class="secondTable">
 				<div class="touzi">
-					<div><span class="t_first">进尺</span><span>分公司计划</span></div>
 					<div>
 						<ul class="work_home">
 							<li class="homeActive">
@@ -122,13 +120,11 @@
 				<div class="home_datalist">
 					<table class="workType" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
 					<table class="workBm" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+					<div id="mainBar" style="width: 350px;height: 350px;margin: 0 auto;margin-top: 10px;"></div>
+					<div id="mainbmBar" style="width: 350px;height: 350px;margin: 0 auto;display:none;margin-top: 10px;"></div>
 				</div>
-			</div>
+			</div>			
 			
-			<div class="echarts_bars">
-				<div id="mainBar" style="width: 350px;height: 350px;margin: 0 auto;"></div>
-				<div id="mainbmBar" style="width: 350px;height: 350px;margin: 0 auto;display:none;"></div>	
-			</div>
 		</section>
 	</div>
 
@@ -145,13 +141,13 @@
 		$(".tzType").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneyCount.d",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/moneyCount.d",
 			data: {typeFlag:'type'},
 			dataType: "json",
 			success: function(res){
 				var thHtml = "";
 				thHtml ="<tr>" +
-							"<th>项目类型</th><th>总部本年下达</th><th>分公司本年下达</th><th>当前完成</th>" +
+							"<th>项目类型</th><th>总部本年下达(万元)</th><th>分公司本年下达(万元)</th><th>当前完成(万元)</th>" +
 						"</tr>"
 				var dataList = 	res;
 				var trHtml = ""
@@ -172,8 +168,10 @@
 						if(dataList[i].bnErp == ""){
 							dataList[i].bnErp = 0
 						}
-						var obj = {};
-						obj["product"] = dataList[i].xmmc;
+						var obj = {};						
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
 						obj["总部本年下达"] = dataList[i].pczbxd;
 						obj["分公司本年下达"] = dataList[i].pcfgsfj;
 						obj["当前完成"] = dataList[i].bnErp;
@@ -186,6 +184,11 @@
 				// 指定图表的配置项和数据
 				var option = {
 					legend: {},
+					grid: {
+						left: '15%',
+						right: '5%',
+						bottom: '20%',
+					},
 					tooltip: {},
 					dataset: {
 						dimensions: ['product', '总部本年下达', '分公司本年下达', '当前完成'],
@@ -209,7 +212,7 @@
 				// 使用刚指定的配置项和数据显示图表。
 				runningChart.setOption(option);	
 				}else{
-				
+					$(".tzType").append("<div class='nodata'>暂无数据</div>")	
 					
 				}
 			}	
@@ -221,13 +224,13 @@
 		$(".bmType").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://192.168.0.142:8080/xntzjh/homeplan/moneyOrgCount.d",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/moneyOrgCount.d",
 			data: {typeFlag:'org'},
 			dataType: "json",
 			success: function(res){
 				var thHtml = "";
 				thHtml ="<tr>" +
-							"<th>部门名称</th><th>分公司年度控制</th><th>分公司本年下达</th><th>当前完成</th>" +
+							"<th>部门名称</th><th>分公司年度控制(万元)</th><th>分公司本年下达(万元)</th><th>当前完成(万元)</th>" +
 						"</tr>"
 				var dataList = 	res;
 				var trHtml = ""
@@ -249,7 +252,9 @@
 							dataList[i].bnErp = 0
 						}
 						var obj = {};
-						obj["product"] = dataList[i].xmmc;
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
 						obj["分公司年度控制"] = dataList[i].pczbxd;
 						obj["分公司本年下达"] = dataList[i].pcfgsfj;
 						obj["当前完成"] = dataList[i].bnErp;
@@ -262,6 +267,11 @@
 				// 指定图表的配置项和数据
 				var option = {
 					legend: {},
+					grid: {
+						left: '15%',
+						right: '5%',
+						bottom: '20%',
+					},
 					tooltip: {},
 					dataset: {
 						dimensions: ['product', '分公司年度控制', '分公司本年下达', '当前完成'],
@@ -285,7 +295,7 @@
 				// 使用刚指定的配置项和数据显示图表。
 				runningChart.setOption(option);	
 				}else{
-				
+					$(".bmType").append("<div class='nodata'>暂无数据</div>")	
 					
 				}
 			}	
@@ -297,13 +307,13 @@
 		$(".workType").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://192.168.0.142:8080/xntzjh/homeplan/gzlXmlxCount.d",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/gzlXmlxCount.d",
 			data: {},
 			dataType: "json",
 			success: function(res){
 				var thHtml = "";
 				thHtml ="<tr>" +
-							"<th>项目类型</th><th>年度规模</th><th>本年下达</th><th>当前完成</th>" +
+							"<th>项目类型</th><th>年度规模(万米)</th><th>本年下达(万米)</th><th>当前完成(万元)</th>" +
 						"</tr>"
 				var dataList = 	res;
 				var trHtml = ""
@@ -326,7 +336,9 @@
 							dataList[i].bnErp = 0
 						}
 						var obj = {};
-						obj["product"] = dataList[i].xmmc;
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
 						obj["年度规模"] = dataList[i].fgsNdgm;
 						obj["本年下达"] = dataList[i].pcfgsfj;
 						obj["当前完成"] = dataList[i].xmNum;
@@ -339,6 +351,11 @@
 				// 指定图表的配置项和数据
 				var option = {
 					legend: {},
+					grid: {
+						left: '10%',
+						right: '5%',
+						bottom: '20%',
+					},
 					tooltip: {},
 					dataset: {
 						dimensions: ['product', '年度规模', '本年下达', '当前完成'],
@@ -362,7 +379,7 @@
 				// 使用刚指定的配置项和数据显示图表。
 				runningChart.setOption(option);	
 				}else{
-				
+					$(".workType").append("<div class='nodata'>暂无数据</div>")	
 					
 				}
 			}	
@@ -374,13 +391,13 @@
 		$(".workBm").html('');
 		$.ajax({
 			type: "POST",
-			url: "http://192.168.0.142:8080/xntzjh/homeplan/gzlOrgCount.d",
+			url: "http://10.18.3.98:8586/xntzjh/homeplan/gzlOrgCount.d",
 			data: {},
 			dataType: "json",
 			success: function(res){
 				var thHtml = "";
 				thHtml ="<tr>" +
-							"<th>项目类型</th><th>年度规模</th><th>本年下达</th><th>当前完成</th>" +
+							"<th>项目类型</th><th>年度规模(万米)</th><th>本年下达(万米)</th><th>当前完成(万元)</th>" +
 						"</tr>"
 				var dataList = 	res;
 				var trHtml = ""
@@ -403,7 +420,9 @@
 							dataList[i].bnErp = 0
 						}
 						var obj = {};
-						obj["product"] = dataList[i].xmmc;
+						var mVal = dataList[i].xmmc;
+						mVal.substring(mVal.lastIndexOf(";")+1,mVal.length);
+						obj["product"] = mVal;
 						obj["年度规模"] = dataList[i].fgsNdgm;
 						obj["本年下达"] = dataList[i].pcfgsfj;
 						obj["当前完成"] = dataList[i].xmNum;
@@ -416,6 +435,11 @@
 				// 指定图表的配置项和数据
 				var option = {
 					legend: {},
+					grid: {
+						left: '10%',
+						right: '5%',
+						bottom: '20%',
+					},
 					tooltip: {},
 					dataset: {
 						dimensions: ['product', '年度规模', '本年下达', '当前完成'],
@@ -439,24 +463,11 @@
 				// 使用刚指定的配置项和数据显示图表。
 				runningChart.setOption(option);	
 				}else{
-				
-					
+					$(".workBm").append("<div class='nodata'>暂无数据</div>")				
 				}
 			}	
 		});
-		return false;
 	}
-	$(".list_home>li").click(function () {
-		$(this).addClass("homeActive").siblings().removeClass("homeActive");
-		var index = $(this).index();
-		if(index == 1){
-			$(".tableData").hide();
-			$(".echarts_bar").show();
-		}else{
-			$(".tableData").show();
-			$(".echarts_bar").hide();
-		}
-	});
 	$(".type_home>li").click(function () {
 		$(this).addClass("homeActive").siblings().removeClass("homeActive");
 		var index = $(this).index();
@@ -472,17 +483,6 @@
 			$(".bmType").hide();						
 			$("#mainBm").hide();			
 			tzAchieved();
-		}
-	});
-	$(".listBar>li").click(function () {
-		$(this).addClass("homeActive").siblings().removeClass("homeActive");
-		var index = $(this).index();
-		if(index == 1){
-			$(".secondTable").hide();
-			$(".echarts_bars").show();
-		}else{
-			$(".secondTable").show();
-			$(".echarts_bars").hide();
 		}
 	});
 	$(".work_home>li").click(function () {
