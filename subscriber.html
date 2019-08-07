@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
 
 		<script type="text/javascript" src="static/src/jquery-ui.js?2014-03-07-1"></script>
-		<title>报表统计</title>
+		<title>订阅项目</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
         <!-- Mobile Devices Support @begin -->
@@ -29,38 +29,77 @@
         <link rel="shortcut icon" href="static/img/favicon.ico" />
         <style>
             img{max-width:100%!important;}
+			.homeTitle{
+				height: 50px;
+				line-height: 50px;
+				background: #fff;
+				font-size: 16px;
+				text-align: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+			}
+			.homeTitle img{
+				position: absolute;
+				left: 5px;
+				top: 15px;					
+			}
+			.loading{
+				margin: 0 auto;
+				text-align: center;
+			}
+			.loading img{
+				height: 40px;
+				padding-top: 50px;
+			}
+			.list_home li {
+				border: none !important;
+				text-align: left !important;
+			}
+			.running_title{
+				border-left: 3px solid #409eff;
+				padding-left: 4px;
+			}
+			.barCharts{
+				margin-bottom: 60px;
+			}
+			.yxData{
+				margin-top: 60px;
+			}
+			.home_section,.barCharts{
+				padding-bottom: 10px;
+			}
         </style>
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
-		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-			<script>
-				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-			</script>
+		<div class="homeTitle">
+			<img onclick="goback()" src="static/img/back.png" />订阅
 		</div>
 		<div class="cardexplain">
-		<section class="home_section">
+		<section class="home_section" style="margin-top: 60px;">
 			<ul class="list_home">
-				<li class="homeActive">
-					<div>
+				<li>
+					<span class="running_title">
 						截止当前时间
-					</div>
+					</span>
 				</li>
 			</ul>
 			<div class="home_datalist">
-				<table class="subData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc">
+				<div class="loading"><img src="static/img/loading.gif" /></div>
+				<table class="subData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;">
 				</table>
 			</div>
 		</section>
-		<section>
+		<section class="barCharts">
 			<ul class="list_home">
-				<li class="homeActive">
-					<div>
+				<li>
+					<span class="running_title">
 						柱图
-					</div>
+					</span>
 				</li>
 			</ul>
 			<div>
+				<div class="loading"><img src="static/img/loading.gif" /></div>
 				<div id="mainBar" style="width: 350px;height:350px;margin: 0 auto"></div>
 			</div>
 		</section>
@@ -71,14 +110,19 @@
 	$(function(){		
 		dataList();	
 	})
-function dataList(){
-	var barData = [];
-	$.ajax({
+	function goback(){
+		history.go(-1);
+	}
+	function dataList(){
+		var barData = [];
+		$(".loading").show();
+		$.ajax({
              type: "POST",
-             url: "http://10.18.3.98:8586/xntzjh/subTake/userXmList.d",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/subTake/userXmList.ydd",
              data: {userId:'4d00178d-f5b5-495a-9364-55aafd1f2d2d'},
              dataType: "json",
              success: function(res){
+				$(".loading").hide();
                 var thHtml = "";
 				thHtml = "<tr>" +
 							"<th rowspan='3'>项目类型</th>" + 
@@ -142,6 +186,11 @@ function dataList(){
 				// 指定图表的配置项和数据
 				var option = {
 					legend: {},
+					grid: {
+						left: '15%',
+						right: '5%',
+						bottom: '25%',
+					},
 					tooltip: {},
 					dataset: {
 						dimensions: ['product', '计划下达投资', '计划下达进尺', '计划下达井数','完成投资','完成进尺','完成井数'],

@@ -5,10 +5,11 @@
         <link rel="stylesheet" type="text/css" href="static/css/onlinebooking.css?2014-03-07-1" media="all" />
 		<link rel="stylesheet" type="text/css" href="static/css/template/weimob-ui-1-1.css?2014-03-07-1" media="all" />
 		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
+		<link rel="stylesheet" type="text/css" href="static/css/template/home-19.css?2014-03-07-1" media="all" />
 		<script type="text/javascript" src="static/src/jQuery.js"></script>
 		<script type="text/javascript" src="static/src/jquery.ba-resize.min.js"></script>
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
-		<title>报表统计</title>
+		<title>审核列表</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
         <!-- Mobile Devices Support @begin -->
@@ -21,9 +22,13 @@
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
         <style>
+			ul li{
+				list-style: none; 
+				border: none;
+			}
             img{max-width:100%!important;}
 			.showdia {
-				color: #ee4040;
+				color: #808080;
 				cursor: pointer;
 			}
         #popLayer {
@@ -88,23 +93,24 @@
 		.approve_list li{
 			width: 50%;
 			float: left;
+			text-align: center;
 		}
 		.approveBottom{
-			position: fixed;
-			bottom: 0;
 			height: 50px;
 			width: 100%;
-			background: #fff;
 		}
 		.approve_list li{
 			text-align: center;
 			padding: 5px 0;
 		}
-		.approve_list img{
-			height: 16px;
-		}
 		.approveActive{
-			color: #409eff;
+			color: #FFF;
+			background: #409eff;
+			border-radius: 4px;
+		}
+		.approve_list li div{
+			height: 30px;
+			line-height: 30px;
 		}
 		.nodata {
 			border: none;
@@ -114,23 +120,25 @@
 			height: 60px;
 			line-height: 60px;
 		}
+		.approveList{
+			_height:50px;
+			min-height:50px
+		}
 		.approveList span{
-			display: inline-block;
+			display: block;
 		}
 		.approveList .content{
-			width: 70%;
 			text-align: left;
 		}
 		.approveList .time{
-			width: 30%;
 			text-align: right;
+			color: #b2b2b2;
 		}
 		.home_section{
 			padding:10px;
 		}
 		.contentList{
 			height: 50px;
-			line-height: 50px;
 		}
 		.ybTitle{
 			text-align: left;			
@@ -145,24 +153,48 @@
 		.close{
 			padding: 0 5px;
 		}
+		.homeTitle{
+			height: 50px;
+			line-height: 50px;
+			background: #fff;
+			font-size: 16px;
+			text-align: center;
+			position: fixed;
+			top: 0;
+			width: 100%;
+		}
+		.homeTitle img{
+			position: absolute;
+			left: 5px;
+			top: 15px;					
+		}
+		.home_section{
+			margin-bottom: 60px;
+		}
+		.approveBottom{
+			margin-top: 60px;
+		}		
         </style>
     </head>
     <body>
-		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-			<script>
-				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-			</script>
+		<div class="homeTitle">
+			<img onclick="goback()" src="static/img/back.png" />审核
 		</div>
 		<div class="cardexplain">
-			
-		<!--后台可控制是否显示-->
+			<div class="approveBottom">
+				<ul class="approve_list">
+					<li class="approveActive">
+						<div>未办</div>
+					</li>
+					<li>
+						<div>已办</div>
+					</li>
+				</ul>
+			</div>
 			<section class="home_section">				
 					<div>
 						<div class="tableData">
-							<div class="home_datalist">
-								<div class="approveList" style=""width: 100%"></div>
-							</div>		
+							<div class="approveList" style=""width: 100%"></div>	
 						</div>
 						<div class="tableData overWork" style="display: none;">
 							<div class="approveList" style=""width: 100%"></div>
@@ -222,28 +254,73 @@
 				<label>
 					审批意见:
 				</label>
-				<textarea class="approveS" style="height: 60px;width: 200px;padding-left: 5px;"></textarea>
+				<span class="approveS" style="display: inline-block;padding-left: 5px;"></span>
 			</div>
 		</div>
-	</div>
-	<div class="approveBottom">
-		<ul class="approve_list">
-			<li class="approveActive">
-				<img class="dbImg" src="static/img/db_on.png" />
-				<div>未办</div>
-			</li>
-			<li>
-				<img class="ybImg" src="static/img/yb.png" />
-				<div>已办</div>
-			</li>
-		</ul>
-	</div>
+	</div>	
+	<div class="bottomNav">
+			<ul class="list_ul">
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/home_gray.png" /></div>
+					<span class="selected">首页</span>
+				</div>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/sh.png" /></div>
+					<span class="selected" style="color: #409eff">审核</span>
+				</div>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/kp_gray.png" /></div>
+					<span class="selected">卡片</span>
+				</div>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/yx_gray.png" /></div>
+					<span class="selected">运行大表</span>
+				</a>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/tz_gray.png" /></div>
+					<span class="selected">月度投资</span>
+				</div>
+			  </li>
+			</ul>
+		</div>
 
 <script type="text/javascript">
 	var type = "未办"	
 	$(function(){						
 		getUser();			
 	})
+	function goback(){
+		history.go(-1);
+	}
+	$(".nav").click(function(){
+			var val = $(this).children(".selected").text();
+			switch(val){ 
+				case "首页": 
+				window.location.href = "index.html"
+				break; 
+				case "审核": 
+				window.location.href = "approve.html"
+				break; 
+				case "卡片": 
+				window.location.href = "xmList.html"
+				break;
+				case "运行大表": 
+				window.location.href = "running_charts.html"
+				break;
+				case "月度投资": 
+				window.location.href = "monthRep.html"
+				break;
+			} 
+		} )
 	$(".approve_list>li").click(function () {
 		$(this).addClass("approveActive").siblings().removeClass("approveActive");
 		var index = $(this).index();
@@ -251,23 +328,19 @@
 			$(".tableData").hide();
 			$(".overWork").show();
 			type = "已办"
-			$(".dbImg").attr('src',"static/img/db.png")
-			$(".ybImg").attr('src',"static/img/yb_on.png")
 		}else{
 			$(".tableData").show();
 			$(".overWork").hide();
 			type = "未办"
-			$(".dbImg").attr('src',"static/img/db_on.png")
-			$(".ybImg").attr('src',"static/img/yb.png")
 		}
 		approveList(type);
 	});	
 	function getUser(){
-		//var id = sessionStorage.getItem('usInfo')
+		var adzh = sessionStorage.getItem('para')
 		$.ajax({
              type: "POST",
-             url: "http://10.18.3.98:8586/xntzjh/user/userInfo.d",
-             data: {adzh:"sunyuan.xnyq"},
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/user/userInfo.ydd",
+             data: {adzh:adzh},
              dataType: "json",
              success: function(res){
                 var thHtml = "";
@@ -275,13 +348,24 @@
 				var dataList = 	res;
 				var trHtml = ""
 				var html = "";
-				if(dataList.success == true){
+				var data = res.data[0];
+				if(data == null){
+					$('.monrep').hide();
+					$(".list_ul li").css("width","25%");
+					$(".approveList").append("<div class='nodata'>暂无数据</div>")
+					$(".approveList").css("border","none");
+				}else{					
+					var orgName = $.trim(res.data[0].orgName);
+					if(orgName != "投资发展处"){
+						$('.monrep').hide();
+						$(".list_ul li").css("width","25%");
+					}else{
+						$('.monrep').show();
+						$(".list_ul li").css("width","20%");
+					}
 					var usInfo = res.data;
 					sessionStorage.setItem("usInfo",JSON.stringify(usInfo));
 					approveList(type);
-				}else{				
-					$(".approveList").append("<div class='nodata'>暂无数据</div>")
-					$(".approveList").css("border","none");
 				}					
             }
         });
@@ -294,7 +378,7 @@
 		$(".approveList").html('');
 		$.ajax({
              type: "POST",
-             url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/fgsJhShLb.d",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/fgsjhfj/fgsJhShLb.ydd",
              data: {userId:userId, jhnf:'2017',zt:type},
              dataType: "json",
              success: function(res){
@@ -314,7 +398,7 @@
 						if(type == "未办"){
 							trHtml+='<div class="contentList"><span class="content">'+
 							'<a class="showdia" onclick="showDialogue(\' '+id+' \',\' '+nf+' \',\' '+jhbk+' \',\' '+jhxh+' \')">' + dataList[i].jhmc + '</a>' + 
-							'</span>'
+							'</span>' +
 							'<span class="time">' + t + '</span></div>'
 						}else{
 							trHtml+='<div class="contentList"><span class="content">'+
@@ -368,7 +452,7 @@
 		}
 		$.ajax({
             type: "POST",
-            url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/checkPass.d",
+            url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/fgsjhfj/checkPass.d",
             data: {czzid:userId, czzxm:usrName,jhid:jhid,jhnf:jhnf, jhbk:jhbk,jhxh:jhxh,czyj: czyj},
             dataType: "json",
             success: function(res){
@@ -387,7 +471,7 @@
 		popLayer.style.display = "block";
 		$.ajax({
             type: "POST",
-            url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/fgsJhShDetail.d",
+            url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/fgsjhfj/fgsJhShDetail.d",
             data: {jhid:id},
             dataType: "json",
             success: function(res){
@@ -417,7 +501,7 @@
 		var czyj = $.trim($(".czyj").val());
 		$.ajax({
             type: "POST",
-            url: "http://10.18.3.98:8586/xntzjh/fgsjhfj/checkBack.d",
+            url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/fgsjhfj/checkBack.d",
             data: {czzid:userId, czzxm:usrName,jhid:jhid,jhnf:jhnf, jhbk:jhbk,jhxh:jhxh,czyj: czyj},
             dataType: "json",
             success: function(res){

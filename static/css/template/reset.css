@@ -2,7 +2,6 @@
 	margin: 0;
 	outline: 0;
 	padding: 0;
-	font-size: 100%;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 a {
@@ -11,7 +10,6 @@ a {
 }
 html {
 	height: 100%;
-	font-size: 100%;
 	-webkit-text-size-adjust: 100%;
 	-ms-text-size-adjust: 100%;
 }

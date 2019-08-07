@@ -21,6 +21,11 @@
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
         <style>
+			ul li{
+				list-style: none;
+				border: none;
+				border: none;
+			}
             img{max-width:100%!important;}
 			.searchTitle{
 				height: 40px;
@@ -73,12 +78,6 @@
         </style>
     </head>
     <body>
-		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-			<script>
-				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-			</script>
-		</div>
 		<div class="cardexplain">
 			<div class="searchTitle">
 				<input type="text" placeholder="请输入井号" class="selectValue" />
@@ -109,7 +108,7 @@
 		$(".basicInfo").append("");
 		$.ajax({
              type: "POST",
-             url: "http://10.18.3.98:8586/xntzjh/jhzxcx/djList.d",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/jhzxcx/djList.d",
              data: {jh: nd,page: 1,limit: 50},
              dataType: "json",
              success: function(data){

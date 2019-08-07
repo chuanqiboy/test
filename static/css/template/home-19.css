@@ -11,6 +11,7 @@
 	display:block;
 	background:#fff;
 	color:#666;
+
 }
 .list_ul figcaption p{
 	font-size:12px;
@@ -25,4 +26,24 @@
 	float:left;
 	text-align:center;
 	-webkit-box-sizing:border-box;
+}
+.bottomNav{
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	background: #fff;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+.nav{
+	line-height: 20px;
+	font-size: 12px !important;
+}
+.nav div{
+	height: 30px;
+	line-height: 30px;
+}
+.nav div img{
+	vertical-align: middle;
 }

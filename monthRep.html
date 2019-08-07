@@ -7,6 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="static/css/template/weimob-ui-1-1.css?2014-03-07-1" media="all" />
 		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
 		<script type="text/javascript" src="static/src/jQuery.js?2014-03-07-1"></script>
+		<link rel="stylesheet" type="text/css" href="static/css/template/home-19.css?2014-03-07-1" media="all" />
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
 		<title>报表统计</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
@@ -20,8 +21,11 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/invest.png" />
         <style>
+			ul li{
+				list-style: none; 
+				border: none;
+			}
             img{max-width:100%!important;}
 			.searchTitle{
 				height: 40px;
@@ -54,14 +58,56 @@
 				overflow-x: auto;
 				padding:0 10px 10px 10px;
 			}
+			.homeTitle{
+				height: 50px;
+				line-height: 50px;
+				background: #fff;
+				font-size: 16px;
+				text-align: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+			}
+			.homeTitle img{
+				position: absolute;
+				left: 5px;
+				top: 15px;					
+			}
+			.loading{
+				margin: 0 auto;
+				text-align: center;
+			}
+			.loading img{
+				height: 40px;
+				padding-top: 50px;
+			}
+			.home_section{
+				margin-bottom: 60px;
+			}
+			.cardexplain{
+				margin-top: 60px;
+			}
+			@media screen and (orientation: portrait) {
+				.cardexplain{
+					display: block;
+				}
+				.landscape{
+					display: none;
+				}
+			}
+			@media screen and (orientation: landscape) {
+				.cardexplain{
+					display: none;
+				}
+				.landscape{
+					display: block;
+				}
+			}
         </style>
     </head>
     <body>
-		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-			<script>
-				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-			</script>
+		<div class="homeTitle">
+			<img onclick="goback()" src="static/img/back.png" />月度投资
 		</div>
 		<div class="cardexplain">
 			<div class="searchTitle">
@@ -77,11 +123,53 @@
 			</div>
 			<section class="home_section">
 				<div class="home_datalist">
-					<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+					<div class="loading"><img src="static/img/loading.gif" /></div>
+					<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;"></table>
 				</div>
 			</section>		
 		</div>
-
+		<div class="landscape">
+			<section class="home_section">
+				<div class="home_datalist">
+					<div class="loading"><img src="static/img/loading.gif" /></div>
+					<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;"></table>
+				</div>
+			</section>	
+		</div>
+		<div class="bottomNav">
+				<ul class="list_ul">
+				  <li>
+					<div class="nav">
+						<div class="picUrl"><img src="static/img/home_gray.png" /></div>
+						<span class="selected">首页</span>
+					</div>
+				  </li>
+				  <li>
+					<div class="nav">
+						<div class="picUrl"><img src="static/img/sh_gray.png" /></div>
+						<span class="selected">审核</span>
+					</div>
+				  </li>
+				  <li>
+					<div class="nav">
+						<div class="picUrl"><img src="static/img/kp_gray.png" /></div>
+						<span class="selected">卡片</span>
+					</div>
+				  </li>
+				  <li>
+					<div class="nav">
+						<div class="picUrl"><img src="static/img/yx_gray.png" /></div>
+						<span class="selected">运行大表</span>
+					</a>
+				  </li>
+				  <li>
+					<div class="nav">
+						<div class="picUrl"><img src="static/img/tz.png" /></div>
+						<span class="selected" style="color: #409eff">月度投资</span>
+					</div>
+				  </li>
+				</ul>
+			</div>
 
 <script type="text/javascript">		 
 		
@@ -95,15 +183,40 @@
 		//基本信息
 		basicData();
 	});
+	function goback(){
+		history.go(-1);
+	}
+	$(".nav").click(function(){
+		var val = $(this).children(".selected").text();
+		switch(val){ 
+		case "首页": 
+			window.location.href = "index.html"
+			break; 
+			case "审核": 
+			window.location.href = "approve.html"
+			break; 
+			case "卡片": 
+			window.location.href = "xmList.html"
+			break;
+			case "运行大表": 
+			window.location.href = "running_charts.html"
+			break;
+			case "月度投资": 
+			window.location.href = "monthRep.html"
+			break;
+		} 
+	} )
 	function basicData(){
 		var nd = $(".selectValue").val();
 		var barData = [];
+		$(".loading").show();
 		$.ajax({
              type: "GET",
-             url: "http://10.18.3.98:8586/xntzjh/ydtzwc/h5.d",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/ydtzwc/h5.ydd",
              data: {nd:nd},
              dataType: "json",
              success: function(data){
+				$(".loading").hide();
 				$(".basicInfo").html("");
 				var thHtml = "";
 				thHtml ="<tr>" +

@@ -6,9 +6,10 @@
 		<link rel="stylesheet" type="text/css" href="static/css/datepicker.css?2014-03-07-1" media="all" />
 		<link rel="stylesheet" type="text/css" href="static/css/template/weimob-ui-1-1.css?2014-03-07-1" media="all" />
 		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
+		<link rel="stylesheet" type="text/css" href="static/css/template/home-19.css?2014-03-07-1" media="all" />
 		<script type="text/javascript" src="static/src/jQuery.js?2014-03-07-1"></script>
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
-		<title>报表统计</title>
+		<title>项目列表</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
         <!-- Mobile Devices Support @begin -->
@@ -21,6 +22,10 @@
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
         <style>
+			ul li{
+				list-style: none;
+				border: none;	
+			}
             img{max-width:100%!important;}
 			.searchTitle{
 				height: 40px;
@@ -70,25 +75,131 @@
 				height: 60px;
 				line-height: 60px;
 			}
+			.homeTitle{
+				height: 50px;
+				line-height: 50px;
+				background: #fff;
+				font-size: 16px;
+				text-align: center;
+				position: fixed;
+				top: 0;
+				width: 100%;
+			}
+			.homeTitle img{
+				position: absolute;
+				left: 5px;
+				top: 15px;					
+			}
+			.approve_list li{
+				width: 50%;
+				float: left;
+				text-align: center;
+			}
+			.approveBottom{
+				height: 50px;
+				width: 100%;
+				margin-top: 60px;
+			}
+			.approve_list li{
+				text-align: center;
+				padding: 5px 0;
+			}
+			.approveActive{
+				color: #FFF;
+				background: #409eff;
+				border-radius: 4px;
+			}
+			.approve_list li div{
+				height: 30px;
+				line-height: 30px;
+			}
+			.loading{
+				margin: 0 auto;
+				text-align: center;
+			}
+			.loading img{
+				height: 40px;
+				padding-top: 50px;
+			}
+			.home_section{
+				margin-bottom: 60px;
+			}
         </style>
     </head>
     <body>
-		<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-			<script>
-				var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-				document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-			</script>
+		<div class="homeTitle">
+			<img onclick="goback()" src="static/img/back.png" />卡片
 		</div>
 		<div class="cardexplain">
-			<div class="searchTitle">
-				<input type="text" placeholder="请输入项目名称" class="selectValue" />
-				<span class="searchBtn" onclick="basicData()">查询</span>
+			<div class="approveBottom">
+				<ul class="approve_list">
+					<li class="approveActive">
+						<div>项目列表</div>
+					</li>
+					<li>
+						<div>单井列表</div>
+					</li>
+				</ul>
 			</div>
-			<section class="home_section">
-				<div class="home_datalist" style="margin-top: 10px;">
-					<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="width: 100%;"></table>
+			<div class="xmList">
+				<div class="searchTitle">
+					<input type="text" placeholder="请输入项目名称或项目编码" class="selectValue xmVal" />
+					<span class="searchBtn" onclick="basicData()">查询</span>
+					<span class="searchBtn" onclick="gotoDy()">订阅</span>
 				</div>
-			</section>		
+				<section class="home_section">
+					<div class="home_datalist" style="margin-top: 10px;">
+						<div class="loading"><img src="static/img/loading.gif" /></div>
+						<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="width: 100%;border-collapse:collapse;"></table>
+					</div>
+				</section>		
+			</div>
+			<div class="djList" style="display: none;">
+				<div class="searchTitle">
+					<input type="text" placeholder="请输入项目名称或项目编码" class="selectValue djVal" />
+					<span class="searchBtn" onclick="basicData()">查询</span>
+				</div>
+				<section class="home_section">
+					<div class="home_datalist" style="margin-top: 10px;">
+						<div class="loading jLoad"><img src="static/img/loading.gif" /></div>
+						<table class="djData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="width: 100%;border-collapse:collapse;"></table>
+					</div>
+				</section>	
+			</div>
+		</div>
+		<div class="bottomNav">
+			<ul class="list_ul">
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/home_gray.png" /></div>
+					<span class="selected">首页</span>
+				</div>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/sh_gray.png" /></div>
+					<span class="selected">审核</span>
+				</div>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/kp.png" /></div>
+					<span class="selected" style="color: #409eff">卡片</span>
+				</div>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/yx_gray.png" /></div>
+					<span class="selected">运行大表</span>
+				</a>
+			  </li>
+			  <li>
+				<div class="nav">
+					<div class="picUrl"><img src="static/img/tz_gray.png" /></div>
+					<span class="selected">月度投资</span>
+				</div>
+			  </li>
+			</ul>
 		</div>
 
 
@@ -101,18 +212,87 @@
 </body>
 <script type="text/javascript">
 	$(function(){
+		getUser();
 		//基本信息
 		basicData();
 	});
-	function basicData(){
-		var nd = $(".selectValue").val();
-		$(".basicInfo").append("");
+	function getUser(){
+		var adzh = sessionStorage.getItem('para')
 		$.ajax({
              type: "POST",
-             url: "http://10.18.3.98:8586/xntzjh/xxcx/xmcxList.d",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/user/userInfo.ydd",
+             data: {adzh:adzh},
+             dataType: "json",
+             success: function(res){
+				var data = res.data[0];
+				if(data == null){
+					$('.monrep').hide();
+					$(".list_ul li").css("width","25%");
+				}else{
+					var orgName = $.trim(res.data[0].orgName);
+					if(orgName != "投资发展处"){
+						$('.monrep').hide();
+						$(".list_ul li").css("width","25%");
+					}else{
+						$('.monrep').show();
+						$(".list_ul li").css("width","20%");
+					}
+				}
+                
+            }
+        });
+		return false;
+	}	
+	function goback(){
+		history.go(-1);
+	}
+	$(".nav").click(function(){
+		var val = $(this).children(".selected").text();
+		switch(val){ 
+		case "首页": 
+			window.location.href = "index.html"
+			break; 
+			case "审核": 
+			window.location.href = "approve.html"
+			break; 
+			case "卡片": 
+			window.location.href = "xmList.html"
+			break;
+			case "运行大表": 
+			window.location.href = "running_charts.html"
+			break;
+			case "月度投资": 
+			window.location.href = "monthRep.html"
+			break;
+		} 
+	} )
+	$(".approve_list>li").click(function () {
+		$(this).addClass("approveActive").siblings().removeClass("approveActive");
+		var index = $(this).index();
+		if(index == 1){
+			$(".xmList").hide();
+			$(".djList").show();
+			djData();
+		}else{
+			$(".xmList").show();
+			$(".djList").hide();
+			basicData();			
+		}
+	});	
+	function gotoDy(){
+		window.location.href = "subscriber.html"
+	}
+	function basicData(){
+		var nd = $(".xmVal").val();
+		$(".basicInfo").append("");
+		$(".loading").show();
+		$.ajax({
+             type: "POST",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/xxcx/xmcxList.ydd",
              data: {mc: nd,page: 1,rows: 9999},
              dataType: "json",
              success: function(data){
+				$(".loading").hide();
 				$(".basicInfo").html("");
 				var thHtml = "";
 				thHtml ="<tr>" +
@@ -141,6 +321,46 @@
 	}
 	function showDetails(id){
 		window.location.href = "./itemCards.html";
+	}
+	function djData(){
+		$(".jLoad").show();
+		var nd = $(".djVal").val();
+		$(".djData").append("");
+		$.ajax({
+             type: "POST",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/jhzxcx/djList.ydd",
+             data: {jh: nd,page: 1,limit: 50},
+             dataType: "json",
+             success: function(data){
+				$(".jLoad").hide();
+				$(".basicInfo").html("");
+				var thHtml = "";
+				thHtml ="<tr>" +
+							"<th>井号</th><th>操作</th>" +
+						"</tr>"
+				var dataList = 	data;
+				var trHtml = ""
+				if(dataList.length >= 0){
+					for(var i = 0; i< dataList.length; i++){
+						var id = dataList[i].XMID;
+						sessionStorage.setItem("jhId",id);
+						trHtml+='<tr>'+
+						'<td>' + dataList[i].JH + '</td>' + 
+						'<td style="display: none;">' + dataList[i].XMID + '</td>' + 
+						'<td style="width: 30px;"><a style="color: #409eff" onclick="showDjDetails(\' '+id+' \')">查看</a></td>' + 	
+						'</tr>'
+					}					
+					var html = thHtml + trHtml;				
+					$(".djData").append(html);	
+				}else{					
+					$(".djData").append("<div class='nodata'>暂无信息</div>"); 
+					$(".djData").css("border","none");
+				}																	
+            }
+         });
+	}
+	function showDjDetails(id){
+		window.location.href = "./detailCards.html";
 	}
 </script>
 </body>

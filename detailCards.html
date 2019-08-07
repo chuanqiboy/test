@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="static/css/template/common.css?2014-03-07-1" media="all" />
 		<script type="text/javascript" src="static/src/jQuery.js?2014-03-07-1"></script>
 		<script type="text/javascript" src="static/src/echarts.min.js"></script>
-		<title>报表统计</title>
+		<title>单井卡片</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">       
         <!-- Mobile Devices Support @begin -->
@@ -19,7 +19,6 @@
             <meta name="apple-mobile-web-app-capable" content="yes" /> <!-- apple devices fullscreen -->
             <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <!-- Mobile Devices Support @end -->
-        <link rel="shortcut icon" href="static/img/favicon.ico" />
         <style>
             img{max-width:100%!important;}
 			.backBtns{
@@ -37,62 +36,117 @@
 				height: 60px;
 				line-height: 60px;
 			}
+			.homeTitle{
+				height: 50px;
+				line-height: 50px;
+				background: #fff;
+				font-size: 16px;
+				text-align: center;
+			}
+			.homeTitle img{
+				position: absolute;
+				left: 5px;
+				top: 15px;					
+			}
+			.loading{
+				margin: 0 auto;
+				text-align: center;
+			}
+			.loading img{
+				height: 40px;
+				padding-top: 50px;
+			}
+			section{
+				padding-bottom: 10px;
+				padding-top: 10px;
+			}
+			.title{
+				height: 30px;
+				line-height: 30px;
+				background: #fff;
+				padding:10px;
+			}
+			.titleLeft{
+				border-left: 3px solid #409eff;
+				padding-left: 5px;
+			}
+			.dj_section{
+				margin-bottom: 60px;
+			}
+			.hTitle{							
+				height: 40px;
+				line-height: 40px;				
+			}
+			.xmTitle{
+				border-left: 3px solid #409eff;
+				padding-left: 5px;
+				font-weight: bold;
+				font-size: 16px;
+			}
+			.xmleft{
+				width:60px;
+			}
+			.home_datalist{
+				padding: 0;
+				margin: 0;
+			}
+			.djLeft{
+				width: 60px;
+			}
+			.jcData{
+				width: 150px;
+			}
+			.cqData{
+				width: 150px;
+			}
         </style>
     </head>
     <body onselectstart="return true;" ondragstart="return false;">
-	<div class="masklayer" ontouchmove="return true;" onclick="$(this).toggleClass('on');">
-		<script>
-			var isAndroid = navigator.userAgent.toLowerCase().indexOf("android");
-			document.write(isAndroid>-1?"<img src='static/img/instruction_android.png' alt='' style='width: auto!important;'>":"<img src='static/img/instruction_iphone.png' alt='' style='width: auto!important;'>");
-		</script>
+	<div class="homeTitle">
+		<img onclick="goback()" src="static/img/back.png" />单井卡片
 	</div>
-	<header class="detailTitle">
-		<div class="titleLeft"></div>
-		<div class="titleRight"><a class="backBtns" href="javascript:history.go(-1)">返回</a></div>
-		<div class="clear"></div>
-	</header>	
-	<div class="cardexplain">	
+	<div class="cardexplain">
+		<div class="loading"><img src="static/img/loading.gif" /></div>	
 		<section class="home_section">
-			<div>基本信息</div>
-			<div class="home_datalist">
-				<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
-				<table class="programData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>
+			<div class="hTitle"><span class="xmTitle titleLeft"></span></div>
+			<div class="home_datalist">				
+				<table class="basicInfo" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;width: 100%"></table>
 			</div>
 		</section>
 		<section class="home_section">
-			<div>计划信息</div>
+			<div class="hTitle"><span class="xmTitle">计划信息</span></div>
 			<div class="home_datalist">
-				<table class="planData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>	
+				<table class="planData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;width: 100%"></table>	
 			</div>
 		</section>
+		<!-- <section class="home_section"> -->
+			<!-- <div class="hTitle"><span class="xmTitle">预算信息</span></div> -->
+			<!-- <div class="home_datalist"> -->
+				<!-- <table class="yData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;width: 100%"></table>	 -->
+			<!-- </div> -->
+		<!-- </section> -->
+		<!-- <section class="home_section"> -->
+			<!-- <div class="hTitle"><span class="xmTitle">招投标及合同信息</span></div> -->
+			<!-- <div class="home_datalist"> -->
+				<!-- <table class="bussinessData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;width: 100%"></table>	 -->
+			<!-- </div> -->
+		<!-- </section> -->
+		<!-- <section class="home_section"> -->
+			<!-- <div class="hTitle"><span class="xmTitle">ERP完成信息</span></div> -->
+			<!-- <div class="home_datalist"> -->
+				<!-- <table class="erpData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;width: 100%"></table>	 -->
+			<!-- </div> -->
+		<!-- </section> -->
 		<section class="home_section">
-			<div>预算信息</div>
+			<div class="hTitle"><span class="xmTitle">钻井生产信息</span></div>
 			<div class="home_datalist">
-				<table class="yData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>	
+				<table class="proData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;width: 100%"></table>	
 			</div>
 		</section>
-		<section class="home_section">
-			<div>招投标及合同信息</div>
+		<section class="home_section dj_section">
+			<div class="hTitle"><span class="xmTitle">采气生产信息</span></div>
 			<div class="home_datalist">
-				<table class="bussinessData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>	
-			</div>
-		</section>
-		<section class="home_section">
-			<div>ERP完成信息</div>
-			<div class="home_datalist">
-				<table class="erpData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>	
-			</div>
-		</section>
-		<section class="home_section">
-			<div>钻井生产信息</div>
-			<div class="home_datalist">
-				<table class="proData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>	
-			</div>
-		</section>
-		<section class="home_section">
-			<div>采气生产信息</div>
-			<div class="home_datalist">
-				<table class="cqData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc"></table>	
+				<table class="cqData" border="1" cellspacing="0" cellpadding="0" borderColor="#ccc" style="border-collapse:collapse;width: 100%"></table>	
 			</div>
 		</section>
 	</div>
@@ -102,15 +156,20 @@
 		
 	$(document).ready(function () {	
 		cardList();
-	}); 	
+	}); 
+	function goback(){
+		history.go(-1);
+	}	
 	function cardList(){
+		$(".loading").show();
 		var xmid = sessionStorage.getItem("jhId");
 		$.ajax({
              type: "GET",
-             url: "http://10.18.3.98:8586/xntzjh/jhzxcx/djkpList.d",
+             url: "http://app.xnyqt.com:9001/sn/8586/xntzjh/jhzxcx/djkpList.ydd",
              data: {xmid:xmid},
              dataType: "json",
              success: function(res){
+				$(".loading").hide();
 				var dataList = 	res;
 				var trHtml = ""
 				var pHtml = ""
@@ -121,276 +180,196 @@
 				var sHtml = ""
 				var cHtml = ""
 				if(dataList.length > 0){
-					$(".titleLeft").html(dataList[0].JH + "单井卡片")
+					$(".titleLeft").html(dataList[0].JH)
 					trHtml+="<tr>"+
-							"<td>井名</td>" +
-							"<td>" + (dataList[0].JH == undefined ? "":dataList[0].JH) + "</td>" + 
-							"<td>区块</td>" +
-							"<td>" + (dataList[0].QKMC == undefined ? "":dataList[0].QKMC) + "</td>" + 		
+							"<td class='djLeft'>所属项目</td>" +
+							"<td colspan='3'>" + (dataList[0].XMMC == undefined ? "":dataList[0].XMMC) + "</td>" + 
 						"</tr>"	+ 
 						"<tr>" + 
-							"<td>井别</td>" +
+							"<td class='djLeft'>井别</td>" +
 							"<td>" + (dataList[0].JB == undefined ? "":dataList[0].JB) + "</td>" + 
-							"<td>井型</td>" +
+							"<td class='djLeft'>井型</td>" +
 							"<td>" + (dataList[0].JX == undefined ? "":dataList[0].JX) + "</td>" + 
 						"</tr>"	+
-						"<tr>"	+ 
-						"<td>地理位置</td>" +
-						"<td colspan='3'>" + (dataList[0].ADDR == undefined ? "":dataList[0].ADDR) + "</td>" + 
-						"</tr>"	+
-						"<tr>"	+ 
-						"<td>构造位置</td>" +
-						"<td colspan='3'>" + (dataList[0].GZWZ == undefined ? "":dataList[0].GZWZ) + "</td>" + 
-						"</tr>"	+
 						"<tr>" + 
-							"<td>设计井深</td>" +
+							"<td class='djLeft'>设计井深</td>" +
 							"<td>" + (dataList[0].SJJS == undefined ? "":dataList[0].SJJS) + "</td>" + 
-							"<td>实钻井深</td>" +
+							"<td class='djLeft'>实钻井深</td>" +
 							"<td>" + (dataList[0].DQJS == undefined ? "":dataList[0].DQJS) + "</td>" + 
 						"</tr>"	+
 						"<tr>" + 
-							"<td>目的层位</td>" +
+							"<td class='djLeft'>目的层位</td>" +
 							"<td>" + (dataList[0].SJCW == undefined ? "":dataList[0].SJCW) + "</td>" + 
-							"<td>实钻层位</td>" +
+							"<td class='djLeft'>实钻层位</td>" +
 							"<td>" + (dataList[0].WZCW == undefined ? "":dataList[0].WZCW) + "</td>" + 
 						"</tr>"	+
 						"<tr>" + 
-							"<td>设计周期</td>" +
+							"<td class='djLeft'>设计周期</td>" +
 							"<td>" + (dataList[0].SJZQ == undefined ? "":dataList[0].SJZQ) + "</td>" + 
-							"<td>实钻周期</td>" +
+							"<td class='djLeft'>实钻周期</td>" +
 							"<td>" + (dataList[0].SZZQ == undefined ? "":dataList[0].SZZQ) + "</td>" + 
 						"</tr>"	+
 						"<tr>" + 
-							"<td>钻机型号</td>" +
+							"<td class='djLeft'>钻机型号</td>" +
 							"<td>" + (dataList[0].ZJXH == undefined ? "":dataList[0].ZJXH) + "</td>" + 
-							"<td>完井方式</td>" +
+							"<td class='djLeft'>完井方式</td>" +
 							"<td>" + (dataList[0].WJFS == undefined ? "":dataList[0].WJFS) + "</td>" + 
 						"</tr>"	+
 						"<tr>" + 
-							"<td>最大斜角</td>" +
-							"<td>" + (dataList[0].ZDJXJ == undefined ? "":dataList[0].ZDJXJ) + "</td>" + 
-							"<td>造斜率（°/100m）</td>" +
-							"<td>" + (dataList[0].ZXL == undefined ? "":dataList[0].ZXL) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>泥浆浓度</td>" +
-							"<td>" + (dataList[0].NJMD == undefined ? "":dataList[0].NJMD) + "</td>" + 
-							"<td>是否用顶驱</td>" +
-							"<td>" + (dataList[0].SFYDQ == undefined ? "":dataList[0].SFYDQ) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>钻采任务下达时间</td>" +
-							"<td>" + (dataList[0].ZCRWXDSJ == undefined ? "":dataList[0].ZCRWXDSJ) + "</td>" + 
-							"<td>钻井任务下达时间</td>" +
-							"<td>" + (dataList[0].ZJRWXDSJ == undefined ? "":dataList[0].ZJRWXDSJ) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>开钻日期</td>" +
+							"<td class='djLeft'>开钻日期</td>" +
 							"<td>" + (dataList[0].KZRQ == undefined ? "":dataList[0].KZRQ) + "</td>" + 
-							"<td>完钻日期</td>" +
+							"<td class='djLeft'>完钻日期</td>" +
 							"<td>" + (dataList[0].WZRQ == undefined ? "":dataList[0].WZRQ) + "</td>" + 
 						"</tr>"	+
 						"<tr>" + 
-							"<td>建设单位</td>" +
+							"<td class='djLeft'>建设单位</td>" +
 							"<td>" + (dataList[0].JSDWM == undefined ? "":dataList[0].JSDWM) + "</td>" + 
-							"<td>钻井施工单位</td>" +
+							"<td class='djLeft'>钻井公司</td>" +
 							"<td>" + (dataList[0].SGDW == undefined ? "":dataList[0].SGDW) + "</td>" + 
-						"</tr>"	+
-						"<tr>"	+ 
-							"<td>其他</td>" +
-							"<td colspan='3'></td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>定向井数据</td>" +
-							"<td>造斜率（*/100m）</td>" + 
-							"<td>最大井斜</td>" +
-							"<td>水平段长（m）</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>设计</td>" +
-							"<td>" + (dataList[0].SHEJ_ZXL == undefined ? "":dataList[0].SHEJ_ZXL) + "</td>" + 
-							"<td>" + (dataList[0].SHEJ_ZDJX == undefined ? "":dataList[0].SHEJ_ZDJX) + "</td>" +
-							"<td>" + (dataList[0].SHEJ_SPDC == undefined ? "":dataList[0].SHEJ_SPDC) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>实际</td>" +
-							"<td>" + (dataList[0].SJ_ZXL == undefined ? "":dataList[0].SJ_ZXL) + "</td>" + 
-							"<td>" + (dataList[0].SJ_ZDJX == undefined ? "":dataList[0].SJ_ZDJX) + "</td>" +
-							"<td>" + (dataList[0].SJ_SPDC == undefined ? "":dataList[0].SJ_SPDC) + "</td>" + 
 						"</tr>"
 						
 				var html =  trHtml;
 				$(".basicInfo").append(html);
-				pHtml+="<tr>" + 
-						"<td rowspan='2'>套管程序</td>" +
-						"<td>设计</td>" + 
-						"<td>" + (dataList[0].SHEJ_TGCX == undefined ? "":dataList[0].SHEJ_TGCX) + "</td>" + 		
-					"</tr>"	+ 
-					"<tr>" + 
-						"<td>实际</td>" + 
-						"<td>" + (dataList[0].SHEJ_ZTCX == undefined ? "":dataList[0].SHEJ_ZTCX) + "</td>" + 		
-					"</tr>"
-				$(".programData").append(pHtml);
 				lData+="<tr>" + 
-							"<td>所属项目名称</td>" +
-							"<td>" + (dataList[0].XMMC == undefined ? "":dataList[0].XMMC) + "</td>" + 
-							"<td>项目类型</td>" +
-							"<td>" + (dataList[0].XMLX == undefined ? "":dataList[0].XMLX) + "</td>" + 
+							"<td class='djLeft'>计划年度</td>" +
+							"<td>" + (dataList[0].JHND == undefined ? "":dataList[0].JHND) + "</td>" +
+							"<td class='djLeft'>批复进尺</td>" +
+							"<td>" + (dataList[0].PFJC == undefined ? "":dataList[0].PFJC) + "</td>" + 								
 						"</tr>"+
 						"<tr>" + 
-							"<td>计划年度</td>" +
-							"<td>" + (dataList[0].JHND == undefined ? "":dataList[0].JHND) + "</td>" + 
-							"<td>批复金额（万元）</td>" +
+							"<td class='djLeft'>批复金额</td>" +
 							"<td>" + (dataList[0].PFJE == undefined ? "":dataList[0].PFJE) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>总部下达金额（万元）</td>" +
-							"<td>" + (dataList[0].JH1 == undefined ? "":dataList[0].JH1) + "</td>" + 
-							"<td>分公司下达金额（万元）</td>" +
-							"<td>" + (dataList[0].JH3 == undefined ? "":dataList[0].JH3) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>批复进尺（米）</td>" +
-							"<td>" + (dataList[0].PFJC == undefined ? "":dataList[0].PFJC) + "</td>" + 
-							"<td>总部下达进尺（米）</td>" +
-							"<td>" + (dataList[0].JH2 == undefined ? "":dataList[0].JH2) + "</td>" + 
-						"</tr>"+
-						"<tr>"	+ 
-							"<td>分公司下达进尺（米）</td>" +
-							"<td colspan='3'>" + (dataList[0].JH4 == undefined ? "":dataList[0].JH4) + "</td>" + 
+							"<td class='djLeft'>完成金额</td>" +
+							"<td>" + (dataList[0].JS1 == undefined ? "":dataList[0].JS1) + "</td>"
 						"</tr>"
 				$(".planData").append(lData);
-				yHtml+="<tr>"+ 
-							"<td>预算金额</td>" +
-							"<td colspan='3'>" + (dataList[0].YS1 == undefined ? "":dataList[0].YS1) + "</td>" + 
-						"</tr>" + 
-						"<tr>" + 
-							"<td>征租地</td>" +
-							"<td>" + (dataList[0].YS2 == undefined ? "":dataList[0].YS2) + "</td>" + 
-							"<td>钻前工程</td>" +
-							"<td>" + (dataList[0].YS3 == undefined ? "":dataList[0].YS3) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>钻井工程</td>" +
-							"<td>" + (dataList[0].YS4 == undefined ? "":dataList[0].YS4) + "</td>" + 
-							"<td>测井工程</td>" +
-							"<td>" + (dataList[0].YS5 == undefined ? "":dataList[0].YS5) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>录井工程</td>" +
-							"<td>" + (dataList[0].YS6 == undefined ? "":dataList[0].YS6) + "</td>" + 
-							"<td>试气工程</td>" +
-							"<td>" + (dataList[0].YS7 == undefined ? "":dataList[0].YS7) + "</td>" + 
-						"</tr>"						
-				$(".yData").append(yHtml);
-				zHtml+="<tr>" + 
-							"<td>招标控制价（万元）</td>" +
-							"<td>" + (dataList[0].HT1 == undefined ? "":dataList[0].HT1) + "</td>" + 
-							"<td>中标价（万元）</td>" +
-							"<td>" + (dataList[0].HT2 == undefined ? "":dataList[0].HT2) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>合同金额（万元）</td>" +
-							"<td>" + (dataList[0].HT3 == undefined ? "":dataList[0].HT3) + "</td>" + 
-							"<td>钻前工程</td>" +
-							"<td>" + (dataList[0].HT4 == undefined ? "":dataList[0].HT4) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>钻井工程（含测录井）</td>" +
-							"<td>" + (dataList[0].HT5 == undefined ? "":dataList[0].HT5) + "</td>" + 
-							"<td>试气工程</td>" +
-							"<td>" + (dataList[0].HT6 == undefined ? "":dataList[0].HT6) + "</td>" + 
-						"</tr>"						
-				$(".bussinessData").append(zHtml);
-				eHtml+="<tr>" + 
-							"<td>累计完成（万元）</td>" +
-							"<td>" + (dataList[0].JS1 == undefined ? "":dataList[0].JS1) + "</td>" + 
-							"<td>本年完成（万元）</td>" +
-							"<td>" + (dataList[0].JS2 == undefined ? "":dataList[0].JS2) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>钻前工程</td>" +
-							"<td>" + (dataList[0].JS5 == undefined ? "":dataList[0].JS5) + "</td>" + 
-							"<td>钻井工程</td>" +
-							"<td>" + (dataList[0].JS6 == undefined ? "":dataList[0].JS6) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>钻井甲供料</td>" +
-							"<td>" + (dataList[0].ERPZJJGL == undefined ? "":dataList[0].ERPZJJGL) + "</td>" + 
-							"<td>钻井甲供油</td>" +
-							"<td>" + (dataList[0].ERPZJJGY == undefined ? "":dataList[0].ERPZJJGY) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>录井工程</td>" +
-							"<td>" + (dataList[0].ERPLJGC == undefined ? "":dataList[0].ERPLJGC) + "</td>" + 
-							"<td>测井工程</td>" +
-							"<td>" + (dataList[0].ERPCJGC == undefined ? "":dataList[0].ERPCJGC) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>征租地</td>" +
-							"<td>" + (dataList[0].ERPZZD == undefined ? "":dataList[0].ERPZZD) + "</td>" + 
-							"<td>安评环评排污</td>" +
-							"<td>" + (dataList[0].ERPAPHPPW == undefined ? "":dataList[0].ERPAPHPPW) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>设计费</td>" +
-							"<td>" + (dataList[0].ERPSJF == undefined ? "":dataList[0].ERPSJF) + "</td>" + 
-							"<td>监督费</td>" +
-							"<td>" + (dataList[0].ERPJDF == undefined ? "":dataList[0].ERPJDF) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>钻井其它</td>" +
-							"<td>" + (dataList[0].ERPZJQT == undefined ? "":dataList[0].ERPZJQT) + "</td>" + 
-							"<td>测试工程</td>" +
-							"<td>" + (dataList[0].ERPCSGC == undefined ? "":dataList[0].ERPCSGC) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>压裂工程</td>" +
-							"<td>" + (dataList[0].ERPYLGC == undefined ? "":dataList[0].ERPYLGC) + "</td>" + 
-							"<td>测试甲供料</td>" +
-							"<td>" + (dataList[0].ERPCSJGL == undefined ? "":dataList[0].ERPCSJGL) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>测试甲供油</td>" +
-							"<td>" + (dataList[0].ERPCSJGY == undefined ? "":dataList[0].ERPCSJGY) + "</td>" + 
-							"<td>采油（气）其它	</td>" +
-							"<td></td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>地面劳务费</td>" +
-							"<td>" + (dataList[0].ERPDMLWF == undefined ? "":dataList[0].ERPDMLWF) + "</td>" + 
-							"<td>地面甲供料</td>" +
-							"<td>" + (dataList[0].ERPDMJGL == undefined ? "":dataList[0].ERPDMJGL) + "</td>" + 
-						"</tr>"	+
-						"<tr>" + 
-							"<td>地面其它</td>" +
-							"<td colspan='3'>" + (dataList[0].ERPDMQT == undefined ? "":dataList[0].ERPDMQT) + "</td>" +
-						"</tr>"
-				$(".erpData").append(eHtml);
+				<!-- yHtml+="<tr>"+  -->
+							<!-- "<td>预算金额</td>" + -->
+							<!-- "<td colspan='3'>" + (dataList[0].YS1 == undefined ? "":dataList[0].YS1) + "</td>" +  -->
+						<!-- "</tr>" +  -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>征租地</td>" + -->
+							<!-- "<td>" + (dataList[0].YS2 == undefined ? "":dataList[0].YS2) + "</td>" +  -->
+							<!-- "<td>钻前工程</td>" + -->
+							<!-- "<td>" + (dataList[0].YS3 == undefined ? "":dataList[0].YS3) + "</td>" +  -->
+						<!-- "</tr>"+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>钻井工程</td>" + -->
+							<!-- "<td>" + (dataList[0].YS4 == undefined ? "":dataList[0].YS4) + "</td>" +  -->
+							<!-- "<td>测井工程</td>" + -->
+							<!-- "<td>" + (dataList[0].YS5 == undefined ? "":dataList[0].YS5) + "</td>" +  -->
+						<!-- "</tr>"+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>录井工程</td>" + -->
+							<!-- "<td>" + (dataList[0].YS6 == undefined ? "":dataList[0].YS6) + "</td>" +  -->
+							<!-- "<td>试气工程</td>" + -->
+							<!-- "<td>" + (dataList[0].YS7 == undefined ? "":dataList[0].YS7) + "</td>" +  -->
+						<!-- "</tr>"						 -->
+				<!-- $(".yData").append(yHtml); -->
+				<!-- zHtml+="<tr>" +  -->
+							<!-- "<td>招标控制价（万元）</td>" + -->
+							<!-- "<td>" + (dataList[0].HT1 == undefined ? "":dataList[0].HT1) + "</td>" +  -->
+							<!-- "<td>中标价（万元）</td>" + -->
+							<!-- "<td>" + (dataList[0].HT2 == undefined ? "":dataList[0].HT2) + "</td>" +  -->
+						<!-- "</tr>"+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>合同金额（万元）</td>" + -->
+							<!-- "<td>" + (dataList[0].HT3 == undefined ? "":dataList[0].HT3) + "</td>" +  -->
+							<!-- "<td>钻前工程</td>" + -->
+							<!-- "<td>" + (dataList[0].HT4 == undefined ? "":dataList[0].HT4) + "</td>" +  -->
+						<!-- "</tr>"+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>钻井工程（含测录井）</td>" + -->
+							<!-- "<td>" + (dataList[0].HT5 == undefined ? "":dataList[0].HT5) + "</td>" +  -->
+							<!-- "<td>试气工程</td>" + -->
+							<!-- "<td>" + (dataList[0].HT6 == undefined ? "":dataList[0].HT6) + "</td>" +  -->
+						<!-- "</tr>"						 -->
+				<!-- $(".bussinessData").append(zHtml); -->
+				<!-- eHtml+="<tr>" +  -->
+							<!-- "<td>累计完成（万元）</td>" + -->
+							<!-- "<td>" + (dataList[0].JS1 == undefined ? "":dataList[0].JS1) + "</td>" +  -->
+							<!-- "<td>本年完成（万元）</td>" + -->
+							<!-- "<td>" + (dataList[0].JS2 == undefined ? "":dataList[0].JS2) + "</td>" +  -->
+						<!-- "</tr>"+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>钻前工程</td>" + -->
+							<!-- "<td>" + (dataList[0].JS5 == undefined ? "":dataList[0].JS5) + "</td>" +  -->
+							<!-- "<td>钻井工程</td>" + -->
+							<!-- "<td>" + (dataList[0].JS6 == undefined ? "":dataList[0].JS6) + "</td>" +  -->
+						<!-- "</tr>"+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>钻井甲供料</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPZJJGL == undefined ? "":dataList[0].ERPZJJGL) + "</td>" +  -->
+							<!-- "<td>钻井甲供油</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPZJJGY == undefined ? "":dataList[0].ERPZJJGY) + "</td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>录井工程</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPLJGC == undefined ? "":dataList[0].ERPLJGC) + "</td>" +  -->
+							<!-- "<td>测井工程</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPCJGC == undefined ? "":dataList[0].ERPCJGC) + "</td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>征租地</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPZZD == undefined ? "":dataList[0].ERPZZD) + "</td>" +  -->
+							<!-- "<td>安评环评排污</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPAPHPPW == undefined ? "":dataList[0].ERPAPHPPW) + "</td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>设计费</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPSJF == undefined ? "":dataList[0].ERPSJF) + "</td>" +  -->
+							<!-- "<td>监督费</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPJDF == undefined ? "":dataList[0].ERPJDF) + "</td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>钻井其它</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPZJQT == undefined ? "":dataList[0].ERPZJQT) + "</td>" +  -->
+							<!-- "<td>测试工程</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPCSGC == undefined ? "":dataList[0].ERPCSGC) + "</td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>压裂工程</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPYLGC == undefined ? "":dataList[0].ERPYLGC) + "</td>" +  -->
+							<!-- "<td>测试甲供料</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPCSJGL == undefined ? "":dataList[0].ERPCSJGL) + "</td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>测试甲供油</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPCSJGY == undefined ? "":dataList[0].ERPCSJGY) + "</td>" +  -->
+							<!-- "<td>采油（气）其它	</td>" + -->
+							<!-- "<td></td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>地面劳务费</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPDMLWF == undefined ? "":dataList[0].ERPDMLWF) + "</td>" +  -->
+							<!-- "<td>地面甲供料</td>" + -->
+							<!-- "<td>" + (dataList[0].ERPDMJGL == undefined ? "":dataList[0].ERPDMJGL) + "</td>" +  -->
+						<!-- "</tr>"	+ -->
+						<!-- "<tr>" +  -->
+							<!-- "<td>地面其它</td>" + -->
+							<!-- "<td colspan='3'>" + (dataList[0].ERPDMQT == undefined ? "":dataList[0].ERPDMQT) + "</td>" + -->
+						<!-- "</tr>" -->
+				<!-- $(".erpData").append(eHtml); -->
 				sHtml+="<tr>" + 
-							"<td>历年累计进尺（米）</td>" +
-							"<td>" + (dataList[0].LJJC == undefined ? "":dataList[0].LJJC) + "</td>" + 
-							"<td>本年累计进尺（米）</td>" +
+							"<td class='jcData'>历年累计进尺（米）</td>" +
+							"<td>" + (dataList[0].LJJC == undefined ? "":dataList[0].LJJC) + "</td>" + 							
+						"</tr>"	+ 
+						"<tr>" + 
+							"<td class='jcData'>本年累计进尺（米）</td>" +
 							"<td>" + (dataList[0].NLJJC == undefined ? "":dataList[0].NLJJC) + "</td>" + 
-						"</tr>"					
+						"</tr>"	
 				$(".proData").append(sHtml);
 				cHtml+="<tr>" + 
-							"<td>累计产量（万方）</td>" +
+							"<td class='cqData'>投产日期</td>" +
+							"<td></td>" +							
+						"</tr>"+
+						"<tr>" + 
+							"<td class='cqData'>累计产量（万方）</td>" +
 							"<td>" + (dataList[0].LJCQL == undefined ? "":dataList[0].LJCQL) + "</td>" + 
-							"<td>当年产量（万方）</td>" +
+						"</tr>"+
+						"<tr>" + 
+							"<td class='cqData'>当年产量（万方）</td>" +
 							"<td>" + (dataList[0].DNCQL == undefined ? "":dataList[0].DNCQL) + "</td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>投产日期</td>" +
-							"<td></td>" + 
-							"<td>商品率</td>" +
-							"<td></td>" + 
-						"</tr>"+
-						"<tr>" + 
-							"<td>天然气价</td>" +
-							"<td></td>" + 
-							"<td>收入</td>" +
-							"<td></td>" + 
 						"</tr>"						
 				$(".cqData").append(cHtml);
 				}else{
